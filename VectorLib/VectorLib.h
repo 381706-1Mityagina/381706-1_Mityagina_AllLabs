@@ -250,7 +250,7 @@ T& TVector<T>::operator[](int i)
 }
 // ---------------------------------------------------------------------------
 template <class T1>
-std::istream& operator>>(std::istream &A, TVector<T> &B)
+std::istream& operator>>(std::istream &A, TVector<T1> &B)
 {
   A >> B.dlina;
   B.vector = new T1[B.dlina];
@@ -262,7 +262,7 @@ std::istream& operator>>(std::istream &A, TVector<T> &B)
 }
 // ---------------------------------------------------------------------------
 template <class T1>
-std::ostream& operator<<(std::ostream &A, TVector<T> &B)
+std::ostream& operator<<(std::ostream &A, TVector<T1> &B)
 {
   A << B.dlina << "\n";
   for (int i = 0; i < B.dlina; i++)
