@@ -27,10 +27,10 @@ public:
   TVector<T>& operator=(TVector<T> &A);
   T& operator[](int i);
 
-  template <class T>
-  friend std::istream& operator>>(std::istream& A, TVector<T>& B);
-  template <class T>
-  friend std::ostream& operator<<(std::ostream& A, TVector<T>& B);
+  template <class T1>
+  friend std::istream& operator>>(std::istream& A, TVector<T1>& B);
+  template <class T1>
+  friend std::ostream& operator<<(std::ostream& A, TVector<T1>& B);
 };
 // ---------------------------------------------------------------------------
 template <class T>
@@ -249,7 +249,7 @@ T& TVector<T>::operator[](int i)
   throw 1;
 }
 // ---------------------------------------------------------------------------
-template <class T>
+template <class T1>
 std::istream& operator>>(std::istream &A, TVector<T> &B)
 {
   A >> B.dlina;
@@ -261,7 +261,7 @@ std::istream& operator>>(std::istream &A, TVector<T> &B)
   return A;
 }
 // ---------------------------------------------------------------------------
-template <class T>
+template <class T1>
 std::ostream& operator<<(std::ostream &A, TVector<T> &B)
 {
   A << B.dlina << "\n";
