@@ -253,7 +253,7 @@ template <class T1>
 std::istream& operator>>(std::istream &A, TVector<T> &B)
 {
   A >> B.dlina;
-  B.vector = new T[B.dlina];
+  B.vector = new T1[B.dlina];
   for (int i = 0; i < B.dlina; i++)
   {
 	A >> B.vector[i];
