@@ -8,7 +8,7 @@ before_script:
 script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
-  - ./Vector/Vector
+  - ./VectorLib/Vector
   - ./VectorTest/VecTest
 notifications:
   email: false
