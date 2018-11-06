@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8) #Проверка версии CMake.
 set(PROJECT_NAME AllLabs) #Создаем обычную локальную переменную с именем проекта
 project(${PROJECT_NAME}) # Название проекта
 
-set (Vector Vector)
+set (vector vector)
 set(VectorLib VectorLib) #Переменная с именем библиотеки
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE) #Создается переменная CMAKE_CONFIGURATION_TYPES со значением "Debug;Release" и меткой/разделом Configs, переменная сохраниется в специальном файле доступном из всех файлов,
@@ -14,5 +14,5 @@ endif()
 
 include_directories(${CMAKE_CURREN_SOURCE_DIR}/ VectorLib)
 
-add_subdirectory(Vector)
+add_subdirectory(vector)
 add_subdirectory(VectorLib)
