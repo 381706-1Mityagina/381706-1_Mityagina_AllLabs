@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8) #Проверка версии CMake.
 set(PROJECT_NAME AllLabs) #Создаем обычную локальную переменную с именем проекта
 project(${PROJECT_NAME}) # Название проекта
 
-set (vector vector)
+set (Vector Vector)
 set(VectorLib VectorLib) #Переменная с именем библиотеки
 set (VectorTest VectorTest)
 
@@ -15,7 +15,7 @@ endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ VectorLib ${CMAKE_CURRENT_SOURCE_DIR}/gtest)
 
-add_subdirectory(vector)
+add_subdirectory(Vector)
 add_subdirectory(VectorLib)
 add_subdirectory(VectorTest)
 add_subdirectory(gtest)
