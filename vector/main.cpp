@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
-#include "../VectorLib/Vector.h"
+#include "..//VectorLib/Vector.h"
 
 using namespace std;
 
