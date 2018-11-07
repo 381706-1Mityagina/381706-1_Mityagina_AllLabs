@@ -9,23 +9,26 @@ protected:
 public:
 	TStack(int n = 0);
 	TStack(TStack<T> &A);
-	void Put(T A);
-	T Get();
+	void PutSmth(T A);
+	T GetSmth();
 	bool IsFull();
 	bool IsEmpty();
 };
 //-----------------------------------------------------------
 template <class T>
-TStack <T> :: TStack(int n) {
-	if (n < 0) throw 1;
+TStack <T> :: TStack(int n) 
+{
+	if (n < 0) throw "wrong";
 	else 
-		if (n == 0) {
+		if (n == 0) 
+		{
 			Size = TopOne = 0;
 			Mas = NULL;
 		}
-		else {
+		else 
+		{
 			Size = n;
-			Top = 0;
+			TopOne = 0;
 			Mas = new T[Size];
 			for (int i = 0; i < Size; i++)
 				Mas[i] = 0;
@@ -33,12 +36,14 @@ TStack <T> :: TStack(int n) {
 }
 //-----------------------------------------------------------
 template <class T>
-TStack <T> :: TStack(TStack <T> &A) {
+TStack <T> :: TStack(TStack <T> &A) 
+{
 	Size = A.Size;
 	Top = A.TopOne;
 	if (Size == 0)
 		Mas = NULL;
-	else {
+	else 
+	{
 		Mas = new T[Size];
 		for (int i = 0; i < Size; i++)
 			Mas[i] = A.Mas[i];
@@ -46,27 +51,32 @@ TStack <T> :: TStack(TStack <T> &A) {
 }
 //-----------------------------------------------------------
 template <class T>
-void TStack<T> :: Put(T A) {
+void TStack<T> :: PutSmth(T A) 
+{
 	if (IsFull())
-		throw 1;
-	else {
+		throw "wrong";
+	else 
+	{
 		Mas[TopOne] = A;
 		Top++;
 	}
 }
 //-----------------------------------------------------------
 template <class T>
-T TStack<T> :: Get() {
+T TStack<T> :: GetSmth() 
+{
 	if (IsEmpty()) 
-		throw 1;
-	else {
+		throw "wrong";
+	else 
+	{
 		TopOne--;
 		return Mas[Top + 1];
 	}
 }
 //-----------------------------------------------------------
 template <class T>
-bool TStack<T> :: IsFull() {
+bool TStack<T> :: IsFull() 
+{
 	if (TopOne >= Size)
 		return true;
 	else
@@ -74,7 +84,8 @@ bool TStack<T> :: IsFull() {
 }
 //-----------------------------------------------------------
 template <class T>
-bool TStack<T> :: IsEmpty() {
+bool TStack<T> :: IsEmpty() 
+{
 	if (TopOne == 0)
 		return true;
 	else
