@@ -4,7 +4,7 @@ template <class T>
 class Matrix
 {
 private:
-  Vector<T> *M;
+  TVector<T> *M;
   int Size;
 public:
   Matrix(int _Size = 20);
@@ -20,61 +20,6 @@ public:
   Matrix<T> operator*(const Matrix<T>& Matr);
   Matrix<T>& operator*=(const Matrix<T>& Matr);
 };
-
-//Верхнетреугольные матрицы
-//template <class ValType>
-//class TMatrix : public TVector<TVector<ValType> > {
-//public:
-//  TMatrix(int s = 10); // (#О1)
-//  TMatrix(const TMatrix &mt); // копирование (#Л1)
-//  TMatrix(const TVector<TVector<ValType> > &mt); // преобразование типа (#Л2)
-//  TMatrix & operator==(const TMatrix &mt); // сравнение (#П1)
-//  TMatrix & operator= (const TMatrix &mt); // присваивание (#О2)
-//  TMatrix operator+ (const TMatrix &mt); // сложение (#П2)
-//  TMatrix operator- (const TMatrix &mt); // вычитание (#С1)
-//  TMatrix operator* (const TMatrix &mt); // умножение (#С2)
-//										 // ввод / вывод
-//  friend istream & operator>>(istream &in, TMatrix &mt) { //(#П3)
-//
-//
-//	return in;
-//  }
-//  friend ostream & operator<<(ostream &out, const TMatrix &mt) { //(#С3)
-//
-//
-//	return out;
-//  }
-//};
-//template <class ValType> //
-//TMatrix<ValType> ::TMatrix(int s) : TVector<TVector<ValType> >(s) {
-//  for (int i = 0; i < s; i++)
-//	pVector[i] = TVector<ValType>(s - i, i);
-//}
-//template <class ValType> // конструктор копирования
-//TMatrix<ValType> ::TMatrix(const TMatrix<ValType> &mt) :
-//
-//  template <class ValType> // конструктор преобразования типа
-//TMatrix<ValType> ::TMatrix(const TVector<TVector<ValType> > &mt) :
-//
-//  template <class ValType> // присваивание
-//TMatrix<ValType> & TMatrix<ValType>::operator=(const TMatrix<ValType> &mt) {
-//  if (this != &mt) {
-//	if (Size != mt.Size) {
-//	  delete[] pVector;
-//	  pVector = new TVector<ValType>[mt.Size];
-//	}
-//	Size = mt.Size; StartIndex = mt.StartIndex;
-//	for (int i = 0; i<Size; i++) pVector[i] = mt.pVector[i];
-//}
-//return *this;
-//}
-//template <class ValType> // сложение
-//TMatrix<ValType> TMatrix<ValType>::operator+(const TMatrix<ValType> &mt) {
-//
-//}
-//// TVector О3 Л2 П4 С6
-//// TMatrix О2 Л2 П3 С3
-//#endif 
 // ---------------------------------------------------------------------------
 
 template <class T>
@@ -112,18 +57,29 @@ Matrix<T>::Matrix(const Matrix<T>& Matr)
 template <class T>
 Matrix<T>& Matrix<T>::operator =(const Matrix<T>& Matr)
 {
-  if (this != &Matr)
-  {
-	if (Size != Matr.Size)
+ // if (this != &Matr)
+ // {
+ //	if (Size != Matr.Size)
+ // 	{
+ //	  delete[] M;
+ // 	  Size = Matr.Size;
+ //	  M = new Vector<T>[Matr.Size];
+ // 	}
+ //	for (int i = 0; i<Size; i++)
+ //	  M[i] = Matr.M[i];
+ //} 
+ // return (*this);
+        if (this != &Matr)
 	{
-	  delete[] M;
-	  Size = Matr.Size;
-	  M = new Vector<T>[Matr.Size];
-	}
-	for (int i = 0; i<Size; i++)
-	  M[i] = Matr.M[i];
-  } 
-  return (*this);
+	  if (Size != Matr.Size) 
+	   {
+	  delete[] pVector;
+          Vector = new TVector<T>[Matr.Size];
+	   }
+	Size = Matr.Size; StartIndex = Matr.StartIndex;
+	for (int i = 0; i<Size; i++) pVector[i] = Matr.pVector[i];
+        }
+return *this;
 }
 
 // ---------------------------------------------------------------------------
