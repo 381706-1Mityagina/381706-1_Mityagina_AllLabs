@@ -81,31 +81,6 @@ TEST(TMatrix, assign_operator_change_matrix_size)
   EXPECT_EQ(7, m2.getDlina());
 }
 
-TEST(TMatrix, compare_equal_matrices_return_true)
-{
-  TMatrix<int> m1(4);
-  TMatrix<int> m2(4);
-  m1[1][1] = 1;
-  m2[1][1] = 1;
-  ASSERT_TRUE(m1 == m2);
-}
-
-TEST(TMatrix, compare_matrix_with_itself_return_true)
-{
-  TMatrix<int> m1(4);
-  m1[1][1] = 1;
-  ASSERT_TRUE(m1 == m1);
-}
-
-TEST(TMatrix, matrices_with_different_size_are_not_equal)
-{
-  TMatrix<int> m1(4);
-  TMatrix<int> m2(5);
-  m1[1][1] = 1;
-  m2[1][1] = 1;
-  ASSERT_FALSE(m1 == m2);
-}
-
 TEST(TMatrix, can_add_matrices_with_equal_size)
 {
   TMatrix<int> m1(3);
