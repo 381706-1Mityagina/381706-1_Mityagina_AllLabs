@@ -21,9 +21,9 @@ public:
   TMatrix  operator- (const TMatrix &Matr);
   //TMatrix operator* (const TMatrix &Matr);
 												
-  template <class FriendT> friend istream& operator>>(istream &in, TMatrix<FriendT> &Matr);
+  template <class FriendT> friend istream& operator>>(istream &istr, TMatrix<FriendT> &Matr);
  
-  template <class FriendT> friend ostream & operator<<(ostream &out, const TMatrix<FriendT> &Matr);
+  template <class FriendT> friend ostream & operator<<(ostream &ostr, const TMatrix<FriendT> &Matr);
  
 };
 //-------------------------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ template <class T>
 TMatrix<T>::TMatrix(const TMatrix<T> &Matr) : TVector<TVector<T> >(Matr) {}
 //-------------------------------------------------------------------------------------------------
 template <class T>
-TMatrix<T>::TMatrix(const TVector<TVector<T>> &Matr) : TVector<TVector<T> >(Matr) {}
+TMatrix<T>::TMatrix(const TVector<TVector<T> > &Matr) : TVector<TVector<T> >(Matr) {}
 //-------------------------------------------------------------------------------------------------
 template <class T>
 bool TMatrix<T>::operator==(const TMatrix<T> &Matr) const
@@ -81,18 +81,18 @@ TMatrix<T> TMatrix<T>::operator-(const TMatrix<T> &Matr)
 	return TVector<TVector<T> > :: operator-(Matr);
 }
 //-------------------------------------------------------------------------------------------------
-template <class FriendT>  istream& operator>>(istream &in, TMatrix<FriendT> &Matr)
+template <class FriendT>  istream& operator>>(istream &istr, TMatrix<FriendT> &Matr)
 {
   for (int i = 0; i < Matr.dlina; i++)
-	in >> Matr.Vector[i];
-  return in;
+	istr >> Matr.Vector[i];
+  return istr;
 }
 //-------------------------------------------------------------------------------------------------
-template <class FriendT>  ostream & operator<<(ostream &out, const TMatrix<FriendT> &Matr)
+template <class FriendT>  ostream & operator<<(ostream &ostr, const TMatrix<FriendT> &Matr)
 {
   for (int i = 0; i < Matr.dlina; i++)
-	out << Matr.Vector[i] << endl;
-  return out;
+	ostr << Matr.Vector[i] << endl;
+  return ostr;
 }
 //-------------------------------------------------------------------------------------------------
 //template <class T>
