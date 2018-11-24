@@ -181,7 +181,7 @@ bool TVector<T>::operator==(const TVector<T> &A)
   else 
   {
 	for (int i = 0; i < dlina; i++)
-		if (vector[i]!=A.vector[i])
+		if (Vector[i]!=A.Vector[i])
 		return false;
   }
   return true;
