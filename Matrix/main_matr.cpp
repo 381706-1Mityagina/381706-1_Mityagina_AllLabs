@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
   cout << "\t ||Result2 ||" << endl << Result2 << endl;
  // cout << "\t ||Result3 ||" << endl << Result3 << endl;
 
-  system("pause");  
+  //system("pause");  
   return 0;
 }
 //--------------------------------------------------------------------------- 
