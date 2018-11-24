@@ -88,8 +88,11 @@ int TVector<T>::getDlina() const
 template <class T>
 T& TVector<T>::operator[](int i)
 {
-  if (i >= 0 && i <= dlina)
-	return Vector[i];
+  if (i < 0 || i >= dlina)
+	
+	  throw "Smth's wrong";
+  else 
+	  return Vector[i];
   //throw 1;
 }
 //-------------------------------------------------------------------------------------------------
