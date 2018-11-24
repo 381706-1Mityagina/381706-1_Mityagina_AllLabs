@@ -180,9 +180,8 @@ bool TVector<T>::operator==(const TVector<T> &A)
 	return false;
   else 
   {
-	T differ = 0.0001;
 	for (int i = 0; i < dlina; i++)
-	  if (((Vector[i] - A.Vector[i]) > differ) || ((A.Vector[i] - Vector[i]) > differ))
+		if (vector[i]!=A.vector[i])
 		return false;
   }
   return true;
