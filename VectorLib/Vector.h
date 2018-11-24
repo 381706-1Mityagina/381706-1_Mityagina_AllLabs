@@ -182,7 +182,7 @@ bool TVector<T>::operator==(const TVector<T> &A)
   {
 	T diff = 0.0001;
 	for (int i = 0; i < dlina; i++)
-		if (this->Vector[i]-A.Vector[i] > diff)
+		if ((A.Vector[i] - this->Vector[i])|| (this->Vector[i] - A.Vector[i]) > diff)
 		return false;
   }
   return true;
