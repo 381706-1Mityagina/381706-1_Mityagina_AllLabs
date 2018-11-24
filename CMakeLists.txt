@@ -7,15 +7,33 @@ set (vector vector)
 set(VectorLib VectorLib) #Переменная с именем библиотеки
 set (VectorTest VectorTest)
 
+set(Matrix Matrix)
+set(MatrixLib MatrixLib)
+set(MatrixTest MatrixTest)
+
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE) #Создается переменная CMAKE_CONFIGURATION_TYPES со значением "Debug;Release" и меткой/разделом Configs, переменная сохраниется в специальном файле доступном из всех файлов,
 if(NOT CMAKE_BUILD_TYPE) # проверка имеющихся у компилятора вариантов сборки
   set(CMAKE_BUILD_TYPE Release) #Если нет то устанавливаем Release
 endif()
 
+file(GLOB hdrs "*.h*") #Добавляем в переменную hdrs все файлы с расширением .h
+file(GLOB srcs "*.cpp") #Добавляем в переменную srcs все файлы с расширением .h
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ VectorLib ${CMAKE_CURRENT_SOURCE_DIR}/gtest)
 
+#add_executable(${PROJECT_NAME} ${srcs} ${hdrs}) #Создаем проект с именем из переменной ${PROJECT_NAME}, в него добавляются файлы из переменных ${srcs} и ${hdrs}
+
+#${CMAKE_CURRENT_SOURCE_DIR}
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest)
+add_subdirectory(gtest)
+
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/VectorLib)
 add_subdirectory(vector)
 add_subdirectory(VectorLib)
 add_subdirectory(VectorTest)
-add_subdirectory(gtest)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/MatrixLib)
+add_subdirectory(Matrix)
+add_subdirectory(MatrixLib)
+add_subdirectory(MatrixTest)
+
