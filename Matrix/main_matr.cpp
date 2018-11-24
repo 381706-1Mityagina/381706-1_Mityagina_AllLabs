@@ -1,5 +1,4 @@
 #include <iostream>
-#include <conio.h>
 #include "..//Matrix.h/Matrix.h"
 
 using namespace std;
