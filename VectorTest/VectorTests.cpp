@@ -22,7 +22,7 @@ TEST(TVector, can_get_size)
 {
   TVector<int> a(10);
 
-  EXPECT_EQ(10, a.getDlina);
+  EXPECT_EQ(10, a.getDlina());
 }
 
 TEST(TVector, can_assign_vector_to_itself)
