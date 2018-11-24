@@ -10,7 +10,6 @@ script:
   - make -j
   - ./vector/vector
   - ./VectorTest/VectorTest
-  - make -j
   - ./Matrix/Matrix
   - ./MatrixTest/MatrixTest
 notifications:
