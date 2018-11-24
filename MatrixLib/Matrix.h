@@ -7,16 +7,16 @@
 using namespace std;
 
 template <class T>
-class TMatrix : public TVector<TVector<T>>
+class TMatrix : public TVector<TVector<T> >
 {
 public:
   TMatrix(int n = 10);
   TMatrix(const TMatrix &Matr);                    
-  TMatrix(const TVector<TVector<T>> &Matr);			
+  TMatrix(const TVector<TVector<T> > &Matr);			
   bool operator==(const TMatrix &Matr) const;
   bool operator!=(const TMatrix &Matr) const;
   //TMatrix& operator= (TMatrix &MT); 
-  TMatrix& operator= (TVector<TVector<T>> &Matr);
+  TMatrix& operator= (TVector<TVector<T> > &Matr);
   TMatrix  operator+ (const TMatrix &Matr);
   TMatrix  operator- (const TMatrix &Matr);
   //TMatrix operator* (const TMatrix &Matr);
@@ -28,7 +28,7 @@ public:
 };
 //-------------------------------------------------------------------------------------------------
 template <class T>
-TMatrix<T>::TMatrix(int n) : TVector<TVector<T>>(n)
+TMatrix<T>::TMatrix(int n) : TVector<TVector<T> >(n)
 {
   int a = MAX_SIZE;
   if (n < 0 || n > a)
@@ -39,10 +39,10 @@ TMatrix<T>::TMatrix(int n) : TVector<TVector<T>>(n)
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
-TMatrix<T>::TMatrix(const TMatrix<T> &Matr) : TVector<TVector<T>>(Matr) {}
+TMatrix<T>::TMatrix(const TMatrix<T> &Matr) : TVector<TVector<T> >(Matr) {}
 //-------------------------------------------------------------------------------------------------
 template <class T>
-TMatrix<T>::TMatrix(const TVector<TVector<T>> &Matr) : TVector<TVector<T>>(Matr) {}
+TMatrix<T>::TMatrix(const TVector<TVector<T>> &Matr) : TVector<TVector<T> >(Matr) {}
 //-------------------------------------------------------------------------------------------------
 template <class T>
 bool TMatrix<T>::operator==(const TMatrix<T> &Matr) const
@@ -53,13 +53,13 @@ bool TMatrix<T>::operator==(const TMatrix<T> &Matr) const
 template <class T>
 bool TMatrix<T>::operator!=(const TMatrix<T> &Matr) const
 {
-  return TVector<TVector<T>>::operator!=(Matr);
+  return TVector<TVector<T> >::operator!=(Matr);
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
-TMatrix<T>& TMatrix<T>::operator=(TVector<TVector<T>> &Matr)
+TMatrix<T>& TMatrix<T>::operator=(TVector<TVector<T> > &Matr)
 {
-  TVector<TVector<T>>::operator=(Matr);
+  TVector<TVector<T> >::operator=(Matr);
   return *this;
 }
 //-------------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ TMatrix<T> TMatrix<T>::operator+(const TMatrix<T> &Matr)
   if (this -> dlina != Matr.dlina)
 	throw 1;
   else
-	return TVector<TVector<T>> :: operator+(Matr);
+	return TVector<TVector<T> > :: operator+(Matr);
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
@@ -78,7 +78,7 @@ TMatrix<T> TMatrix<T>::operator-(const TMatrix<T> &Matr)
   if (this->dlina != Matr.dlina)
 	throw 1;
   else
-	return TVector<TVector<T>> :: operator-(Matr);
+	return TVector<TVector<T> > :: operator-(Matr);
 }
 //-------------------------------------------------------------------------------------------------
 template <class FriendT>  istream& operator>>(istream &in, TMatrix<FriendT> &Matr)
