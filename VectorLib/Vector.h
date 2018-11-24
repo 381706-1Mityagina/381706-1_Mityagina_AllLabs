@@ -227,7 +227,7 @@ istream& operator>>(istream &istr, TVector<FriendT> &A)
 {
   cout << "\nEnter the " << A.dlina << " coordinates: ";
   for (int i = 0; i < A.dlina; i++)
-	is >> A.Vector[i];
+	istr >> A.Vector[i];
   return istr;
 }
 //-------------------------------------------------------------------------------------------------
