@@ -47,7 +47,7 @@ TMatrix<T>::TMatrix(const TVector<TVector<T> > &Matr) : TVector<TVector<T> >(Mat
 template <class T>
 bool TMatrix<T>::operator==(const TMatrix<T> &Matr) const
 {
-  return TVector<TVector<T>>::operator==(Matr);
+  return TVector<TVector<T> >::operator==(Matr);
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
