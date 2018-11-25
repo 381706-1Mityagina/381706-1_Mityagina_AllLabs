@@ -1,71 +1,97 @@
 #pragma once
 
-#include "Stack.h"
+#include <iostream>
 
 template <class T>
-class TQueue : public TStack <T> 
+class TStack
 {
 protected:
-	int Start;
-	int Count;
+  int Size;
+  int Top;
+  T* Mas;
 public:
-	TQueue(int n = 0);
-	TQueue(TQueue <T> &A);
-	void PutSmth(T A);
-	T GetSmth();
-	bool IsFull();
-	bool IsEmpty();
+  TStack(int n = 0);
+  TStack(TStack<T> &S);
+  T Get();
+  void Put(T A);
+  bool IsFull();
+  bool IsEmpty();
 };
-//-----------------------------------------------------------
+//----------------------------------------------------------------------
 template <class T>
-TQueue<T>::TQueue(int n) : TStack<T>(n) 
+TStack <T> ::TStack(int n)
 {
-	Start = 0; Count = 0; 
-}
-//-----------------------------------------------------------
-template <class T>
-TQueue<T>::TQueue(TQueue<T> &A) : TStack<T>(A) 
-{
-	Start = A.Start; Count = A.Count; 
-}
-//-----------------------------------------------------------
-template <class T>
-void TQueue<T>::PutSmth(T A) {
-	if (IsFull()) 
-		throw "wrong";
-	else {
-		TStack<T>::Mas[Start] = A;
-		Start = (Start + 1) % TStack<T>::Size;
-		Count++;
-	}	
-}
-//-----------------------------------------------------------
-template <class T>
-T TQueue<T>::GetSmth() {
-	if (IsEmpty()) 
-		throw "wrong";
-	else 
+  if (n < 0) throw 1;
+  else
+	if (n == 0)
 	{
-		T temporary = TStack<T>::Mas[TStack<T>::TopOne];
-		TStack<T>::TopOne = (TStack<T>::TopOne + 1) % TStack<T>::Size;
-		Count--;
-		return temp;
+	  Size = Top = 0;
+	  Mas = NULL;
+	}
+	else
+	{
+	  Size = n;
+	  Top = 0;
+	  Mas = new T[Size];
+	  for (int i = 0; i < Size; i++)
+		Mas[i] = 0;
 	}
 }
-//-----------------------------------------------------------
+//----------------------------------------------------------------------
 template <class T>
-bool TQueue<T>::IsFull() {
-	if (Count == TStack<T>::Size)
-		return true;
-	else
-		return false;
+TStack <T> ::TStack(TStack <T> &S)
+{
+  Size = S.Size;
+  Top = S.Top;
+  if (Size == 0)
+	Mas = NULL;
+  else
+  {
+	Mas = new T[Size];
+	for (int i = 0; i < Size; i++)
+	  Mas[i] = S.Mas[i];
+  }
 }
-//-----------------------------------------------------------
+//----------------------------------------------------------------------
 template <class T>
-bool TQueue<T>::IsEmpty() {
-	if (Count == 0)
-		return true;
-	else 
-		return false;
+void TStack<T> ::Put(T A)
+{
+  if (IsFull())
+	throw 1;
+  else
+  {
+	Mas[Top] = A;
+	Top++;
+  }
 }
-//-----------------------------------------------------------
+//----------------------------------------------------------------------
+template <class T>
+T TStack<T> ::Get()
+{
+  if (IsEmpty())
+	throw 1;
+  else
+  {
+	Top--;
+	return Mas[Top];
+  }
+}
+//----------------------------------------------------------------------
+template <class T>
+bool TStack<T> ::IsFull()
+{
+  if (Top >= Size)
+	return true;
+  else
+	return false;
+}
+//----------------------------------------------------------------------
+template <class T>
+bool TStack<T> ::IsEmpty()
+{
+  if (Top == 0)
+	return true;
+  else
+	return false;
+}
+//----------------------------------------------------------------------
