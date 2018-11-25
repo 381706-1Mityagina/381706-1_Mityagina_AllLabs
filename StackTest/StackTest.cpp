@@ -8,7 +8,7 @@ TEST(Stack, cannot_create_stack_with_negative_size)
 //----------------------------------------------------------------------
 TEST(Stack, can_create_copied_stack)
 {
-  TStack<int> s1;
+  TStack<int> s1(4);
   s1.Put(3);
   s1.Put(2);
   ASSERT_NO_THROW(TStack<int> s2(s1));
