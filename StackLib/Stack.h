@@ -12,8 +12,8 @@ protected:
 public:
   TStack(int n = 0);
   TStack(TStack<T> &S);
-  void Put(T A);
   T Get();
+  void Put(T A);
   bool IsFull();
   bool IsEmpty();
 };
