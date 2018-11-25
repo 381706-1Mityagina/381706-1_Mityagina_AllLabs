@@ -10,6 +10,6 @@ script:
   - make -j
   - ./Stack/Stack
   - ./Queue/Queue
-  - ./QueueTest/QueueTest
+  - cd ./QueueTest/
 notifications:
   email: false
