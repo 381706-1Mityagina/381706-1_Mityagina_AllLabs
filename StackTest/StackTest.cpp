@@ -1,4 +1,4 @@
-#include "..//Stack/Stack.h"
+#include "..//StackLib/Stack.h"
 #include <gtest.h>
 
 TEST(Stack, cannot_create_stack_with_negative_size)
