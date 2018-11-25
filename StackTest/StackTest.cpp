@@ -22,7 +22,7 @@ TEST(Stack, IsEmpty_return_1_when_empty)
 //----------------------------------------------------------------------
 TEST(Stack, IsFull_returns_0_when_not_full)
 {
-  TStack<int> stack;
+  TStack<int> stack(2);
   stack.Put(1);
   EXPECT_EQ(0, stack.IsFull());
 }
