@@ -1,4 +1,4 @@
-#include "QueueLib/Queue.h"
+#include "..//QueueLib/Queue.h"
 
 #include <gtest.h>
 
