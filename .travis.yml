@@ -12,5 +12,7 @@ script:
   - ./VectorTest/VectorTest
   - ./Matrix/Matrix
   - ./MatrixTest/MatrixTest
+  - ./Stack/Stack
+  - ./StackTest/StackTest
 notifications:
   email: false
