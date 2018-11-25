@@ -5,7 +5,6 @@ project(${PROJECT_NAME}) # Название проекта
 
 set(Stack Stack)
 set(StackLib StackLib)
-set(StackTest StackTest)
 
 set(Queue Queue)
 set(QueueLib QueueLib)
@@ -27,4 +26,3 @@ add_subdirectory(QueueTest)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StackLib)
 add_subdirectory(Stack)
 add_subdirectory(StackLib)
-add_subdirectory(StackTest)
