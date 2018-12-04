@@ -1,7 +1,7 @@
 #pragma once
 #pragma once
 
-#include "..//ElementLib/TElement.h"
+#include "TElement.h"
 
 template <class T>
 class TList 
