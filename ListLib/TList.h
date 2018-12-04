@@ -13,8 +13,11 @@ public:
 	TList(); 
 	TList(TList<T> &List); 
 	virtual ~TList();
+	
+	T viewData(TElement<T>* ptr) { return ptr->data; }
+	T* viewPtr(TElement<T>* ptr) { return ptr; }
 
-	int GetSize();
+	int GetSize() { return size; }
 	void PutBegin(T A); 
 	void PutCurrent(T A);
 	void PutEnd(T A); 
@@ -43,6 +46,7 @@ TList<T>::TList()
 template <class T>
 TList<T>::TList(TList<T> &List)
 {
+	size = List.size;
 	TElement<T>* A = List.begin, B;
 	if (List.begin == 0)
 		begin = 0;
@@ -101,7 +105,6 @@ void TList<T>::DelFirst(void)
 		delete begin;
 		begin = temporary;
 		size--;
-		return result;
 	}
 	else
 		throw "Error";	
