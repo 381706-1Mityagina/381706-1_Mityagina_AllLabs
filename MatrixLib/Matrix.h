@@ -1,5 +1,5 @@
 #pragma once
-#include "..//VectorLib/VectorLib.h"
+#include "..//VectorLib/Vectorlib.h"
 #include <iostream>
 
 #define MAX_SIZE 10000;
