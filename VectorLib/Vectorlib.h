@@ -32,9 +32,8 @@ public:
   TVector operator*(T A);
   template <class FriendT> friend TVector<FriendT> operator*(FriendT a, const TVector<FriendT> &A);
 
-  template <class FriendT> friend istream& operator>>(istream &istr, TVector<FriendT> &A);
- 
-  template <class FriendT> friend ostream& operator<<(ostream &ostr, const TVector<FriendT> &AV);
+  template <class FriendT> friend istream& operator>>(istream &in, TVector<FriendT> &A);
+  template <class FriendT> friend ostream& operator<<(ostream &out, const TVector<FriendT> &AV);
 };
 //-------------------------------------------------------------------------------------------------
 template<class T>
@@ -89,8 +88,11 @@ int TVector<T>::getDlina() const
 template <class T>
 T& TVector<T>::operator[](int i)
 {
-  if (i >= 0 && i <= dlina)
-	return Vector[i];
+  if (i < 0 || i >= dlina)
+	
+	  throw "Smth's wrong";
+  else 
+	  return Vector[i];
   //throw 1;
 }
 //-------------------------------------------------------------------------------------------------
@@ -181,9 +183,9 @@ bool TVector<T>::operator==(const TVector<T> &A)
 	return false;
   else 
   {
-	T differ = 0.0001;
+	T diff = 0.0001;
 	for (int i = 0; i < dlina; i++)
-	  if (((Vector[i] - A.Vector[i]) > differ) || ((A.Vector[i] - Vector[i]) > differ))
+		if ((A.Vector[i] - Vector[i])|| (Vector[i] - A.Vector[i]) > diff)
 		return false;
   }
   return true;
@@ -226,9 +228,9 @@ TVector<T> TVector<T>::operator--(int)
 template<class FriendT>
 istream& operator>>(istream &istr, TVector<FriendT> &A)
 {
-  cout << "\nEnter the " << V.dlina << " coordinates: ";
+  cout << "\nEnter the " << A.dlina << " coordinates: ";
   for (int i = 0; i < A.dlina; i++)
-	is >> A.Vector[i];
+	istr >> A.Vector[i];
   return istr;
 }
 //-------------------------------------------------------------------------------------------------
