@@ -17,7 +17,7 @@ TEST(TList, can_add_last)
 TEST(TList, can_add_curr)
 {
 	 TList<int> a;
-	ASSERT_NO_THROW(a.AddCurr(1));
+	ASSERT_NO_THROW(a.AddCurrent(1));
 }
 
 TEST(TList, can_del_first)
@@ -41,7 +41,7 @@ TEST(TList, cant_del_curr)
 	 TList<int> a;
 	 a.AddCurr(1);
 
-	ASSERT_NO_THROW(a.delCurr());
+	ASSERT_NO_THROW(a.delCurrent());
 }
 
 TEST(TList, can_take_val)
