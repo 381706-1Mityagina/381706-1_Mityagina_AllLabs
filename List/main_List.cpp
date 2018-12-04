@@ -10,6 +10,6 @@ int main()
 	L1.PutBegin(50);
 	std::cout << L1.GetBegin();
 	std::cout << "\n";
-	system("pause");
+	//system("pause");
   return 0;
 }
