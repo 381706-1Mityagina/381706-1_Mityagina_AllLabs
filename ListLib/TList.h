@@ -114,32 +114,9 @@ void TList<T>::DelCurrent(void)
 }
 //-----------------------------------------------------------
 template <class T>
-void TList<T>::DelEnd(void)
+void TList<T>::DelList(void)
 {
-if (size == 0)
-	{
-		throw 1;
-	}
-	else 
-		if (size == 1)
-		{
-			TList<T> B = this;
-			while (B -> GetNext() != 0)
-			B = B->GetNext();
-		        
-			head = B = NULL;
-			size--;
-		}
-		else
-		{
-			TElement<T>* temporary = begin;
-			while (temporary->next->next)
-			{
-				temporary = temporary->next;
-			}
-			temporary->next = NULL;
-			size--;
-		}	
+
 }
 //-----------------------------------------------------------
 template <class T>
