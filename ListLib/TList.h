@@ -37,8 +37,9 @@ TList<T>::TList(TList<T> &List)
 	else {
 		begin = new TElement<T>(*List.begin); 
 		B = begin;
-		while (a->GetNext() != 0) {
-			B->SetNext(new TElem<T>(*(A->GetNext()))); 
+		while (A->GetNext() != 0) 
+		{
+			B->SetNext(new TElem<T>(A->GetNext())); 
 			A = A->GetNext();
 			B = B->GetNext();
 		}
@@ -75,7 +76,7 @@ void TList<T>::PutEnd(T A)
 {
 	if (begin != 0) {
 		TElement <T> *B = begin;
-		while (a->GetNext() != 0)
+		while (A->GetNext() != 0)
 			B = B->GetNext();
 		B->SetNext(new TElement <T>(A, 0));
 	}
