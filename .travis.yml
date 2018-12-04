@@ -9,6 +9,8 @@ script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
   - cd ./Vector
-  
+  - cd ./VectorTest
+  - cd ./Matrix
+  - cd ./MatrixTest
 notifications:
   email: false
