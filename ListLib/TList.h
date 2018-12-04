@@ -101,7 +101,7 @@ void TList<T>::delFirst()
 	}
 	else
 	{
-		TLink<T> *tmp = pFirst->next;
+		TElement<T> *tmp = pFirst->next;
 		delete pFirst;
 		pFirst = tmp;
 	}
