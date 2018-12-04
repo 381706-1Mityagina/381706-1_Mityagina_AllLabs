@@ -39,7 +39,7 @@ TList<T>::TList(TList<T> &List)
 		B = begin;
 		while (A->GetNext() != 0) 
 		{
-			B->SetNext(new TElem<T>(A->GetNext())); 
+			B->SetNext(new TElement<T>(*(A->GetNext()))); 
 			A = A->GetNext();
 			B = B->GetNext();
 		}
