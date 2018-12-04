@@ -8,7 +8,7 @@ before_script:
 script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
-  - cd ./bin/
-  - ./381706-1_Mityagina_AllLabs
+  - ./List/List
+  - ./ListTests/ListTests
 notifications:
   email: false
