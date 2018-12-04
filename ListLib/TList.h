@@ -1,197 +1,173 @@
 #pragma once
-#pragma once
-
+#include <iostream>
 #include "TElement.h"
 
+using namespace std;
 template <class T>
-class TList 
+class TList
 {
 protected:
-	TElement <T>* begin;
-	int size;
+	TElement<T> *pFirst, *pLast, *pPrev, *pCurr, *pStop;
+	int size, pos;
 public:
-	TList(); 
-	TList(TList<T> &List); 
-	virtual ~TList();
-	
-	T viewData(TElement<T>* ptr) { return ptr->data; }
-	T* viewPtr(TElement<T>* ptr) { return ptr; }
+	TList();
+	void AddFirst(T a);
+	void AddCurrent(T a);
+	void AddLast(T a);
 
-	int GetSize() { return size; }
-	void PutBegin(T A); 
-	void PutCurrent(T A);
-	void PutEnd(T A); 
-	T GetBegin(); 
-	T GetCurrent(); 
-	T GetEnd(); 
+	T getElelm() { return pCurr->data; }
 
-				
-	bool IsFull();
-	bool IsEmpty();
-	
-	virtual void DelFirst(void);
-	virtual void DelCurrent(void);
-	virtual void DelList(void);
+	void delFirst();
+	void delCurrent();
+	void delLast();
 
+	void reset();
+	void goNext();
+
+	bool isEnd() { return pCurr == pStop; }
+	bool isStart() { return pCurr == pFirst; }
+	bool isEmpty() { return pFirst == NULL; }
+	T operator[](int m);
+	~TList();
 };
-
-//-----------------------------------------------------------
+//-------------------------------------------------------------------------------
 template <class T>
 TList<T>::TList()
 {
+	pFirst = pLast = pCurr = pStop = NULL;
 	size = 0;
-	begin = 0;
+	pos = -1;
 }
-//-----------------------------------------------------------
+//-------------------------------------------------------------------------------
 template <class T>
-TList<T>::TList(TList<T> &List)
+void TList<T>::AddFirst(T a)
 {
-	size = List.size;
-	TElement<T>* A = List.begin, B;
-	if (List.begin == 0)
-		begin = 0;
-	else {
-		begin = new TElement<T>(*List.begin); 
-		B = begin;
-		while (A->GetNext() != 0) 
-		{
-			B->SetNext(new TElement<T>(*(A->GetNext()))); 
-			A = A->GetNext();
-			B = B->GetNext();
-		}
+	TElement<T> *tmp = new TElement <T>;
+	tmp->data = a;
+	if (size == 0)
+	{
+		pFirst = pLast = pCurr = tmp;
+		tmp->next = pStop;
+	}
+	else
+	{
+		tmp->next = pFirst;
+		pFirst = tmp;
+		if (size == 1) pPrev = pFirst;
+	}
+
+	pos++;
+	size++;
+}
+//-------------------------------------------------------------------------------
+template <class T>
+void TList<T>::AddCurrent(T a) 
+{
+	if (pFirst == pCurr) AddFirst(a);
+	else
+	{
+		TElement<T> *tmp = new TElement<T>;
+		tmp->data = a;
+		tmp->next = pCurr;
+		pPrev->next = tmp;
+		pCurr = tmp;
+		size++;
+	}
+
+}
+//-------------------------------------------------------------------------------
+template <class T>
+void TList<T>::AddLast(T a) 
+{
+	if (pFirst == NULL) AddFirst(a);
+	else 
+	{
+		TElement<T> *tmp = new TElement<T>;
+		tmp->data = a;
+		pLast->next = tmp;
+		tmp->next = pStop;
+		pLast = tmp;
+		size++;
 	}
 }
-//-----------------------------------------------------------
+//-------------------------------------------------------------------------------
+template <class T>
+void TList<T>::delFirst() 
+{
+	if (size == 1)
+	{
+		delete pFirst;
+		pFirst = pLast = pPrev = pCurr = pStop;
+	}
+	else
+	{
+		TLink<T> *tmp = pFirst->next;
+		delete pFirst;
+		pFirst = tmp;
+	}
+	size--;
+	pos--;
+}
+//-------------------------------------------------------------------------------
+template <class T>
+void TList<T>::delCurrent() 
+{
+	if (pCurr == pFirst)
+		delFirst();
+	else
+	{
+		pCurr = pCurr->next;
+		delete pPrev->next;
+		pPrev->next = pCurr;
+		size--;
+	}
+}
+//-------------------------------------------------------------------------------
+//template <class T>
+//void TList<T>::delLast() 
+//{
+//	if (pLast == pFirst) delFirst();
+//	else {
+//		for (reset(); !(pCurr == pLast); goNext()) {}
+//		delete pLast;
+//		pLast = pCurr = pPrev;
+//		pLast->next = pStop;
+//		size--;
+//		pos--;
+//	}
+//}
+//-------------------------------------------------------------------------------
+template <class T>
+void TList<T>::reset() 
+{
+	pPrev = pCurr = pFirst;
+	pos = 0;
+}
+//-------------------------------------------------------------------------------
+template <class T>
+void TList<T>::goNext() 
+{
+	pPrev = pCurr;
+	pCurr = pCurr->next;
+	pos++;
+
+}
+//-------------------------------------------------------------------------------
+template <class T>
+T TList<T>::operator[](int m) 
+{
+	for (reset(); !isEnd(); goNext()) 
+	{
+		if (pos == m - 1)
+			return pCurr->data;
+	}
+}
+//-------------------------------------------------------------------------------
 template <class T>
 TList<T>::~TList() 
 {
-	while (begin != 0)          
-	{
-		TElement <T> *temporary = begin->GetNext();   
-		delete begin;                
-		begin = temporary;
-	}
+	int listsize = size;
+	for (int i = 0; i < listsize; i++)
+		delFirst();
 }
-//-----------------------------------------------------------
-template <class T>
-void TList<T>::PutBegin(T A)
-{
-	if (begin == 0) 
-	{
-		TElement <T>* temporary = new TElement <T>(A, 0);
-		begin = temporary;
-	}
-	else 
-	{
-		TElement <T>* temporary = new TElement <T>(A, begin);
-		begin = temporary;
-	}
-	size++;
-}
-//-----------------------------------------------------------
-template <class T>
-void TList<T>::PutCurrent(T A)
-{
-	
-}
-//-----------------------------------------------------------
-template <class T>
-void TList<T>::DelFirst(void)
-{
-   if (size)
-	{
-		TElement<T>* temporary = begin -> next;
-		T result= begin->data;
-		delete begin;
-		begin = temporary;
-		size--;
-	}
-	else
-		throw "Error";	
-}
-//-----------------------------------------------------------
-template <class T>
-void TList<T>::DelCurrent(void)
-{
-	
-}
-//-----------------------------------------------------------
-template <class T>
-void TList<T>::DelList(void)
-{
-
-}
-//-----------------------------------------------------------
-template <class T>
-void TList<T>::PutEnd(T A)
-{
-	if (begin != 0) 
-	{
-		TElement <T> *B = begin;
-		while (B->GetNext() != 0)
-			B = B->GetNext();
-		B->SetNext(new TElement <T>(A, 0));
-	}
-	else
-		begin = new TElement <T>(A, 0);
-}
-//-----------------------------------------------------------
-template <class T>
-T TList<T>::GetBegin()
-{
-	if (IsEmpty())
-		throw "List's empty";
-	else 
-	{
-		TElement<T> *A = begin;
-		T temporary = begin->TElement<T>::GetData();
-		begin = begin->TElement<T>::GetNext();
-		delete A;
-		return temporary;
-	}
-}
-//-----------------------------------------------------------
-template <class T>
-T TList<T>::GetCurrent()
-{
-	
-}
-//-----------------------------------------------------------
-template <class T>
-T TList<T>::GetEnd()
-{
-	
-}
-//-----------------------------------------------------------
-template <class T>
-bool TList<T>::IsFull()
-{
-	try
-	{
-		TElement<T>* A = new TElement<T>();
-		if (A == 0)
-			return false;
-		else 
-		{
-			delete A;
-			return true;
-		}
-	}
-	catch (...)
-	{
-		return false;
-	}
-	//return true; 
- //do i really need this line? that's the question.-.
-}
-//-----------------------------------------------------------
-template <class T>
-bool TList<T>::IsEmpty()
-{
-	//if (begin == 0)
-	if (size == 0)
-		return true;
-	else
-		return false;
-}
-//-----------------------------------------------------------
+//-------------------------------------------------------------------------------
