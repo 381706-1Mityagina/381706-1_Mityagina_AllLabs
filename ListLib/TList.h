@@ -98,9 +98,9 @@ void TList<T>::PutCurrent(T A)
 template <class T>
 void TList<T>::DelFirst(void)
 {
-   if (size > 0)
+   if (size)
 	{
-		TElement<T>* temporary = begin->next;
+		TElement<T>* temporary = begin -> next;
 		T result= begin->data;
 		delete begin;
 		begin = temporary;
