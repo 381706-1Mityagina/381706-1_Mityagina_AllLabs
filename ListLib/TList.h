@@ -92,7 +92,7 @@ void TList<T>::PutCurrent(T A)
 }
 //-----------------------------------------------------------
 template <class T>
-void TList<T>::DelFirst()
+void TList<T>::DelFirst(void)
 {
    if (size > 0)
 	{
@@ -108,13 +108,13 @@ void TList<T>::DelFirst()
 }
 //-----------------------------------------------------------
 template <class T>
-void TList<T>::DelCurrent()
+void TList<T>::DelCurrent(void)
 {
 	
 }
 //-----------------------------------------------------------
 template <class T>
-void TList<T>::DelEnd()
+void TList<T>::DelEnd(void)
 {
 if (size == 0)
 	{
@@ -172,13 +172,13 @@ T TList<T>::GetBegin()
 }
 //-----------------------------------------------------------
 template <class T>
-T TList<T>::GetCurrent(T A)
+T TList<T>::GetCurrent()
 {
 	
 }
 //-----------------------------------------------------------
 template <class T>
-T TList<T>::GetEnd(T A)
+T TList<T>::GetEnd()
 {
 	
 }
