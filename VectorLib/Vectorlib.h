@@ -12,6 +12,7 @@ protected:
 public:
   TVector<T>(int n = 0);
   TVector<T>(const TVector<T> &A);
+  TVector(T* s, int _dlina);
   virtual ~TVector<T>();
 
   int getDlina() const;
@@ -77,6 +78,15 @@ TVector<T>::~TVector()
 	delete[] Vector;
 	Vector = NULL;
   }
+}
+//-------------------------------------------------------------------------------------------------
+template <class T>
+TVector<T>::TVector(T* mas, int _dlina)
+{
+	dlina = _dlina;
+	Vector = new T[dlina];
+	for (int i = 0; i < dlina; i++)
+		Vector[i] = mas[i];
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
