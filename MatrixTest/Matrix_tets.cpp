@@ -133,7 +133,7 @@ TEST(TMatrix, matrixes_are_not_equal_if_are_not_equal)
 	TMatrix<int> m1(4);
 	TMatrix<int> m2(3);
 
-	ASSERT_FALSE(m1 == m2);
+	ASSERT_ANY_THROW(m1 == m2);
 }
 
 TEST(TMatrix, return_true_when_compare_equal_matrices)
@@ -147,5 +147,5 @@ TEST(TMatrix, return_true_when_compare_equal_matrices)
 	}
 	m2 = m1;
 
-	ASSERT_TRUE(m1 == m2);
+	ASSERT_NO_TROW(m1 == m2);
 }
