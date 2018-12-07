@@ -13,11 +13,11 @@ public:
   TMatrix(int n = 10);
   TMatrix(const TMatrix &Matr);                    
   TMatrix(const TVector<TVector<T> > &Matr);			
-  bool operator==(const TMatrix &Matr);
-  bool operator!=(const TMatrix &Matr) const;
-  TMatrix& operator= (TVector<TVector<T> > &Matr);
-  TMatrix  operator+ (const TMatrix &Matr);
-  TMatrix  operator- (const TMatrix &Matr);
+  bool operator ==(const TMatrix &Matr) const;
+  bool operator !=(const TMatrix &Matr) const;
+  TMatrix& operator = (TVector<TVector<T> > &Matr);
+  TMatrix  operator + (const TMatrix &Matr);
+  TMatrix  operator - (const TMatrix &Matr);
 												
   template <class FriendT> friend istream& operator>>(istream &istr, TMatrix<FriendT> &Matr);
  
@@ -43,7 +43,7 @@ template <class T>
 TMatrix<T>::TMatrix(const TVector<TVector<T> > &Matr) : TVector<TVector<T> >(Matr) {}
 //-------------------------------------------------------------------------------------------------
 template <class T>
-bool TMatrix<T>::operator==(const TMatrix<T> &Matr) 
+bool TMatrix<T>::operator==(const TMatrix<T> &Matr) const
 {
   return TVector<TVector<T> >::operator==(Matr);
 }
