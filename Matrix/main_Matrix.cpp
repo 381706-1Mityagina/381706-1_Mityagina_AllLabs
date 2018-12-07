@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
   cout << "\t ||Result2 ||" << endl << Result2 << endl;
 
 	// Проверка работы операторов ввода-вывода
-	cout << "\n\t<<< Ввод матрицы >>>\n";
+	/* cout << "\n\t<<< Ввод матрицы >>>\n";
 	cout << "Введите размер матрицы\n";
 	int n;
 	cin >> n;
@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
 	cout << "Введите элементы матрицы\n";
 	cin >> _matrix;
 	cout << "\nВывод элементов матрицы\n";
-	cout << _matrix << "\n";
+	cout << _matrix << "\n"; */
 
   //system("pause");  
   return 0;
