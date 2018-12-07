@@ -15,11 +15,9 @@ public:
   TMatrix(const TVector<TVector<T> > &Matr);			
   bool operator==(const TMatrix &Matr);
   bool operator!=(const TMatrix &Matr) const;
-  //TMatrix& operator= (TMatrix &MT); 
   TMatrix& operator= (TVector<TVector<T> > &Matr);
   TMatrix  operator+ (const TMatrix &Matr);
   TMatrix  operator- (const TMatrix &Matr);
-  //TMatrix operator* (const TMatrix &Matr);
 												
   template <class FriendT> friend istream& operator>>(istream &istr, TMatrix<FriendT> &Matr);
  
@@ -94,22 +92,4 @@ template <class FriendT>  ostream & operator<<(ostream &ostr, const TMatrix<Frie
 	ostr << Matr.Vector[i] << endl;
   return ostr;
 }
-//-------------------------------------------------------------------------------------------------
-//template <class T>
-//TMatrix<T> TMatrix<T>::operator*(const TMatrix<T> &Matr)
-//{
-//	if (this->dlina != Matr.dlina) 
-//	{
-//	  throw "Matrix of different size";
-//	}
-//	int dlina = this->dlina;
-//	TVector<TVector<T>> matr = Matr, a = *this;
-//	TVector<TVector<T>> res(dlina);
-//	for (int i = 0; i < dlina; i++)
-//	  for (int j = i; j < dlina; j++)
-//		for (int k = 0; k <= j; k++)
-//		  res[i][j] = res[i][j] + (a[i][k])*(matr[k][j]);
-//	TMatrix<T> result = res;
-//	return result;
-//  }
 //-------------------------------------------------------------------------------------------------
