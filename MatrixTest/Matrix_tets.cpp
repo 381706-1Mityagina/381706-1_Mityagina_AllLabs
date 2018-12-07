@@ -135,17 +135,3 @@ TEST(TMatrix, matrixes_are_not_equal_if_size1_is_not_eq_to_size2)
 
 	ASSERT_FALSE(m1 == m2);
 }
-
-TEST(TMatrix, return_true_when_compare_equal_matrices)
-{
-	TMatrix<int> m1(5);
-	TMatrix<int> m2(5);
-
-	for (int i = 0; i < 5; ++i)
-	{
-		m1[i][i] = 5;
-	}
-	m2 = m1;
-
-	ASSERT_TRUE(m1 == m2);
-}
