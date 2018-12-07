@@ -147,5 +147,5 @@ TEST(TMatrix, return_true_when_compare_equal_matrices)
 	}
 	m2 = m1;
 
-	ASSERT_NO_TROW(m1 == m2);
+	ASSERT_NO_THROW(m1 == m2);
 }
