@@ -128,7 +128,7 @@ TEST(TMatrix, cannot_subtract_matrixes_with_not_equal_size)
 	ASSERT_ANY_THROW(m1 - m2);
 }
 
-TEST(TMatrix, matrixes_are_not_equal_if_size1_is_not eq_to_size2)
+TEST(TMatrix, matrixes_are_not_equal_if_size1_is_not_eq_to_size2)
 {
 	TMatrix<int> m1(4);
 	TMatrix<int> m2(3);
