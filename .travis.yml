@@ -11,6 +11,6 @@ script:
   - ./Vector/Vector
   - ./VectorTest/VectorTest
   - ./Matrix/Matrix
-  - cd ./MatrixTest
+  - ./MatrixTest/MatrixTest
 notifications:
   email: false
