@@ -30,7 +30,9 @@ int main()
 	cout << "Введите размер вектора\n";
 	int n;
 	cin >> n;
+	
 	TVector<int> _vector(n);
+	
 	cout << "Введите элементы вектора\n";
 	cin >> _vector;
 	cout << "\nВывод элементов вектора\n";
@@ -38,4 +40,3 @@ int main()
 	
 return 0;
 }
-
