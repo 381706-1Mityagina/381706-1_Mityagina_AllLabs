@@ -65,3 +65,40 @@ TEST(TVector, cannot_subtract_vectors_with_not_equal_size)
   
   ASSERT_ANY_THROW(a1 - a2); 
 }
+
+TEST(TVector, can_increase)
+{
+	TVector<int> a(6);
+
+	ASSERT_NO_THROW(a++);
+}
+
+TEST(TVector, can_decrease)
+{
+	TVector<int> a(6);
+
+	ASSERT_NO_THROW(a--);
+}
+
+TEST(TVector, can_multiply_vectors_of_equal_size)
+{
+	TVector<int> a1(6);
+	TVector<int> a2(6);
+
+	ASSERT_NO_THROW(a1*a2);
+}
+
+TEST(TVector, cannot_multiply_vectors_of_not_equal_size)
+{
+	TVector<int> a1(6);
+	TVector<int> a2(8);
+
+	ASSERT_ANY_THROW(a1*a2);
+}
+
+TEST(TVector, can_multiply_vector_and_const)
+{
+	TVector<int> a1(6);
+
+	ASSERT_NO_THROW(a1*5);
+}
