@@ -141,7 +141,7 @@ TEST(TMatrix, return_true_when_compare_equal_matrices)
 	TMatrix<int> m1(5);
 	TMatrix<int> m2(5);
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 5; ++i)
 	{
 		m1[i][i] = 5;
 	}
