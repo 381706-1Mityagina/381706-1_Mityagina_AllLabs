@@ -310,7 +310,7 @@ bool TMatrix<T> :: operator ==(const TMatrix &A) const
 	else
 		throw "WRONG";
 }
-//-------------------------------------------------------------------------------------------------
+/* //-------------------------------------------------------------------------------------------------
 template <class T>
 TMatrix<T> TMatrix<T>::operator*(const TMatrix<T>& Matr)
 {
@@ -327,17 +327,17 @@ template <class T>
 TMatrix<T>& TMatrix<T>::operator*=(const TMatrix<T>& Matr)
 {
 TMatrix<T> TmpMatr(Matr.MSize);
-for (int i=0;i<MSize;i++)
-for (int j=0;j<MSize;j++)
-for (int k=0;k<MSize;k++)
-TmpMatr[i][j]+=M[i][k]*Matr[k][j];
+for (int i=0; i < MSize; i++)
+for (int j=0; j < MSize; j++)
+for (int k=0; k < MSize; k++)
+TmpMatr[i][j] += this[i][k] * Matr[k][j];
 
 for (int i=0;i<MSize;i++)
 for (int j=0;j<MSize;j++)
-M[i][j]=TmpMatr[i][j];
+TVector<TVector<T> >[i][j]=TmpMatr[i][j];
 
 return *this;
-}
+} */
 //-------------------------------------------------------------------------------------------------
 template <class T>
 int TMatrix<T> :: GetMSize()
