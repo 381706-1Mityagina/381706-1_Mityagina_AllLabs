@@ -145,7 +145,9 @@ public:
 	TMatrix<T> operator -(TMatrix<T> &A);
 	TMatrix<T>& operator =(const TMatrix<T> &A);
 	bool operator ==(const TMatrix &A) const;
-	int GetN();
+	TMatrix<T> operator*(const TMatrix<T>& Matr);
+	TMatrix<T>& operator*=(const TMatrix<T>& Matr);
+	int GetMSize();
 
 	template <class T1>
 	friend istream& operator >>(istream &istr, TMatrix<T1> &A)
@@ -307,6 +309,34 @@ bool TMatrix<T> :: operator ==(const TMatrix &A) const
 	}
 	else
 		throw "WRONG";
+}
+//-------------------------------------------------------------------------------------------------
+template <class T>
+TMatrix<T> TMatrix<T>::operator*(const TMatrix<T>& Matr)
+{
+TMatrix<T> TmpMatr(Matr.MSize);
+for (int i=0; i < Matr.MSize; i++)
+for (int j=0; j < (i+1); j++)
+for (int k=j; k < (i+1); k++)
+TmpMatr[j][i] += M[j][k]*Matr[k][i];
+
+return TmpMatr;
+}
+//-------------------------------------------------------------------------------------------------
+template <class T>
+TMatrix<T>& TMatrix<T>::operator*=(const TMatrix<T>& Matr)
+{
+TMatrix<T> TmpMatr(Matr.MSize);
+for (int i=0;i<MSize;i++)
+for (int j=0;j<MSize;j++)
+for (int k=0;k<MSize;k++)
+TmpMatr[i][j]+=M[i][k]*Matr[k][j];
+
+for (int i=0;i<MSize;i++)
+for (int j=0;j<MSize;j++)
+M[i][j]=TmpMatr[i][j];
+
+return *this;
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
