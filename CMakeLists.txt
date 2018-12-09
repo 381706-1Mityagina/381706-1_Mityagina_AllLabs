@@ -7,6 +7,8 @@ set (Vector Vector)
 set(VectorLib VectorLib) #Переменная с именем библиотеки
 set (VectorTest VectorTest)
 
+set(Exception Exception)
+
 set (Matrix Matrix)
 set(MatrixLib MatrixLib) #Переменная с именем библиотеки
 set (MatrixTest MatrixTest)
@@ -24,6 +26,8 @@ file(GLOB srcs "*.cpp")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest)
 add_subdirectory(gtest)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Exception)
+add_subdirectory(Exception)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/VectorLib)
 add_subdirectory(Vector)
