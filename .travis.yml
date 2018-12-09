@@ -9,6 +9,6 @@ script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
   - ./Stack/Stack
-  - ./StackTest/StackTest
+  - cd ./StackTest
 notifications:
   email: false
