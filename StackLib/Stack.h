@@ -30,7 +30,7 @@ public:
 template <class T>
 TStack <T> ::TStack(int n)
 {
-  if (n < 0) throw 1;
+  if (n < 0) throw TException(" Negative size.");
   else
 	if (n == 0)
 	{
