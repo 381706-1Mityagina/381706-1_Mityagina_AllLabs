@@ -17,7 +17,7 @@ endif()
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Exception)
 add_subdirectory(Exception)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ QueueLib ${CMAKE_CURRENT_SOURCE_DIR}/gtest)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ StackLib ${CMAKE_CURRENT_SOURCE_DIR}/gtest)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StackLib)
 add_subdirectory(Stack)
