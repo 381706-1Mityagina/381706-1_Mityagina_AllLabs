@@ -7,20 +7,20 @@ template <class T>
 class TVector
 {
 protected:
-  int dlina;
-  T *Vector;
+  int dlina; // размер вектора
+  T *Vector; // массив элементов вектора
 public:
-  TVector<T>(int n = 0);
-  TVector<T>(const TVector<T> &A);
-	TVector(T* s, int _dlina);
-  virtual ~TVector<T>();
+  TVector<T>(int n = 0); // конструктор инициализации
+  TVector<T>(const TVector<T> &A); // конструктор копирования
+  TVector(T* s, int _dlina); // конструктор инициализации
+  virtual ~TVector<T>(); // диструктор
 
   int getDlina() const;
   T& operator [](int i);
-	bool operator ==(const TVector<T> &A) const;
-	bool operator !=(const TVector &v) const;
+  bool operator ==(const TVector<T> &A) const;
+  bool operator !=(const TVector &v) const;
   TVector& operator =(const TVector<T> &A);
-
+// перегрузка теоретико-множественных операторов
   TVector operator ++();
   TVector operator ++(int);
   TVector operator --();
@@ -34,7 +34,7 @@ public:
   TVector operator *(T A);
 
   template <class FriendT> friend TVector<FriendT> operator*(FriendT a, const TVector<FriendT> &A);
-
+// операторы ввода-вывода
   template <class FriendT> friend istream& operator>>(istream &in, TVector<FriendT> &A);
   template <class FriendT> friend ostream& operator<<(ostream &out, const TVector<FriendT> &AV);
 };
