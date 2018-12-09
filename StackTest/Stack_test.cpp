@@ -5,8 +5,8 @@
 TEST(TStack, can_put_and_get_element)
 {
 	TStack<int> stack(7);
-	A.Put(1);
-	A.Put(2);
+	stack.Put(1);
+	stack.Put(2);
 	EXPECT_EQ(2, stack.Get());
 }
 //----------------------------------------------------------------
@@ -79,7 +79,7 @@ TEST(TStack, throws_when_put_an_element_in_full_stack)
 
 	for (int i = 0; i < 3; i++) 
   {
-		st.Put(i);
+		stack.Put(i);
 	}
 
 	ASSERT_ANY_THROW(stack.Put(3));
