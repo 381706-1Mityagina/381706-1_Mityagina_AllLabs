@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include "..//Exception/Exception.h"
 
 template <class T>
 class TStack
@@ -58,7 +59,7 @@ template <class T>
 void TStack<T> ::Put(T A)
 {
   if (IsFull())
-	throw 1;
+	throw TException("Stack is full");
   else
   {
 	Mas[Top] = A;
@@ -70,7 +71,7 @@ template <class T>
 T TStack<T> ::Get()
 {
   if (IsEmpty())
-	throw 1;
+	throw TException("Stack is empty");
   else
   {
 	Top--;
