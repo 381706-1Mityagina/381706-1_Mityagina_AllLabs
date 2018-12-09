@@ -7,20 +7,22 @@ template <class T>
 class TStack
 {
 protected:
-  int Size;
-  int Top;
-  T* Mas;
+  int Size; // Размер стека
+  int Top; // элемент,расположенный на вершине стека
+  T* Mas; // элементы стека
 public:
-  int GetSize() { return Size; }
-  TStack(int n = 0);
-  TStack(TStack<T> &S);
-  T Get();
-  void Put(T A);
-  bool IsFull();
-  bool IsEmpty();
-  int operator!=(const TStack<T>& stack) const;
-  int operator==(const TStack<T>& stack) const;
-	TStack& operator=(const TStack<T>& stack);
+  int GetSize() { return Size; } // возвращает размер
+  TStack(int n = 0); // конструктор инициализации
+  TStack(TStack<T> &S); // конструктор копирования
+  T Get(); // возвращает элемент, расположенный на вершине стека
+  void Put(T A); // положить элемент
+  bool IsFull(); // проверка на полноту
+  bool IsEmpty(); // проверка на пустоту
+  void PrintStack(); // вывод стека на экран
+
+  int operator!=(const TStack<T>& stack) const; // проверка на неравенство
+  int operator==(const TStack<T>& stack) const; //проверка на равенство
+  TStack& operator=(const TStack<T>& stack); // приравнивание
 };
 //----------------------------------------------------------------------
 template <class T>
@@ -141,4 +143,11 @@ int TStack<T> ::operator!=(const TStack<T>& stack) const
 	{
 		return !(*this == stack);
 	}
+//----------------------------------------------------------------------
+template <class T>
+void TStack<T>:: PrintStack()
+{
+	for (int i = Top - 1; i >= 0; i--)
+		cout << "\t|" << Mas[i] << "|" << endl;
+}
 //----------------------------------------------------------------------
