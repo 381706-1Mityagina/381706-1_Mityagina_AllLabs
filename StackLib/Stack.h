@@ -97,3 +97,45 @@ bool TStack<T> ::IsEmpty()
 	return false;
 }
 //----------------------------------------------------------------------
+template <class T>
+TStack& TStack<T> ::operator=(const TStack& stack) 
+{
+		if (this != &stack)
+		{
+			if (Top != stack.Top) 
+			{
+				Top = stack.Top;
+				delete[] Mas;
+				Mas = new T[Top];
+			}
+			Size = stack.Size;
+			for (int i = 0; i < Size; i++) 
+			{
+				Mas[i] = stack.Mas[i];
+			}
+		}
+		return *this;
+	}
+
+//----------------------------------------------------------------------
+template <class T>
+int TStack<T> ::operator==(const TStack& stack) const 
+{
+		if (Top != stack.Top)
+			return 0;
+		if (Size != stack.Size)
+			return 0;
+		for (int i = 0; i < Size; i++) 
+		{
+			if (Mas[i] != stack.Mas[i])
+				return 0;
+		}
+		return 1;
+}
+//----------------------------------------------------------------------
+template <class T>
+int TStack<T> ::operator!=(const TStack& stack) const 
+	{
+		return !(*this == stack);
+	}
+//----------------------------------------------------------------------
