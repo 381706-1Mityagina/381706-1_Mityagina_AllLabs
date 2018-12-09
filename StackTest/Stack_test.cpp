@@ -26,12 +26,12 @@ TEST(TStack, check_empty)
 //----------------------------------------------------------------
 TEST(TStack, can_create_stack_with_positive_length)
 {
-  ASSERT_NO_THROW(TStack<int> stack(3));
+  ASSERT_NO_THROW(TStack<int> stack(7));
 }
 //----------------------------------------------------------------
 TEST(TStack, throws_when_create_stack_with_negative_length)
 {
-	ASSERT_ANY_THROW(TStack<int> stack(-3));
+	ASSERT_ANY_THROW(TStack<int> stack(-7));
 }
 //----------------------------------------------------------------
 TEST(TStack, can_create_copied_stack)
@@ -43,9 +43,9 @@ TEST(TStack, can_create_copied_stack)
 //----------------------------------------------------------------
 TEST(TStack, copied_stack_is_equal_to_the_source_one)
 {
-	TStack<int> stack1(3), stack2;
+	TStack<int> stack1(7), stack2;
 
-	for (int i = 0; i < 3; i++) 
+	for (int i = 0; i < 7; i++) 
   {
 		stack1.Put(i);
 	}
@@ -58,12 +58,12 @@ TEST(TStack, can_get_size)
 {
 	TStack<int> stack(5);
 
-	for (int i = 0; i < 3; i++) 
+	for (int i = 0; i < 5; i++) 
   {
 		stack.Put(i);
 	}
 
-	EXPECT_EQ(3, stack.GetSize());
+	EXPECT_EQ(5, stack.GetSize());
 }
 //----------------------------------------------------------------
 TEST(TStack, throws_when_get_top_in_empty_stack)
@@ -75,26 +75,26 @@ TEST(TStack, throws_when_get_top_in_empty_stack)
 //----------------------------------------------------------------
 TEST(TStack, throws_when_put_an_element_in_full_stack) 
 {
-	TStack<int> stack(3);
+	TStack<int> stack(7);
 
-	for (int i = 0; i < 3; i++) 
+	for (int i = 0; i < 7; i++) 
   {
 		stack.Put(i);
 	}
 
-	ASSERT_ANY_THROW(stack.Put(3));
+	ASSERT_ANY_THROW(stack.Put(7));
 }
 //----------------------------------------------------------------
 TEST(TStack, can_assign_stack_to_itself)
 {
-	TStack<int> stack(3);
+	TStack<int> stack(7);
 
 	ASSERT_NO_THROW(stack = stack);
 }
 //----------------------------------------------------------------
 TEST(TStack, can_assign_stacks_of_equal_maxsize)
 {
-	TStack<int> stack1(3), stack2(3);
+	TStack<int> stack1(7), stack2(7);
 
 	stack2 = stack1;
 
