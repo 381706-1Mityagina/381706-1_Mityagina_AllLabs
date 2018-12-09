@@ -30,7 +30,7 @@ TMatrix<T>::TMatrix(int n) : TVector<TVector<T> >(n)
 {
   int a = MAX_SIZE;
   if (n < 0 || n > a)
-	throw 1;
+	throw TException("Overflow");
   else
 	for (int i = 0; i < n; i++)
 	  this->Vector[i]= TVector <T>(n - i);
@@ -65,7 +65,7 @@ template <class T>
 TMatrix<T> TMatrix<T>::operator+(const TMatrix<T> &Matr)
 {
   if (this -> dlina != Matr.dlina)
-	throw 1;
+	throw TException("Different dimensions.");
   else
 	return TVector<TVector<T> > :: operator+(Matr);
 }
@@ -74,7 +74,7 @@ template <class T>
 TMatrix<T> TMatrix<T>::operator-(const TMatrix<T> &Matr)
 {
   if (this->dlina != Matr.dlina)
-	throw 1;
+	throw TException("Different dimensions.");
   else
 	return TVector<TVector<T> > :: operator-(Matr);
 }
