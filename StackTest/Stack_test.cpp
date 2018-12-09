@@ -1,6 +1,6 @@
 #include "../StackLib/Stack.h"
 
-#include "gtest.h"
+#include <gtest.h>
 
 TEST(TStack, can_put_and_get_element)
 {
