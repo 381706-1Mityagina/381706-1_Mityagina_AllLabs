@@ -101,7 +101,7 @@ bool TStack<T> ::IsEmpty()
 }
 //----------------------------------------------------------------------
 template <class T>
-TStack& TStack<T> ::operator=(const TStack<T>& stack) 
+TStack<T>& TStack<T> ::operator=(const TStack<T>& stack) 
 {
 		if (this != &stack)
 		{
