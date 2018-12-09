@@ -10,15 +10,15 @@ template <class T>
 class TMatrix : public TVector<TVector<T> >
 {
 public:
-  TMatrix(int n = 10);
-  TMatrix(const TMatrix &Matr);                    
-  TMatrix(const TVector<TVector<T> > &Matr);			
-  bool operator ==(const TMatrix &Matr) const;
-  bool operator !=(const TMatrix &Matr) const;
-  TMatrix& operator = (TVector<TVector<T> > &Matr);
-  TMatrix  operator + (const TMatrix &Matr);
-  TMatrix  operator - (const TMatrix &Matr);
-												
+  TMatrix(int n = 10); // конструктор инициализации
+  TMatrix(const TMatrix &Matr);  // конструктор копирования, принимающий ссылку на объект класса TMatrix                  
+  TMatrix(const TVector<TVector<T> > &Matr);  // конструктор копирования, принимающий ссылку на объект класса TVector<TVector<T>		
+  bool operator ==(const TMatrix &Matr) const; // перегрузка оператора сравнения (на равенство)
+  bool operator !=(const TMatrix &Matr) const; // перегрузка оператора сравнения (на неравенство)
+  TMatrix& operator = (TVector<TVector<T> > &Matr); // перегрузка оператора =
+  TMatrix  operator + (const TMatrix &Matr); // перегрузка оператора +
+  TMatrix  operator - (const TMatrix &Matr); // перегрузка оператора -
+// операторы ввода-вывода												
   template <class FriendT> friend istream& operator>>(istream &istr, TMatrix<FriendT> &Matr);
  
   template <class FriendT> friend ostream & operator<<(ostream &ostr, const TMatrix<FriendT> &Matr);
@@ -37,10 +37,10 @@ TMatrix<T>::TMatrix(int n) : TVector<TVector<T> >(n)
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
-TMatrix<T>::TMatrix(const TMatrix<T> &Matr) : TVector<TVector<T> >(Matr) {}
+TMatrix<T>::TMatrix(const TMatrix<T> &Matr) :TVector<TVector<T> >(Matr) { }
 //-------------------------------------------------------------------------------------------------
 template <class T>
-TMatrix<T>::TMatrix(const TVector<TVector<T> > &Matr) : TVector<TVector<T> >(Matr) {}
+TMatrix<T>::TMatrix(const TVector<TVector<T> > &Matr) : TVector<TVector<T> >(Matr) { }
 //-------------------------------------------------------------------------------------------------
 template <class T>
 bool TMatrix<T>::operator==(const TMatrix<T> &Matr) const
