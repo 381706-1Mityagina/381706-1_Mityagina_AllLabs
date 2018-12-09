@@ -93,33 +93,3 @@ template <class FriendT>  ostream & operator<<(ostream &ostr, const TMatrix<Frie
   return ostr;
 }
 //-------------------------------------------------------------------------------------------------
-/* template <class T>
-Matrix<T> Matrix<T>::operator*(const Matrix<T>& Matr)
-{
-Matrix<T> TmpMatr(Matr.Size);
-for (int i=0;i<Matr.Size;i++)
-for (int j=0;j<(i+1);j++)
-for (int k=j;k<(i+1);k++)
-	
-TmpMatr[j][i]+=M[j][k]*Matr[k][i];
-
-return TmpMatr;
-}
-//-------------------------------------------------------------------------------------------------
-template <class T>
-TMatrix<T>& TMatrix<T>::operator*=(const TMatrix<T>& Matr)
-{
-TMatrix<T> TmpMatr(TMatr.Size);
-for (int i=0;i<Size;i++)
-for (int j=0;j<Size;j++)
-for (int k=0;k<Size;k++)
-
-TmpMatr[i][j]+=M[i][k]*Matr[k][j];
-
-for (int i=0;i<Size;i++)
-for (int j=0;j<Size;j++)
-M[i][j]=TmpMatr[i][j];
-
-return *(this);
-}
-//-------------------------------------------------------------------------------------------------  */
