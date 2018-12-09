@@ -1,6 +1,7 @@
 #include <iostream>
 
 using namespace std;
+#include "../Exception/Exception.h"
 
 template <class T>
 class TVector
@@ -42,7 +43,7 @@ template<class T>
 TVector<T>::TVector(int n) 
 {
   if (n < 0)
-	throw "Impossible";
+	throw TException("Negative size. Impossible.");
   else
 	if (n == 0) 
 	{
@@ -103,7 +104,7 @@ T& TVector<T>::operator[](int i)
 {
   if (i < 0 || i >= dlina)
 	
-	  throw "Smth's wrong";
+	   throw TException("Overflow.");
   else 
 	  return Vector[i];
   //throw 1;
@@ -148,7 +149,7 @@ template<class T>
 TVector<T> TVector<T>::operator+(const TVector<T> &A) 
 {
   if (dlina != A.dlina)
-	throw "different dimensions. Impossible to add.";
+	throw TException("Different dimensions. Impossible to add.");
   TVector<T> temporary(dlina);
 	
   for (int i = 0; i < dlina; i++)
@@ -161,7 +162,7 @@ template<class T>
 TVector<T> TVector<T>::operator-(const TVector<T> &A) 
 {
   if (dlina != A.dlina)
-	throw "different dimensions. Impossible to subtract";
+	throw TException("Different dimensions. Impossible to subtract");
   TVector<T> temporary(dlina);
 	
   for (int i = 0; i < dlina; i++)
@@ -174,7 +175,7 @@ template<class T>
 T TVector<T>::operator*(const TVector <T> &A) 
 {
   if (dlina != A.dlina)
-	throw "different dimensions. Impossible to multiplicate";
+	throw TException("Different dimensions. Impossible to multiplicate");
   T temporary = 0;
 	
   for (int i = 0; i < dlina; i++)
