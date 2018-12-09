@@ -18,6 +18,9 @@ public:
   void Put(T A);
   bool IsFull();
   bool IsEmpty();
+  int operator!=(const TStack<T>& stack) const;
+  int operator==(const TStack<T>& stack) const;
+	TStack& operator=(const TStack<T>& stack);
 };
 //----------------------------------------------------------------------
 template <class T>
@@ -98,7 +101,7 @@ bool TStack<T> ::IsEmpty()
 }
 //----------------------------------------------------------------------
 template <class T>
-TStack& TStack<T> ::operator=(const TStack& stack) 
+TStack& TStack<T> ::operator=(const TStack<T>& stack) 
 {
 		if (this != &stack)
 		{
@@ -119,7 +122,7 @@ TStack& TStack<T> ::operator=(const TStack& stack)
 
 //----------------------------------------------------------------------
 template <class T>
-int TStack<T> ::operator==(const TStack& stack) const 
+int TStack<T> ::operator==(const TStack<T>& stack) const 
 {
 		if (Top != stack.Top)
 			return 0;
@@ -134,7 +137,7 @@ int TStack<T> ::operator==(const TStack& stack) const
 }
 //----------------------------------------------------------------------
 template <class T>
-int TStack<T> ::operator!=(const TStack& stack) const 
+int TStack<T> ::operator!=(const TStack<T>& stack) const 
 	{
 		return !(*this == stack);
 	}
