@@ -1,4 +1,4 @@
-#include "..\StackLib\Stack.h"
+#include "../StackLib/Stack.h"
 
 #include "gtest.h"
 
