@@ -10,6 +10,7 @@ protected:
   int Top;
   T* Mas;
 public:
+  int GetSize() { return Size; }
   TStack(int n = 0);
   TStack(TStack<T> &S);
   T Get();
