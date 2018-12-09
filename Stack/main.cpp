@@ -9,7 +9,8 @@ int main()
 
 	int n;
 	cout << "Введите кол-во элементов в стеке\n";
-	cin >> n;
+	do 
+		cin >> n; while (n < 0);
 	TStack<char> symbolStack(n);
 	char symbol;
 	cout << "Введите элементы стека\n";
