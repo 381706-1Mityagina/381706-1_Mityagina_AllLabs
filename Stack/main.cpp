@@ -1,4 +1,5 @@
 #include <iostream>
+#include <locale.h>
 #include "..//StackLib/Stack.h"
 
 using namespace std;
