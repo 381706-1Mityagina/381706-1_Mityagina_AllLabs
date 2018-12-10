@@ -105,12 +105,12 @@ TMatrix<T> TMatrix<T>::operator*(TMatrix<T> &A)
 	if (dlina != A.dlina)
 		throw TException("Error! Differen dimentions.");
 		//throw 0;
+	int _size = dlina;
+	TMatrix<T> Matr1 = *this, result(_size);
 
-	TMatrix<T> Matr1 = *this, result(dlina);
-
-	for (int row = 0; row  < dlina; ++row) // проходим по строкам
+	for (int row = 0; row  < _size; ++row) // проходим по строкам
 	{
-		for (int col = 0; col  < dlina - row; ++col) // проходим по столбцам
+		for (int col = 0; col  < _size - row; ++col) // проходим по столбцам
 		{
 			int needed_sum = 0, temp = col;
 			for (int inner = 0; inner <= col; inner++) // внутренние элементы
