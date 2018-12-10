@@ -104,18 +104,15 @@ TMatrix<T> TMatrix<T>::operator*(TMatrix<T> &A)
 {
 	if (this -> dlina != A.dlina)
            throw TException("Error! Differen dimentions.");
-	//throw 0;
-	int _size = this -> dlina;
-	TMatrix<T> Matrix1 = *this, result(_size);
-
+	
+	int _size = this->dlina;
+	TMatrix <T> result(_size);
 	for (int row = 0; row < _size; row++) // проходим по строкам
-	{
 		for (int col = row; col < _size; col++) // проходим по столбцам
 		{
-			for (int inner = 0; inner <= col; inner++) // внутренние элементы
-				result.Vector[row][col - row] += Matrix1.Vector[row][inner - row] * A.Vector[inner][col - inner];
+			for (int inner = row; inner <= col; inner++)
+				result.Vector[row][col - row] += this->Vector[row][inner - row] * A.Vector[inner][col - inner];
 		}
-	}
 	return result;
 }
 //-------------------------------------------------------------------------------------------------
