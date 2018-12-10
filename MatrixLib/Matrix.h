@@ -89,10 +89,14 @@ template <class FriendT>  istream& operator>>(istream &istr, TMatrix<FriendT> &M
 }
 //-------------------------------------------------------------------------------------------------
 template <class FriendT>  ostream & operator<<(ostream &ostr, const TMatrix<FriendT> &Matr)
-{
-  for (int i = 0; i < Matr.dlina; i++)
-	ostr << Matr.Vector[i] << endl;
-  return ostr;
+{ 
+		for (int i = 0; i < Matr.dlina; i++)
+		{
+			for (int j = 0; j < i; j++)
+				ostr << "\t";
+			ostr << Matr.Vector[i] << endl;
+		}
+		return ostr;
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
