@@ -102,23 +102,18 @@ template <class FriendT>  ostream & operator<<(ostream &ostr, const TMatrix<Frie
 template <class T>
 TMatrix<T> TMatrix<T>::operator*(TMatrix<T> &A)
 {
-	if (dlina != A.dlina)
-		throw TException("Error! Differen dimentions.");
-		//throw 0;
-	int _size = dlina;
-	TMatrix<T> Matr1 = *this, result(_size);
+	if (this -> dlina != A.dlina)
+           throw TException("Error! Differen dimentions.");
+	//throw 0;
+	int _size = this -> dlina;
+	TMatrix<T> Matrix1 = *this, result(_size);
 
-	for (int row = 0; row  < _size; ++row) // проходим по строкам
+	for (int row = 0; row < _size; row++) // проходим по строкам
 	{
-		for (int col = 0; col  < _size - row; ++col) // проходим по столбцам
+		for (int col = row; col < _size; col++) // проходим по столбцам
 		{
-			int needed_sum = 0, temp = col;
 			for (int inner = 0; inner <= col; inner++) // внутренние элементы
-			{
-				needed_sum = needed_sum + Matr1[row][inner] * A[inner][temp];
-				temp--;
-			}
-			result[row][col] = needed_sum;
+				result.Vector[row][col - row] += Matrix1.Vector[row][inner - row] * A.Vector[inner][col - inner];
 		}
 	}
 	return result;
