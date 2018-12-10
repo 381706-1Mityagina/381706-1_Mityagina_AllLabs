@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
 	}
   Result1 = Matr1 + Matr2;
   Result2 = Matr1 - Matr2;
-	Result3 = Matr1 * Matr2;
+  Result3 = Matr3 * Matr3;
 
 
   cout << "\t || Matr1 ||" << endl << Matr1 << endl;
@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
   cout << "\t || Matr3 ||" << endl << Matr3 << endl;
   cout << "\t ||Result1 ||" << endl << Result1 << endl;
   cout << "\t ||Result2 ||" << endl << Result2 << endl;
-	cout << "\t ||Result3 ||" << endl << Result2 << endl;
+  cout << "\t ||Result3 ||" << endl << Result2 << endl;
 
 
 	// Проверка работы операторов ввода-вывода
@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
 	cout << "Введите размер матрицы\n";
 	int n;
 	cin >> n;
-	TMatrix<int> _matrix(n);
+	TMatrix <int> _matrix(n);
 	cout << "Введите элементы матрицы\n";
 	cin >> _matrix;
 	cout << "\nВывод элементов матрицы\n";
