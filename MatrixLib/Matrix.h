@@ -18,6 +18,7 @@ public:
   TMatrix& operator = (TVector<TVector<T> > &Matr); // перегрузка оператора =
   TMatrix  operator + (const TMatrix &Matr); // перегрузка оператора +
   TMatrix  operator - (const TMatrix &Matr); // перегрузка оператора -
+  TMatrix operator*(TMatrix<T> &A); // перегрузка оператора *
 // операторы ввода-вывода												
   template <class FriendT> friend istream& operator>>(istream &istr, TMatrix<FriendT> &Matr);
  
@@ -91,5 +92,30 @@ template <class FriendT>  ostream & operator<<(ostream &ostr, const TMatrix<Frie
   for (int i = 0; i < Matr.dlina; i++)
 	ostr << Matr.Vector[i] << endl;
   return ostr;
+}
+//-------------------------------------------------------------------------------------------------
+template <class T>
+TMatrix<T> TMatrix<T>::operator*(TMatrix<T> &A)
+{
+	if (dlina != A.dlina)
+		throw TException("Error! Differen dimentions.");
+		//throw 0;
+
+	TMatrix<T> Matr1 = *this, result(dlina);
+
+	for (int row = 0; row  < dlina; ++row) // проходим по строкам
+	{
+		for (int col = 0; col  < dlina - i; ++col) // проходим по столбцам
+		{
+			int needed_sum = 0, temp = j;
+			for (int inner = 0; inner <= j; inner++) // внутренние элементы
+			{
+				needed_sum = needed_sum + Matr1[i][m] * A[m][temp];
+				temp--;
+			}
+			result[row][col] = needed_sum;
+		}
+	}
+	return result;
 }
 //-------------------------------------------------------------------------------------------------
