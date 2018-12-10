@@ -110,12 +110,12 @@ TMatrix<T> TMatrix<T>::operator*(TMatrix<T> &A)
 
 	for (int row = 0; row  < dlina; ++row) // проходим по строкам
 	{
-		for (int col = 0; col  < dlina - i; ++col) // проходим по столбцам
+		for (int col = 0; col  < dlina - row; ++col) // проходим по столбцам
 		{
-			int needed_sum = 0, temp = j;
-			for (int inner = 0; inner <= j; inner++) // внутренние элементы
+			int needed_sum = 0, temp = col;
+			for (int inner = 0; inner <= col; inner++) // внутренние элементы
 			{
-				needed_sum = needed_sum + Matr1[i][m] * A[m][temp];
+				needed_sum = needed_sum + Matr1[row][inner] * A[inner][temp];
 				temp--;
 			}
 			result[row][col] = needed_sum;
