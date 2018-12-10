@@ -19,6 +19,7 @@ public:
   TMatrix  operator + (const TMatrix &Matr); // перегрузка оператора +
   TMatrix  operator - (const TMatrix &Matr); // перегрузка оператора -
   TMatrix operator*(TMatrix<T> &A); // перегрузка оператора *
+	
 // операторы ввода-вывода												
   template <class FriendT> friend istream& operator>>(istream &istr, TMatrix<FriendT> &Matr);
  
