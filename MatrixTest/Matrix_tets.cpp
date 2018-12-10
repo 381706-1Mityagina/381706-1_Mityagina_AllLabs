@@ -135,3 +135,11 @@ TEST(TMatrix, matrixes_are_not_equal_if_size1_is_not_eq_to_size2)
 
 	ASSERT_FALSE(m1 == m2);
 }
+
+TEST(TMatrix, multiplication_is_impossible_if_size1_is_not_equal_to_size2)
+{
+	TMatrix<int> m1(4);
+	TMatrix<int> m2(5);
+
+	ASSERT_ANY_THROW(m1 * m2);
+}
