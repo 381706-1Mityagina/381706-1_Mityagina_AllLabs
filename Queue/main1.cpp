@@ -1,6 +1,5 @@
 #include <iostream>
 #include <locale.h>
-#include <conio.h>
 #include "Queue.h"
 
 using namespace std;
@@ -16,12 +15,12 @@ int main(int argc, char* argv[])
  test.Put(i);
  cout << "Положили значение " << i << endl;
  }
- getch();
+ cin.get();
  while ( !test.IsEmpty() ) {
  temp = test.Get();
  cout << "Взяли значение " << temp << endl;
  }
  cout << "Нажмите любую клавишу" << endl;
- getch();
+ cin.get();
  return 0;
 } 
