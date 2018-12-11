@@ -17,8 +17,8 @@ int main(int argc, char* argv[])
  }
  cin.get();
  while ( !test.IsEmpty() ) {
- temp = test.Get();
- cout << "Взяли значение " << temp << endl;
+ temporary = test.Get();
+ cout << "Взяли значение " << temporary << endl;
  }
  cout << "Нажмите любую клавишу" << endl;
  cin.get();
