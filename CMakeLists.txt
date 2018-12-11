@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 2.8) #Проверка версии CMake.
 set(PROJECT_NAME AllLabs) #Создаем обычную локальную переменную с именем проекта
 project(${PROJECT_NAME}) # Название проекта
 
-set(Stack Stack)
 set(StackLib StackLib)
 
 set(Queue Queue)
@@ -29,5 +28,4 @@ add_subdirectory(QueueLib)
 add_subdirectory(QueueTest)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StackLib)
-add_subdirectory(Stack)
 add_subdirectory(StackLib)
