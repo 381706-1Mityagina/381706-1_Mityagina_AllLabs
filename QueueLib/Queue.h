@@ -5,15 +5,15 @@ template <class T>
 class TQueue : public TStack <T> 
 {
 protected:
-  int Start;
-  int Count;
+  int Start; // Начало очереди
+  int Count; // Кол-во элементов в очереди -> =конец очереди
 public:
-  TQueue(int N = 0);
-  TQueue(TQueue <T> &Q); 
-  T Get();
-  void Put(T A);
-  bool IsFull();
-  bool IsEmpty();
+  TQueue(int N = 0); // конструктор с параметром
+  TQueue(TQueue <T> &Q); // конструктор копирования
+  T Get(); // взять элемент
+  void Put(T A); // положить в конец очереди
+  bool IsFull(); // проверка на полноту
+  bool IsEmpty(); // проверка на пустоту
 };
 //-----------------------------------------------------------------
 template <class T>
@@ -27,14 +27,14 @@ template <class T>
 TQueue<T>::TQueue(TQueue<T> &Q) : TStack<T>(Q) 
 { 
 	Start = Q.Start; 
-	Count =Q.Count; 
+	Count = Q.Count; 
 }
 //-----------------------------------------------------------------
 template <class T>
 void TQueue<T>::Put(T A) 
 {
 if (IsFull())
- throw 1;
+ throw TException("Queue is full.");
 else 
 {
  TStack<T>::Mas[Start] = A;
@@ -46,17 +46,20 @@ else
 template <class T>
 T TQueue<T>::Get() {
 if (IsEmpty())
- throw 1;
-else {
- T temp = TStack<T>::Mas[TStack<T>::Top];
+ throw TException("Queue is empty.");
+else 
+{
+ T temporary = TStack<T>::Mas[TStack<T>::Top];
  TStack<T>::Top = (TStack<T>::Top + 1) % TStack<T>::Size;
  Count--;
- return temp;
+	
+ return temporary;
  }
 }
 //-----------------------------------------------------------------
 template <class T>
-bool TQueue<T>::IsFull() {
+bool TQueue<T>::IsFull()
+{
 if (Count == TStack<T>::Size)
  return true;
 else
@@ -64,7 +67,8 @@ else
 }
 //-----------------------------------------------------------------
 template <class T>
-bool TQueue<T>::IsEmpty() {
+bool TQueue<T>::IsEmpty() 
+{
 if (Count == 0)
  return true;
 else
