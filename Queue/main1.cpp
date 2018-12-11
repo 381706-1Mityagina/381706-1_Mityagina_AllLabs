@@ -1,5 +1,6 @@
 #include <iostream>
 #include <locale.h>
+#include <conio.h>
 #include "Queue.h"
 
 using namespace std;
@@ -7,7 +8,7 @@ using namespace std;
 int main(int argc, char* argv[]) 
 {
  setlocale(LC_ALL, "Russian");
- TQueue test;
+ TQueue<int> test;
  int temporary;
  cout << "Тестирование программ поддержки структуры типа очереди" << endl;
  for ( int i=0; i < 35; i++ ) 
