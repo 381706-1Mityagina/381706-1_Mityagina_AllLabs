@@ -8,7 +8,6 @@ before_script:
 script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
-  - ./Stack/Stack
   - ./Queue/Queue
   - ./QueueTest/QueueTest
 notifications:
