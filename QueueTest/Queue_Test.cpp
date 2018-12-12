@@ -56,17 +56,17 @@ TEST(TQueue, cant_put_elem_in_full_queue)
 //------------------------------------------------------------------------
 TEST(TQueue, can_take_elem_from_queue)
 {
-	TQueue<double> Q;
+	TQueue<double> Q(1);
 	
 	Q.Put(5);
-  TQueue<double> Q2(Q);
+        TQueue<double> Q2(Q);
   
 	EXPECT_EQ(5, Q2.Get());
 }
 //------------------------------------------------------------------------
-TEST(TQueue, can_check_if_queue_is_empty)
+TEST(TQueue, can_check_if_queue_is_empty_false_check)
 {
-	TQueue<double> Q;
+	TQueue<double> Q(1);
 	
 	Q.Put(5);
 
