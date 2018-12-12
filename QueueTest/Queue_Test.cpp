@@ -70,7 +70,7 @@ TEST(TQueue, can_check_if_queue_is_empty_false_check)
 	
 	Q.Put(5);
 
-	EXPECT_EQ(false, Q.IsEmpty());
+	EXPECT_EQ(0, Q.IsEmpty());
 }
 //------------------------------------------------------------------------
 TEST(TQueue, can_check_if_queue_is_full)
@@ -79,6 +79,6 @@ TEST(TQueue, can_check_if_queue_is_full)
 	
 	Q.Put(5);
 
-	EXPECT_EQ(true, Q.IsFull());
+	EXPECT_EQ(1, Q.IsFull());
 }
 //------------------------------------------------------------------------
