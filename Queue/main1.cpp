@@ -14,10 +14,12 @@ int main( )
  if (!test.IsFull())
   test.Put(i);
  cout << "\tPut value  " << i << endl;
- cout << "\tGet value: " << test.Get() << endl << endl;
-
+ //cout << "\tGet value: " << test.Get() << endl << endl;
  }
  cout << endl;
+ 
+ if (!test.IsEmpty())
+ cout << "\Get value  " << test.Get() << endl;
  
  TQueue<int> test1(10);
  test1.Put(55);
