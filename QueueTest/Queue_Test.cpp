@@ -15,13 +15,72 @@ TEST(Queue, cannot_create_queue_with_negative_size)
 TEST(Queue, can_do_stuff_like_put_and_get)
 {
 	TQueue <int> Q(1);
+	
 	Q.Put(7);
+	
 	ASSERT_EQ(7, Q.Get());
 }
 //------------------------------------------------------------------------
 TEST(Queue, can_tell_if_Queue_is_not_full)
 {
 	TQueue <int> Q(7);
+	
 	ASSERT_FALSE(Q.IsFull());
+}
+//------------------------------------------------------------------------
+TEST(TQueue, can_copy_queue)
+{
+	TQueue<double> Q;
+	
+	Q.Get();
+	Q.Put(5);
+
+  EXPECT_NO_THROW(TQueue<double> Q2(Q));
+}
+//------------------------------------------------------------------------
+TEST(TQueue, can_take_elem_in_not_empty_queue)
+{
+	TQueue<double> Q;
+	
+	Q.Put(1);
+	
+	ASSERT_NO_THROW(Q.Get());
+}
+//------------------------------------------------------------------------
+TEST(TQueue, cant_push_elem_in_full_queue)
+{
+	TQueue<double> Q(1);
+	
+	Q.Put(1);
+	
+	ASSERT_ANY_THROW(Q.Put(1));
+}
+//------------------------------------------------------------------------
+TEST(TQueue, can_take_elem_from_queue)
+{
+	TQueue<double> Q;
+	
+	Q.Put(5);
+  TQueue<double> Q2(Q);
+  
+	EXPECT_EQ(5, Q2.Get());
+}
+//------------------------------------------------------------------------
+TEST(TQueue, can_check_if_queue_is_empty)
+{
+	TQueue<double> Q;
+	
+	Q.Put(5);
+
+	EXPECT_EQ(false, Q.IsEmpty());
+}
+//------------------------------------------------------------------------
+TEST(TQueue, can_check_queue_is_full)
+{
+	TQueue<double> Q(1);
+	
+	Q.Put(5);
+
+	EXPECT_EQ(true, Q.IsFull());
 }
 //------------------------------------------------------------------------
