@@ -189,7 +189,7 @@ template <class T>
 TVector<T>& TMatrix<T>::operator[](int i)
 {
 	if (i < 0 || i >= this->dlina)
-		throw Texception("Overflow");
+		throw TException("Overflow");
 	else
 		return TVector<TVector<T> >::operator[](i);
 }
