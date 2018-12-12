@@ -212,6 +212,7 @@ TEST(TVector, sum_check)
 	TVector<int> a1(2), a2(2), sum(2);
 	int A[] = { 7, 7 };
 	TVector<int> check(A, 2);
+	
 	for (int i = 0; i < 2; i++)
 	{
 		a1[i] = 1;
