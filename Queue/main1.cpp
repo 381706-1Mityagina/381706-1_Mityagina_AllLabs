@@ -12,9 +12,11 @@ int main( )
  for ( int i = 0; i < 10; i++ ) 
  {
  while (!test.IsFull())
-   test.Put(i);
+ {
+  test.Put(i);
  cout << "\tPut value  " << i << endl;
  cout << "\tGet value: " << test.Get() << endl;
+ }
  }
  cout << endl;
  
