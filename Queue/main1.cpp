@@ -20,9 +20,9 @@ int main( )
  cout << endl;
  
  TQueue<int> test1(10);
- test1.Put(43);
- test1.Put(42);
- test1.Put(41);
+ test1.Put(55);
+ test1.Put(44);
+ test1.Put(66);
  cout << "\tGet 1 value:" << test1.Get() << endl;
  cout << "\tGet 2 value:" << test1.Get() << endl;
 
