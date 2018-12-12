@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 {
   setlocale(LC_ALL, "Russian");
   cout << "\t <<< An example of using the Matrix will be implemented here >>>" << "\n\n";
-  TMatrix <int> Matr1(5), Matr2(5), Matr3(5), Result1(5), Result2(5), Result3(5);
+  TMatrix <int> Matr1(5), Matr2(5), Matr3(5), Result1(5), Result2(5), Result3(5), Result4(5);
   int i, j;
   for (i = 0; i < 5; i++)
 	for (j = 0; j < 5 - i; j++) 
@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
   Result1 = Matr1 + Matr2;
   Result2 = Matr1 - Matr2;
   Result3 = Matr3 * Matr3;
-
+  Result4 = Matr3.InverseMatrix();
 
   cout << "\t || Matr1 ||" << endl << Matr1 << endl;
   cout << "\t || Matr2 ||" << endl << Matr2 << endl;
@@ -30,6 +30,7 @@ int main(int argc, char* argv[])
   cout << "\t ||Result1 ||" << endl << Result1 << endl;
   cout << "\t ||Result2 ||" << endl << Result2 << endl;
   cout << "\t ||Result3 ||" << endl << Result3 << endl;
+  cout << "\t ||Result4 ||" << endl << Result4 << endl;
 
 
 	// Проверка работы операторов ввода-вывода
