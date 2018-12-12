@@ -176,7 +176,8 @@ template <class T>
 TMatrix<T> TMatrix<T>:: InverseMatrix()   // Обратная матрица
 {
 	T det = this->Determinant();
-	if (det == 0) throw 1;
+	if (det == 0)
+		throw TException ("Cannot be equal to 0");
 
 	int _n = this -> dlina;
 	TMatrix<T> B(_n), invA(_n);
@@ -206,7 +207,7 @@ template <class T>
 TVector<T>& TMatrix<T>::operator[](int i)
 {
 	if (i < 0 || i >= this->dlina)
-		throw 1;
+		throw Texception("Overflow");
 	else
 		return TVector<TVector<T> >::operator[](i);
 }
