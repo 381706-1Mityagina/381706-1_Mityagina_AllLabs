@@ -8,14 +8,14 @@ class TVector
 {
 protected:
   int dlina; // размер вектора
-  T *Vector; // массив элементов вектора
+  T *vector; // массив элементов вектора
 public:
   TVector<T>(int n = 0); // конструктор инициализации
   TVector<T>(const TVector<T> &A); // конструктор копирования
   TVector(T* s, int _dlina); // конструктор инициализации
   virtual ~TVector<T>(); // диструктор
 
-  int getDlina() const;
+  int GetDlina() const;
   T& operator [](int i);
   bool operator ==(const TVector<T> &A) const;
   bool operator !=(const TVector &v) const;
@@ -48,14 +48,14 @@ TVector<T>::TVector(int n)
 	if (n == 0) 
 	{
 	  dlina = n;
-	  Vector = NULL;
+	  vector = NULL;
 	}
 	else 
 	{
 	  dlina = n;
-	  Vector = new T[dlina];
+	  vector = new T[dlina];
 	  for (int i = 0; i < dlina; i++)
-		Vector[i] = 0;
+		vector[i] = 0;
 	}
 }
 //-------------------------------------------------------------------------------------------------
@@ -64,12 +64,12 @@ TVector<T>::TVector(const TVector<T> &A)
 {
   dlina = A.dlina;
   if (dlina == 0)
-	Vector = NULL;
+	vector = NULL;
   else 
 	{
-	Vector = new T[dlina];
+	vector = new T[dlina];
 	for (int i = 0; i < dlina; i++)
-	  Vector[i] = A.Vector[i];
+	  vector[i] = A.vector[i];
   }
 }
 //-------------------------------------------------------------------------------------------------
@@ -77,9 +77,9 @@ template <class T>
 TVector<T>::TVector(T* s, int _dlina)
 {
 	dlina = _dlina;
-	Vector = new T[dlina];
+	vector = new T[dlina];
 	for (int i = 0; i < dlina; i++)
-		Vector[i] = s[i];
+		vector[i] = s[i];
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
@@ -88,13 +88,13 @@ TVector<T>::~TVector()
   if (dlina > 0)
 	{
 	dlina = 0;
-	delete[] Vector;
-	Vector = NULL;
+	delete[] vector;
+	vector = NULL;
   }
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
-int TVector<T>::getDlina() const
+int TVector<T>::GetDlina() const
 {
   return dlina;
 }
@@ -106,7 +106,7 @@ T& TVector<T>::operator[](int i)
 	
 	   throw TException("Overflow.");
   else 
-	  return Vector[i];
+	  return vector[i];
   //throw 1;
 }
 //-------------------------------------------------------------------------------------------------
@@ -116,13 +116,13 @@ TVector<T>& TVector<T>::operator=(const TVector<T> &A)
   if (this == &A)
 	return *this;
 	
-  delete[] Vector;
+  delete[] vector;
   dlina = A.dlina;
   
-	Vector = new T[dlina];
+	vector = new T[dlina];
 	
   for (int i = 0; i < dlina; i++)
-	(*this)[i] = A.Vector[i];
+	(*this)[i] = A.vector[i];
   
 	return *this;
 }
@@ -140,7 +140,7 @@ TVector<T> TVector<T>::operator-() const
 {
   TVector<T> temporary(dlina);
   for (int i = 0; i < dlina; i++) 
-	temporary[i] = -Vector[i];
+	temporary[i] = -vector[i];
 	
   return temporary;
 }
@@ -153,7 +153,7 @@ TVector<T> TVector<T>::operator+(const TVector<T> &A)
   TVector<T> temporary(dlina);
 	
   for (int i = 0; i < dlina; i++)
-	temporary[i] = (*this)[i] + A.Vector[i];
+	temporary[i] = (*this)[i] + A.vector[i];
 	
   return temporary;
 }
@@ -166,7 +166,7 @@ TVector<T> TVector<T>::operator-(const TVector<T> &A)
   TVector<T> temporary(dlina);
 	
   for (int i = 0; i < dlina; i++)
-	temporary[i] = (*this)[i] - A.Vector[i];
+	temporary[i] = (*this)[i] - A.vector[i];
 	
   return temporary;
 }
@@ -179,7 +179,7 @@ T TVector<T>::operator*(const TVector <T> &A)
   T temporary = 0;
 	
   for (int i = 0; i < dlina; i++)
-	temporary += (*this)[i] * A.Vector[i];
+	temporary += (*this)[i] * A.vector[i];
 	
   return temporary;
 }
@@ -201,7 +201,7 @@ TVector<FriendT> operator*(FriendT a, const TVector<FriendT> &A)
   TVector<FriendT> temporary(A.dlina);
   
 	for (int i = 0; i < A.dlina; i++)
-	temporary[i] = A.Vector[i] * a;
+	temporary[i] = A.vector[i] * a;
   
 	return temporary;
 }
@@ -227,7 +227,7 @@ bool TVector<T>::operator==(const TVector<T> &A) const
 
 		for (int i = 0; i < dlina; i++)
 		{
-			if (this->Vector[i] != A.Vector[i])
+			if (this->vector[i] != A.vector[i])
 			{
 				flag = false;
 				break;
@@ -243,7 +243,7 @@ template<class T>
 TVector<T> TVector<T>::operator++() 
 {
   for (int i = 0; i < dlina; i++)
-	Vector[i] = Vector[i] + 1;
+	vector[i] = vector[i] + 1;
 	
   return *this;
 }
@@ -254,7 +254,7 @@ TVector<T> TVector<T>::operator++(int)
   TVector<T> temporary(*this);
 	
   for (int i = 0; i < dlina; i++)
-	Vector[i] = Vector[i] + 1;
+	vector[i] = vector[i] + 1;
   
 	return temporary;
 }
@@ -263,7 +263,7 @@ template<class T>
 TVector<T> TVector<T>::operator--() 
 {
   for (int i = 0; i < dlina; i++)
-	Vector[i] = Vector[i] - 1;
+	vector[i] = vector[i] - 1;
   
 	return *this;
 }
@@ -274,7 +274,7 @@ TVector<T> TVector<T>::operator--(int)
   TVector<T> temporary(*this);
   
 	for (int i = 0; i < dlina; i++)
-	Vector[i] = Vector[i] - 1;
+	vector[i] = vector[i] - 1;
   
 	return temporary;
 }
@@ -285,7 +285,7 @@ istream& operator>>(istream &istr, TVector<FriendT> &A)
   cout << "\nEnter " << A.dlina << " coordinates: ";
   
 	for (int i = 0; i < A.dlina; i++)
-	istr >> A.Vector[i];
+	istr >> A.vector[i];
   
 	return istr;
 }
@@ -294,7 +294,7 @@ template<class FriendT>
 ostream& operator<<(ostream &ostr, const TVector<FriendT> &A)
 {
   for (int i = 0; i < A.dlina; i++)
-	ostr << A.Vector[i] << "\t";
+	ostr << A.vector[i] << "\t";
   
 	return ostr;
 }
