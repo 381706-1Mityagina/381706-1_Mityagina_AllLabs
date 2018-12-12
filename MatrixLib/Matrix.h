@@ -23,7 +23,7 @@ public:
   TMatrix  operator - (const TMatrix &Matr); // перегрузка оператора -
   TMatrix operator*(TMatrix<T> &A); // перегрузка оператора *
 	TVector<T>& operator[](int i);
-	T Determinant();
+	double Determinant(TMatrix<T> &A, int N);
 	TMatrix<T> InverseMatrix();
 	TMatrix operator/(TMatrix<T> &A);
 	
@@ -124,58 +124,40 @@ TMatrix<T> TMatrix<T>::operator*(TMatrix<T> &A)
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
-T TMatrix<T>:: Determinant()   // Определитель матрицы 
+double TMatrix<T>:: Determinant(TMatrix<T> &A, int N)   // Определитель матрицы 
 {
-	int _n = this -> dlina, denom = 1, exchanges = 0;
-	TMatrix<T> B(_n);
-	for (int i = 0; i < _n; ++i)
-	{
-		for (int j = 0; j < _n; ++j) 
-			B.vector[i][j] = this->vector[i][j];
-	}
-	for (int i = 0; i < _n - 1; ++i)
-	{
-		int maxN = i;
-		T maxValue = abs(B.vector[i][i]);
-		for (int j = i + 1; j < _n; ++j)
+	N = A.dlina;
+		int i, j;
+		TMatrix<T> matr1(N);
+		/* int sign=1;*/
+		double determ = 0;
+
+		if (N == 2)
 		{
-			T value = abs(B.vector[j][i]);
-			if (value > maxValue) 
-			{ 
-				maxN = j; 
-				maxValue = value; 
+			determ = A[0][0] * A[1][1] - A[0][1] * A[1][0];
+		}
+		else
+		{
+			//TMatrix<T> matr1(N - 1);
+			for (i = 0; i<N; i++)
+			{
+				for (j = 0; j<N - 1; j++)
+				{
+					if (j<i) { matr1[j] = A[j]; }
+					else { matr1[j] = A[j + 1]; }
+				}
+				determ += pow(-1, (i + j)) * Determinant(matr1, N - 1) * A[i][N - 1];
 			}
+			//delete matr1;
 		}
-		if (maxN > i)
-		{
-			TVector<T> t = B.vector[i]; 
-			B.vector[i] = B.vector[maxN]; 
-			B.vector[maxN] = t;
-			++exchanges;
-		}
-		else 
-		{ 
-			if (maxValue == 0) 
-				return maxValue; 
-		}
-		T value1 = B.vector[i][i];
-		for (int j = i + 1; j < _n; ++j)
-		{
-			T value2 = B.vector[j][i];
-			B.vector[j][i] = 0;
-			for (int k = i + 1; k < _n; ++k) 
-				B.vector[j][k] = (B.vector[j][k] * value1 - B.vector[i][k] * value2) / denom;
-		}
-		denom = value1;
-	}                                       
-	if (exchanges % 2 == 0) return -B.vector[_n - 1][_n - 1];
-	else return B.vector[_n - 1][_n - 1];
+
+		return determ;
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
 TMatrix<T> TMatrix<T>:: InverseMatrix()   // Обратная матрица
 {
-	T det = this->Determinant();
+	T det = Determinant(*this, dlina);
 	if (det == 0)
 		throw TException ("Cannot be equal to 0");
 
@@ -197,7 +179,7 @@ TMatrix<T> TMatrix<T>:: InverseMatrix()   // Обратная матрица
 				for (int n = 0; n < i; n++)   B.vector[m - 1][n] = this->vector[m][n];
 				for (int n = i + 1; n < _n; n++) B.vector[m - 1][n - 1] = this->vector[m][n];
 			}
-			invA[i][j] = sign * B.Determinant() / det;
+			invA[i][j] = sign * Determinant(B, dlina) / det;
 		}
 	}
 	return invA;
