@@ -30,24 +30,22 @@ TEST(Queue, can_tell_if_Queue_is_not_full)
 //------------------------------------------------------------------------
 TEST(TQueue, can_copy_queue)
 {
-	TQueue<double> Q;
-	
-	Q.Get();
+	TQueue<double> Q(2);
 	Q.Put(5);
 
   EXPECT_NO_THROW(TQueue<double> Q2(Q));
 }
 //------------------------------------------------------------------------
-TEST(TQueue, can_take_elem_in_not_empty_queue)
+TEST(TQueue, can_take_elem_from_not_empty_queue)
 {
-	TQueue<double> Q;
+	TQueue<double> Q(2);
 	
 	Q.Put(1);
 	
 	ASSERT_NO_THROW(Q.Get());
 }
 //------------------------------------------------------------------------
-TEST(TQueue, cant_push_elem_in_full_queue)
+TEST(TQueue, cant_put_elem_in_full_queue)
 {
 	TQueue<double> Q(1);
 	
@@ -75,7 +73,7 @@ TEST(TQueue, can_check_if_queue_is_empty)
 	EXPECT_EQ(false, Q.IsEmpty());
 }
 //------------------------------------------------------------------------
-TEST(TQueue, can_check_queue_is_full)
+TEST(TQueue, can_check_if_queue_is_full)
 {
 	TQueue<double> Q(1);
 	
