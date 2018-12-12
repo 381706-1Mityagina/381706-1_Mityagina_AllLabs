@@ -202,7 +202,7 @@ TMatrix<T> TMatrix<T>:: InverseMatrix()   // Обратная матрица
 template <class T>
 TVector<T>& TMatrix<T>::operator[](int i)
 {
-	if (i <= 0 || i >= dlina)
+	if (i < 0 || i >= this->dlina)
 		throw 1;
 	else
 		return TVector<TVector<T> >::operator[](i);
