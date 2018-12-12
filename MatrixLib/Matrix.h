@@ -157,7 +157,7 @@ double TMatrix<T>:: Determinant(TMatrix<T> &A, int N)   // Определите�
 template <class T>
 TMatrix<T> TMatrix<T>:: InverseMatrix()   // Обратная матрица
 {
-	T det = Determinant(*this, dlina);
+	double det = Determinant(*this, this->dlina);
 	if (det == 0)
 		throw TException ("Cannot be equal to 0");
 
@@ -179,7 +179,7 @@ TMatrix<T> TMatrix<T>:: InverseMatrix()   // Обратная матрица
 				for (int n = 0; n < i; n++)   B.vector[m - 1][n] = this->vector[m][n];
 				for (int n = i + 1; n < _n; n++) B.vector[m - 1][n - 1] = this->vector[m][n];
 			}
-			invA[i][j] = sign * Determinant(B, dlina) / det;
+			invA[i][j] = sign * Determinant(B, B->dlina) / det;
 		}
 	}
 	return invA;
