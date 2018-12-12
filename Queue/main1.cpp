@@ -5,7 +5,7 @@ using namespace std;
 
 int main( )
 {
- TQueue<int> test;
+ TQueue<int> test(10);
  int temporary;
  cout << "Testing Queue Type Structure Support Programs" << endl;
   
