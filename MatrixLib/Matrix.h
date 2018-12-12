@@ -22,11 +22,14 @@ public:
   TMatrix  operator + (const TMatrix &Matr); // перегрузка оператора +
   TMatrix  operator - (const TMatrix &Matr); // перегрузка оператора -
   TMatrix operator*(TMatrix<T> &A); // перегрузка оператора *
-	TVector<T>& operator[](int i);
-	double Determinant(TMatrix<T> &A, int N);
-	TMatrix<T> InverseMatrix();
-	TMatrix operator/(TMatrix<T> &A);
-	
+  TVector<T>& operator[](int i);
+  TMatrix operator/(TMatrix<T> &A);
+  TMatrix<T> op();
+
+  TVector<T>& operator[](int i);
+  double Determinant();
+  TMatrix<T> SubMatrix(int i1, int j1);
+	//TMatrix<T> InverseMatrix();
 // операторы ввода-вывода												
   template <class FriendT> friend istream& operator>>(istream &istr, TMatrix<FriendT> &Matr);
  
@@ -123,87 +126,106 @@ TMatrix<T> TMatrix<T>::operator*(TMatrix<T> &A)
 	return result;
 }
 //-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 template <class T>
-double TMatrix<T>:: Determinant(TMatrix<T> &A, int N)   // Определитель матрицы 
+double TMatrix<T>::Determinant()
 {
-	N = A.dlina;
-		int i, j;
-		TMatrix<T> matr1(N);
-		/* int sign=1;*/
-		double determ = 0;
-
-		if (N == 2)
-		{
-			determ = A[0][0] * A[1][1] - A[0][1] * A[1][0];
-		}
+	double det = 0;
+	// определитель 1-ого порядка совпадает
+	// с единственным элементом матрицы
+	if (dlina == 1)
+		return vector[0][0];
+	TMatrix<T> temp(dlina - 1);
+	// раскладываем определитель по 0-ой строке
+	for (int j = 0; j < dlina; j++)
+	{
+		// получаем матрицу для вычисления
+		// минора элемента a0j
+		temp = SubMatrix(0, j);
+		// добавляем очередное произведение элемента
+		// на его алгебраическое дополнение
+		if (j % 2 == 0)
+			det += temp.Determinant() * vector[0][j];
 		else
-		{
-			//TMatrix<T> matr1(N - 1);
-			for (i = 0; i<N; i++)
-			{
-				for (j = 0; j<N - 1; j++)
-				{
-					if (j<i) { matr1[j] = A[j]; }
-					else { matr1[j] = A[j + 1]; }
-				}
-				determ += pow(-1, (i + j)) * Determinant(matr1, N - 1) * A[i][N - 1];
-			}
-			//delete matr1;
-		}
-
-		return determ;
+			det -= temp.Determinant() * vector[0][j];
+	}
+	return det;
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
-TMatrix<T> TMatrix<T>:: InverseMatrix()   // Обратная матрица
+TMatrix<T> TMatrix<T>::SubMatrix(int i1, int j1)
 {
-	double det = Determinant(*this, this->dlina);
-	if (det == 0)
-		throw TException ("Cannot be equal to 0");
-
-	int _n = this -> dlina;
-	TMatrix<T> B(_n), invA(_n);
-	for (int i = 0; i < _n; i++)
+	// матрица-результат имеет
+	// порядок на 1 меньше исходной
+	TMatrix<T> temp(dlina - 1);
+	// формируем новую матрицу, игнорируя
+	// строку с номером i1 и столбец с номером j1
+	for (int i = 0; i < i1; i++)
 	{
-		for (int j = 0; j < _n; j++)
+		for (int j = 0; j < j1; j++)
+			temp.vector[i][j] = vector[i][j];
+		for (int j = j1 + 1; j < dlina; j++)
+			temp.vector[i][j - 1] = vector[i][j];
+	}
+	for (int i = i1 + 1; i < dlina; i++)
+	{
+		for (int j = 0; j < j1; j++)
+			temp.vector[i - 1][j] = vector[i][j];
+		for (int j = j1 + 1; j < dlina; j++)
+			temp.vector[i - 1][j - 1] = vector[i][j];
+	}
+	return temp;
+}
+//-------------------------------------------------------------------------------------------------
+template <class T>
+TMatrix<T> TMatrix<T>::op()
+{
+	int n = this->dlina;
+	TMatrix<T> res(n);
+	// вычисление определителя матрицы
+	double det = this->Determinant();
+	// если матрица вырожденная,
+	// обратной матрицы не существует
+	if (det == 0)
+		throw 1;
+	//ZeroDevideException();
+	// вычисление транспонированной матрицы
+	// алгебраических дополнений
+	TMatrix<T> temp(n - 1);
+	int z;
+	for (int i = 0; i < n; i++)
+	{
+		z = i % 2 == 0 ? 1 : -1;
+		for (int j = 0; j < n; j++)
 		{
-			int sign = ((i + j) % 2 == 0) ? 1 : -1;
-			
-			for (int m = 0; m < j; m++)
-			{
-				for (int n = 0; n < i; n++)   B.vector[m][n] = this->vector[m][n];
-				for (int n = i + 1; n < _n; n++) B.vector[m][n - 1] = this->vector[m][n];
-			}
-			for (int m = j + 1; m < _n; m++)
-			{
-				for (int n = 0; n < i; n++)   B.vector[m - 1][n] = this->vector[m][n];
-				for (int n = i + 1; n < _n; n++) B.vector[m - 1][n - 1] = this->vector[m][n];
-			}
-			invA[i][j] = sign * Determinant(B, B.dlina) / det;
+			temp = SubMatrix(i, j);
+			res[j][i] = z * temp.Determinant() / det;
+			z = -z;
 		}
 	}
-	return invA;
+	return res;
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
 TVector<T>& TMatrix<T>::operator[](int i)
 {
-	if (i < 0 || i >= this->dlina)
-		throw TException("Overflow");
-	else
-		return TVector<TVector<T> >::operator[](i);
+	if (i < 0 || i >= dlina)
+		throw 1;
+	//assert(vector[i] != 0);
+	return TVector<TVector<T> >::operator[](i);
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
 TMatrix<T> TMatrix<T>::operator/(TMatrix<T> &A)
 {
-if (A.Determinant() == 0)
-  throw TException("Cannot be 0");
-else
-{ 
-	TMatrix<T> Rez(this->dlina);
-	Rez = this*A.InverseMatrix();
-	return Rez;
-}
+	if (A.Determinant() == 0)
+		throw 0;
+	else
+	{
+		TMatrix<T> B = *this;
+		TMatrix<T> Rez(this->dlina);
+		Rez = B * A.op();
+		return Rez;
+	}
 }
 //-------------------------------------------------------------------------------------------------
