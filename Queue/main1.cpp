@@ -15,9 +15,8 @@ int main( )
    test.Put(i);
  cout << "\tPut value  " << i << endl;
  }
- cout << "\tGet 1 value:" << test.Get() << endl;
- cout << "\tGet 2 value:" << test.Get() << endl;
- cout << "\tGet 3 value:" << test.Get() << endl;
+ while (!test.IsEmpty())
+ cout << "\tGet value:" << test.Get() << endl;
  cout << endl;
  
  TQueue<int> test1(10);
