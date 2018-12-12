@@ -63,6 +63,7 @@ else
 	
  return temporary;
  }
+}
 //-----------------------------------------------------------------
 template <class T>
 bool TQueue<T>::IsFull()
