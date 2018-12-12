@@ -72,7 +72,7 @@ TEST(TVector, compare_vector_with_itself_return_false)
 	ASSERT_FALSE(a == a1);
 }
 
-TEST(Vector, can_compare_different_vectors_true_check)
+TEST(TVector, can_compare_different_vectors_true_check)
 {
 	TVector <int> a(7), b(7);
 
@@ -85,7 +85,7 @@ TEST(Vector, can_compare_different_vectors_true_check)
 	ASSERT_FALSE(a != b);
 }
 
-TEST(Vector, can_compare_different_vectors_false_check)
+TEST(TVector, can_compare_different_vectors_false_check)
 {
 	TVector <int> a(7), b(7);
 
@@ -98,7 +98,7 @@ TEST(Vector, can_compare_different_vectors_false_check)
 	ASSERT_TRUE(a != b);
 }
 
-TEST(Vector, can_compare_different_vectors_false_with_different_size)
+TEST(TVector, can_compare_different_vectors_false_with_different_size)
 {
 	TVector <int> a(7), b(8);
 
