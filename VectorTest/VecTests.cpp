@@ -146,14 +146,14 @@ TEST(TVector, can_add_float_number)
 {
 	TVector<int> a(6);
 
-	ASSERT_NO_THROW(a + 6,5);
+	ASSERT_NO_THROW(a + 6.5);
 }
 
 TEST(TVector, can_subtract_float_number)
 {
 	TVector<int> a(6);
 
-	ASSERT_NO_THROW(a - 6,5);
+	ASSERT_NO_THROW(a - 6.5);
 }
 
 TEST(TVector, can_decrease)
