@@ -7,32 +7,27 @@ template <class T>
 class TList 
 {
 protected:
-	TElement <T>* begin;
-	int size;
+	TElement <T>* begin; //Указатель на первое звено списка
+	int size; // размер
 public:
-	TList(); 
-	TList(TList<T> &List); 
-	virtual ~TList();
+	TList(); // конструктор по умолчанию
+	TList(TList<T> &List); // конструктор копирования
+	virtual ~TList(); // деструктор
 	
-	T viewData(TElement<T>* ptr) { return ptr->data; }
+	T viewData(TElement<T>* ptr) { return ptr->data; } 
 	T* viewPtr(TElement<T>* ptr) { return ptr; }
 
 	int GetSize() { return size; }
-	void PutBegin(T A); 
-	void PutCurrent(T A);
-	void PutEnd(T A); 
-	T GetBegin(); 
-	T GetCurrent(); 
-	T GetEnd(); 
-
+	void PutBegin(T A); //Установить начальное звено
+	void PutEnd(T A); //Установить последнее звено
+	T GetBegin(); // получить значение первого звена
+	T GetEnd(); // получить значение последнего звена
 				
-	bool IsFull();
-	bool IsEmpty();
+	bool IsFull(); // проверка на полноту
+	bool IsEmpty(); // проверка на пустоту
 	
-	virtual void DelFirst(void);
-	virtual void DelCurrent(void);
-	virtual void DelList(void);
-
+	virtual void DelFirst(void); // удаление первого звена
+	virtual void DelList(void); // удаление последнего звена
 };
 
 //-----------------------------------------------------------
@@ -90,12 +85,6 @@ void TList<T>::PutBegin(T A)
 }
 //-----------------------------------------------------------
 template <class T>
-void TList<T>::PutCurrent(T A)
-{
-	
-}
-//-----------------------------------------------------------
-template <class T>
 void TList<T>::DelFirst(void)
 {
    if (size)
@@ -108,12 +97,6 @@ void TList<T>::DelFirst(void)
 	}
 	else
 		throw "Error";	
-}
-//-----------------------------------------------------------
-template <class T>
-void TList<T>::DelCurrent(void)
-{
-	
 }
 //-----------------------------------------------------------
 template <class T>
@@ -149,12 +132,6 @@ T TList<T>::GetBegin()
 		delete A;
 		return temporary;
 	}
-}
-//-----------------------------------------------------------
-template <class T>
-T TList<T>::GetCurrent()
-{
-	
 }
 //-----------------------------------------------------------
 template <class T>
