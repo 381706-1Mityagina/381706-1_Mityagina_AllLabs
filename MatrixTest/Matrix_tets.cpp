@@ -22,7 +22,7 @@ TEST(TMatrix, can_get_size)
 {
   TMatrix<int> m(7);
   
-  EXPECT_EQ(7, m.getDlina());
+  EXPECT_EQ(7, m.GetDlina());
 }
 
 TEST(TMatrix, can_set_and_get_element)
@@ -79,7 +79,7 @@ TEST(TMatrix, assign_operator_change_matrix_size)
   m1[1][1] = 1;
   m2 = m1;
   
-  EXPECT_EQ(7, m2.getDlina());
+  EXPECT_EQ(7, m2.GetDlina());
 }
 
 TEST(TMatrix, can_add_matrices_with_equal_size)
