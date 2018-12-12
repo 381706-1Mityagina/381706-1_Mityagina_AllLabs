@@ -8,6 +8,7 @@ protected:
   int Start; // Начало очереди
   int Count; // Кол-во элементов в очереди -> =конец очереди
 public:
+  TQueue();//Конструктор по умолчанию
   TQueue(int N = 0); // конструктор с параметром
   TQueue(TQueue <T> &Q); // конструктор копирования
   T Get(); // взять элемент
@@ -15,6 +16,12 @@ public:
   bool IsFull(); // проверка на полноту
   bool IsEmpty(); // проверка на пустоту
 };
+//-----------------------------------------------------------------
+template <class T>
+TQueue<T>::TQueue() : TStack<T>()
+{
+	Start = Count = 0;
+}
 //-----------------------------------------------------------------
 template <class T>
 TQueue<T>::TQueue(int N) : TStack<T>(N) 
@@ -44,7 +51,8 @@ else
 }
 //-----------------------------------------------------------------
 template <class T>
-T TQueue<T>::Get() {
+T TQueue<T>::Get() 
+{
 if (IsEmpty())
  throw TException("Queue is empty.");
 else 
@@ -55,7 +63,6 @@ else
 	
  return temporary;
  }
-}
 //-----------------------------------------------------------------
 template <class T>
 bool TQueue<T>::IsFull()
