@@ -15,7 +15,6 @@ int main( )
    test.Put(i);
  cout << "\tPut value  " << i << endl;
  cout << "\tGet value: " << test.Get() << endl;
- cout << endl;
  }
  cout << endl;
  
