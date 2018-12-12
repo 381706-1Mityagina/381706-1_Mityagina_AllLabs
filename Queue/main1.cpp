@@ -14,7 +14,7 @@ int main( )
  while (!test.IsFull())
    test.Put(i);
  cout << "\tPut value  " << i << endl;
- cout << "\tGet value: " << test.Get() << endl;
+ cout << "\tGet value: " << test.Get() << endl << endl;
  }
  cout << endl;
  
