@@ -88,13 +88,13 @@ template <class T>
 void TList<T>::PutEnd(T A)
 {
   if (begin != 0) {
-    TElem <T> *a = begin;
+    TElement <T> *a = begin;
     while (a->GetNext() != 0)
       a = a->GetNext();
-    a->SetNext(new TElem <T>(A, 0));
+    a->SetNext(new TElement <T>(A, 0));
   }
   else 
-    begin = new TElem<T>(A, 0);
+    begin = new TElement<T>(A, 0);
 }
 //-----------------------------------------------------------
 template <class T>
