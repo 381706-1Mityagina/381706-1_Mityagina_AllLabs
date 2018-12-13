@@ -85,6 +85,19 @@ void TList<T>::PutBegin(T A)
 }
 //-----------------------------------------------------------
 template <class T>
+void TList<T>::PutEnd(T A)
+{
+  if (begin != 0) {
+    TElem <T> *a = begin;
+    while (a->GetNext() != 0)
+      a = a->GetNext();
+    a->SetNext(new TElem <T>(A, 0));
+  }
+  else 
+    begin = new TElem<T>(A, 0);
+}
+//-----------------------------------------------------------
+template <class T>
 void TList<T>::DelFirst(void)
 {
    if (size)
@@ -97,26 +110,6 @@ void TList<T>::DelFirst(void)
 	}
 	else
 		throw "Error";	
-}
-//-----------------------------------------------------------
-template <class T>
-void TList<T>::DelList(void)
-{
-
-}
-//-----------------------------------------------------------
-template <class T>
-void TList<T>::PutEnd(T A)
-{
-	if (begin != 0) 
-	{
-		TElement <T> *B = begin;
-		while (B->GetNext() != 0)
-			B = B->GetNext();
-		B->SetNext(new TElement <T>(A, 0));
-	}
-	else
-		begin = new TElement <T>(A, 0);
 }
 //-----------------------------------------------------------
 template <class T>
