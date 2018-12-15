@@ -8,8 +8,8 @@ int main()
 	L1.PutBegin(60);
 	L1.PutBegin(40);
 	L1.PutBegin(50);
-	std::cout << L1.GetBegin();
-	std::cout << "\n";
+	std::cout << L1.GetBegin() << "\n";
+	std::cout << L1.GetEnd() << "\n";
 	//system("pause");
   return 0;
 }
