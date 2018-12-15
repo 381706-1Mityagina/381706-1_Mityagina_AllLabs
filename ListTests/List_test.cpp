@@ -18,33 +18,33 @@ TEST(Tlist, cannott_get_from_empty_list)
 {
 	TList<int> A;
 
-	EXPECT_ANY_THROW(l.GetBegin());
-	EXPECT_ANY_THROW(l.GetEnd());
+	EXPECT_ANY_THROW(A.GetBegin());
+	EXPECT_ANY_THROW(A.GetEnd());
 }
 
 TEST(Tlist, cannot_view_ptr_in_empty_list)
 {
 	TList<int> A;
 	
-	ASSERT_ANY_THROW(l.viewPtr(5));
+	ASSERT_ANY_THROW(A.viewPtr(5));
 }
 
 TEST(Tlist, can_view_ptr)
 {
 	TList<int> A;
 	
-	l.PutEnd(5);
+	A.PutEnd(5);
 	
-	ASSERT_NO_THROW(l.viewPtr(5));
+	ASSERT_NO_THROW(A.viewPtr(5));
 }
 
 TEST(Tlist, view_is_correct)
 {
 	TList<int> A;
-	l.PutEnd(5);
-	l.PutEnd(7);
+	A.PutEnd(5);
+	A.PutEnd(7);
 
-	TElement<int>* el = l.viewPtr(7);
+	TElement<int>* el = A.viewPtr(7);
 	
 	EXPECT_EQ(7, el->data);
 }
@@ -53,10 +53,10 @@ TEST(Tlist, list_is_correctly_empty)
 {
 	TList<int> A;
 	
-	l.PutEnd(5);
-	l.GetEnd();
+	A.PutEnd(5);
+	A.GetEnd();
 	
-	EXPECT_EQ(l.GetSize(), 0);
+	EXPECT_EQ(A.GetSize(), 0);
 
 }
 
@@ -64,18 +64,18 @@ TEST(TList, can_add_element_in_the_end)
 {
 	TList<int> A;
 	
-	l.PutEnd(5);
+	A.PutEnd(5);
 	
-	EXPECT_EQ(5, l.viewData(l.viewPtr(5)));
+	EXPECT_EQ(5, A.viewData(A.viewPtr(5)));
 }
 
 TEST(Tlist, can_del_element_from_the_end)
 {
 	TList<int> A;
 	
-	l.add_el_in_tail(5); 
-	l.add_el_in_tail(7);
-	l.del_el_fr_tail();
+	A.PutEnd(5); 
+	A.PutEnd(7);
+	A.PutEnd();
 	
 	EXPECT_EQ(5, l.viewData(l.viewPtr(5)));
 }
@@ -84,17 +84,17 @@ TEST(TList, can_add_element_in_the_beginning)
 {
 	TList<int> A;
 	
-	l.PutBegin(7);
+	A.PutBegin(7);
 	
-	EXPECT_EQ(7, l.viewData(l.viewPtr(7)));
+	EXPECT_EQ(7, A.viewData(A.viewPtr(7)));
 }
 
 TEST(Tlist, can_del_element_from_the_beginning)
 {
 	TList<int> A;
 	
-	l.PutBegin(6);
-	l.PutBegin(7);
+	A.PutBegin(6);
+	A.PutBegin(7);
 	
-	EXPECT_EQ(7, l.GetBegin());
+	EXPECT_EQ(7, A.GetBegin());
 }
