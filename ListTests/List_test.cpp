@@ -1,4 +1,4 @@
-#include "..//ListLib/List.h"
+#include "..//ListLib/TList.h"
 
 #include <gtest.h>
 
