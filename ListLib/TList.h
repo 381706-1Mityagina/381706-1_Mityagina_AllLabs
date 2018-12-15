@@ -25,9 +25,6 @@ public:
 				
 	bool IsFull(); // проверка на полноту
 	bool IsEmpty(); // проверка на пустоту
-	
-	virtual void DelFirst(void); // удаление первого звена
-	virtual void DelList(void); // удаление последнего звена
 };
 
 //-----------------------------------------------------------
@@ -98,21 +95,6 @@ void TList<T>::PutEnd(T A)
 }
 //-----------------------------------------------------------
 template <class T>
-void TList<T>::DelFirst(void)
-{
-   if (size)
-	{
-		TElement<T>* temporary = begin -> next;
-		T result= begin->data;
-		delete begin;
-		begin = temporary;
-		size--;
-	}
-	else
-		throw "Error";	
-}
-//-----------------------------------------------------------
-template <class T>
 T TList<T>::GetBegin()
 {
 	if (IsEmpty())
@@ -130,7 +112,20 @@ T TList<T>::GetBegin()
 template <class T>
 T TList<T>::GetEnd()
 {
-	
+	if (!IsEmpty()) 
+	{
+		TElement<T>* temp = begin;
+		while ((temp->GetNext())->GetNext() != 0)
+			temp = temp->GetNext();
+
+		T temp1 = (temp->GetNext())->GetData();
+
+		temp->SetNext(0);
+
+		return temp1;
+	}
+	else
+		throw "smth";
 }
 //-----------------------------------------------------------
 template <class T>
