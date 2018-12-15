@@ -4,96 +4,97 @@
 
 TEST(TList, can_create_list)
 {
-	ASSERT_NO_THROW(TList<char> _list);
+	ASSERT_NO_THROW(TList<char> l);
 }
 
 TEST(TList, can_add_element_in_empty_list)
 {
-	TList<char> _list;
+	TList<char> l;
 	
-  ASSERT_NO_THROW(_list.PutBegin('a'));
+	ASSERT_NO_THROW(l.PutBegin('a'));
 }
 
-TEST(Tlist, cannot_delete_from_empty_list)
+TEST(Tlist, cannott_get_from_empty_list)
 {
-	TList<char> _list;
+	TList<char> l;
 
-	EXPECT_ANY_THROW(_list.GetBegin());
-	EXPECT_ANY_THROW(_list.GetEnd());
+	EXPECT_ANY_THROW(l.GetBegin());
+	EXPECT_ANY_THROW(l.GetEnd());
 }
 
-TEST(Tlist, cannot_find_ptr_in_empty_list)
+TEST(Tlist, cannot_view_ptr_in_empty_list)
 {
-	TList<char> _list;
+	TList<char> l;
 	
-  ASSERT_ANY_THROW(_list.viewPtr('b'));
+	ASSERT_ANY_THROW(l.viewPtr('b'));
 }
 
-TEST(Tlist, can_find_ptr)
+TEST(Tlist, can_view_ptr)
 {
-	TList<char> _list;
+	TList<char> l;
 	
-  _list.PutEnd('a');
+	l.PutEnd('a');
 	
-  ASSERT_NO_THROW(_list.viewPtr('a'));
+	ASSERT_NO_THROW(l.viewPtr('a'));
 }
 
-TEST(Tlist, find_is_not_wrong)
+TEST(Tlist, view_is_correct)
 {
-	TList<char> _list;
-	_list.PutEnd('a');
-	_list.PutEnd('b');
+	TList<char> l;
+	l.PutEnd('a');
+	l.PutEnd('b');
 
-	TElement <char>* n = _list.viewPtr('b');
-  
-	EXPECT_EQ('b', n->data);
-}
-
-TEST(Tlist, list_is_empty_check)
-{
-	TList<char> _list;
-  
-	_list.PutEnd('a');
-	_list.GetEnd();
-  
-	EXPECT_EQ(_list.GetSize(), 0);
-}
-
-TEST(TList, can_add_node_in_the_end)
-{
-	TList<char> _list;
+	TElement<char>* el = l.viewPtr('b');
 	
-  _list.PutEnd('a');
-	
-  EXPECT_EQ('a', _list.viewData(_list.viewPtr('a')));
+	EXPECT_EQ('b', el->data);
 }
 
-TEST(Tlist, can_del_node_from_the_end)
+TEST(Tlist, list_is_correctly_empty)
 {
-	TList<char> _list;
-  
-	_list.PutEnd('a'); 
-	_list.PutEnd('b');
-	_list.GetEnd();
-  
+	TList<char> l;
+	
+	l.PutEnd('a');
+	l.GetEnd();
+	
+	EXPECT_EQ(l.GetSize(), 0);
+
+}
+
+TEST(TList, can_add_element_in_the_end)
+{
+	TList<char> l;
+	
+	l.PutEnd('a');
+	
 	EXPECT_EQ('a', l.viewData(l.viewPtr('a')));
 }
 
-TEST(TList, can_add_node_in_head)
+TEST(Tlist, can_del_element_from_the_end)
 {
-	TList<char> _list;
-  
-	_list.PutBegin('a');
-  
-	EXPECT_EQ('a', _list.viewData(_list.viewPtr('a')));
+	TList<char> l;
+	
+	l.add_el_in_tail('a'); 
+	l.add_el_in_tail('b');
+	l.del_el_fr_tail();
+	
+	EXPECT_EQ('a', l.viewData(l.viewPtr('a')));
 }
 
-TEST(Tlist, can_del_node_from_head)
+TEST(TList, can_add_element_in_the_beginning)
 {
-	TList<char> _list;
-  
-	_list.PutBegin('a');
-	_list.PutBegin('b');
+	TList<char> l;
 	
-  EXPECT_EQ('b', _list.GetBegin());
+	l.PutBegin('a');
+	
+	EXPECT_EQ('a', l.viewData(l.viewPtr('a')));
+}
+
+TEST(Tlist, can_del_element_from_the_beginning)
+{
+	TList<char> l;
+	
+	l.PutBegin('a');
+	l.PutBegin('b');
+	
+	EXPECT_EQ('b', l.GetBegin());
 }
