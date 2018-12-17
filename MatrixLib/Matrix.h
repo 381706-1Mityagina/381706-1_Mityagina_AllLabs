@@ -22,7 +22,6 @@ public:
   TMatrix  operator + (const TMatrix &Matr); // перегрузка оператора +
   TMatrix  operator - (const TMatrix &Matr); // перегрузка оператора -
   TMatrix operator*(TMatrix<T> &A); // перегрузка оператора *
-  TVector<T>& operator[](int i);
   TMatrix operator/(TMatrix<T> &A);
  // TMatrix<T> op();
  //double Determinant();
