@@ -25,11 +25,11 @@ int main()
 	Result2 = Matr1 - Matr2;
 	 startMult = clock();
 	Result3 = Matr3 * Matr3;
-	 t1 = ((clock() - startMult) / CLOCKS_PER_SEC);
+	 t1 = (clock() - startMult) / CLOCKS_PER_SEC;
 	cout << endl; 
 	startDel = clock();
 	Result4 = Matr3 / Matr3;
-	t2 = (clock() - startDel) / CLOCKS_PER_SEC);
+	t2 = (clock() - startDel) / CLOCKS_PER_SEC;
 	cout << endl;
 
   cout << "\t || Matr1 ||" << endl << Matr1 << endl;
