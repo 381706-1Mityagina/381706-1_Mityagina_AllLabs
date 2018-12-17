@@ -136,7 +136,7 @@ TEST(TMatrix, matrixes_are_not_equal_if_are_not_equal)
 	ASSERT_TRUE(m1 != m2);
 }
 
-TEST(TMatrix, compare_equal_matrices_false_check)
+TEST(TMatrix, compare_equal_matrices)
 {
 	TMatrix<int> m1(5);
 	TMatrix<int> m2(5);
@@ -145,8 +145,8 @@ TEST(TMatrix, compare_equal_matrices_false_check)
 		for (int j = 0; j < m1.GetDlina(); j++)
 	{
 		m1[i][j] = 5;
+		m2[i][j] = m1[i][j];
 	}
-	m2 = m1;
 
 	ASSERT_TRUE(m1 == m2);
 }
@@ -169,12 +169,11 @@ TEST(TMatrix, summ_is_correct)
 			m1[i][j] = i;
 			m2[i][j] = j;
 		}
-
 	m = m1 + m2;
 
 	for (int i = 0; i < m1.GetDlina(); i++)
 		for (int j = 0; j < m1.GetDlina(); j++)
-			ASSERT_TRUE(m[i][j] == i + j);
+			EXPECT_EQ(m[i][j], (i + j));
 }
 
 TEST(TMatrix, thorws_when_division_matrix_with_diff_size)
@@ -226,7 +225,7 @@ TEST(TMatrix, razn_is_correct)
 
 	for (int i = 0; i < m1.GetDlina(); i++)
 		for (int j = 0; j < m1.GetDlina(); j++)
-			ASSERT_TRUE(m[i][j] == i - j);
+			EXPECT_EQ(m[i][j], (i - j));
 }
 
 TEST(TMatrix, can_multiplicate_matrix)
