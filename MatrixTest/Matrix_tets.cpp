@@ -168,12 +168,9 @@ TEST(TMatrix, summ_is_correct)
 		{
 			m1[i][j] = i;
 			m2[i][j] = j;
+			m[i][j] = m1[i][j] + m2[i][j];
 		}
-	m = m1 + m2;
-
-	for (int i = 0; i < 2; i++)
-		for (int j = 0; j < 2; j++)
-			ASSERT_TRUE(m[i][j] == (i + j));
+	ASSERT_TRUE(m = m1+ m2);
 }
 
 TEST(TMatrix, thorws_when_division_matrix_with_diff_size)
@@ -219,13 +216,9 @@ TEST(TMatrix, razn_is_correct)
 		{
 			m1[i][j] = i;
 			m2[i][j] = j;
+		m[i][j] = m1[i][j] - m2[i][j];
 		}
-
-	m = m1 - m2;
-
-	for (int i = 0; i < 2; i++)
-		for (int j = 0; j < 2; j++)
-			ASSERT_TRUE(m[i][j] == (i - j));
+	ASSERT_TRUE(m = m1 - m2);
 }
 
 TEST(TMatrix, can_multiplicate_matrix)
