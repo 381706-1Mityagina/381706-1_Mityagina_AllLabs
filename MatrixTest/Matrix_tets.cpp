@@ -147,7 +147,7 @@ TEST(TMatrix, return_true_when_compare_equal_matrices)
 	}
 	m2 = m1;
 
-	ASSERT_TRUE(m1 == m2);
+	EXPECT_EQ(m1 == m2, true);
 }
 
 TEST(TMatrix, multiplication_is_impossible_if_size1_is_not_equal_to_size2)
@@ -173,7 +173,7 @@ TEST(TMatrix, summ_is_correct)
 
 	for (int i = 0; i < 5; i++)
 		for (int j = 0; j < 5; j++)
-			ASSERT_TRUE(m[i][j] == m1[i][j] + m2[i][j]);
+			EXPECT_EQ(m[i][j], m1[i][j] + m2[i][j]);
 }
 
 TEST(TMatrix, thorws_when_division_matrix_with_diff_size)
@@ -205,5 +205,5 @@ TEST(TMatrix, razn_is_correct)
 
 	for (int i = 0; i < 5; i++)
 		for (int j = 0; j < 5; j++)
-			ASSERT_TRUE(m[i][j] == m1[i][j] - m2[i][j]);
+			EXPECT_EQ(m[i][j], m1[i][j] - m2[i][j]);
 }
