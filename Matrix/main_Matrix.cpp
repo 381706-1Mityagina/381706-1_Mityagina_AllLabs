@@ -9,7 +9,7 @@ using namespace std;
 int main() 
 {
 	setlocale(LC_ALL, "Russian");
-	clock_t startMult, endMult, startDel, endDel;
+	double startMult, endMult, startDel, endDel;
   cout << "\t <<< An example of using the Matrix will be implemented here >>>" << "\n\n";
   TMatrix <int> Matr1(5), Matr2(5), Matr3(5), Matr4(5), Matr5(5), Result1(5), Result2(5), Result3(5), Result4(5);
   int i, j;
@@ -25,10 +25,12 @@ int main()
 	Result2 = Matr1 - Matr2;
 	 startMult = clock();
 	Result3 = Matr3 * Matr3;
-	 endMult = clock();
-	 startDel = clock();
+	 cout << "\t Время, потребовавшееся для выполнения умножения = " << ((clock() - startMult) / CLOCKS_PER_SEC);
+	cout << endl; 
+	startDel = clock();
 	Result4 = Matr3 / Matr3;
-	 endDel = clock();
+	cout << "\t Время, потребовавшееся для выполнения деления = " << (clock() - startDel) / CLOCKS_PER_SEC);
+	cout << endl;
 
   cout << "\t || Matr1 ||" << endl << Matr1 << endl;
   cout << "\t || Matr2 ||" << endl << Matr2 << endl;
@@ -41,12 +43,7 @@ int main()
 	cout << "\t ||Result4 ||" << endl << Result4 << endl;
 	
 	
-	cout << "\t Время, потребовавшееся для выполнения умножения = " << ((double) endMult - startMult) / ((double) CLOCKS_PER_SEC));
-	cout << endl;
-	cout << "\t Время, потребовавшееся для выполнения деления = " << ((double) endDel - startDel) / ((double) CLOCKS_PER_SEC));
-	cout << endl;
-
-	// Проверка работы операторов ввода-вывода
+		// Проверка работы операторов ввода-вывода
 	/* cout << "\n\t<<< Ввод матрицы >>>\n";
 	cout << "Введите размер матрицы\n";
 	int n;
