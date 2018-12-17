@@ -24,13 +24,13 @@ public:
   TMatrix operator*(TMatrix<T> &A); // перегрузка оператора *
   TVector<T>& operator[](int i);
   TMatrix operator/(TMatrix<T> &A);
-  TMatrix<T> op();
+ // TMatrix<T> op();
 
   TVector<T>& operator[](int i);
-  double Determinant();
-  TMatrix<T> SubMatrix(int i1, int j1);
-	//TMatrix<T> InverseMatrix();
-// операторы ввода-вывода												
+  //double Determinant();
+ // TMatrix<T> SubMatrix(int i1, int j1);
+
+	// операторы ввода-вывода												
   template <class FriendT> friend istream& operator>>(istream &istr, TMatrix<FriendT> &Matr);
  
   template <class FriendT> friend ostream & operator<<(ostream &ostr, const TMatrix<FriendT> &Matr);
@@ -127,7 +127,7 @@ TMatrix<T> TMatrix<T>::operator*(TMatrix<T> &A)
 }
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-template <class T>
+/* template <class T>
 double TMatrix<T>::Determinant()
 {
 	double det = 0;
@@ -204,13 +204,13 @@ TMatrix<T> TMatrix<T>::op()
 		}
 	}
 	return res;
-}
+} */
 //-------------------------------------------------------------------------------------------------
 template <class T>
 TVector<T>& TMatrix<T>::operator[](int i)
 {
 	if (i < 0 || i >= dlina)
-		throw 1;
+		throw TException("Overflow");
 	//assert(vector[i] != 0);
 	return TVector<TVector<T> >::operator[](i);
 }
@@ -218,14 +218,44 @@ TVector<T>& TMatrix<T>::operator[](int i)
 template <class T>
 TMatrix<T> TMatrix<T>::operator/(TMatrix<T> &A)
 {
-	if (A.Determinant() == 0)
-		throw 0;
-	else
+	if (this->dlina != mt.dlina)
+		throw TException("Different dimentions");
+	int N = (*this).dlina;
+
+	double detChecking = 1;
+
+	for (int i = 0; i < N; i++)
+		detChecking *= (*this).vector[i][0];
+
+	if (detChecking < 0.000001)
+		throw TException("Cannot work with matrixes that have det = 0");
+
+	TMatrix <T> replicaMatr(mt);
+	TMatrix <T> middleStepMatr(N);
+
+	for (int row = 0; row < N; row++)
 	{
-		TMatrix<T> B = *this;
-		TMatrix<T> Rez(this->dlina);
-		Rez = B * A.op();
-		return Rez;
+		middleStepMatr[row][0] = 1;
+		T k = replicaMatr[row][0];
+		for (int col = 0; col < N - row; col++)
+		{
+			replicaMatr[row][col] = replicaMatr[row][col] / k;
+			middleStepMatr[row][col] = middleStepMatr[row][col] / k;
+		}
 	}
+
+	for (int col = 1; col < N; col++)
+	{
+		for (int row = 0; row < col; row++)
+		{
+			T temporary = replicaMatr[row][col - row];
+			for (int k = col - row, c = 0; k < N - row; k++)
+			{
+				replicaMatr[row][k] = replicaMatr[row][k] - replicaMatr[col][c] * temporary;
+				middleStepMatr[row][k] = middleStepMatr[row][k] - middleStepMatr[col][c++] * temporary;
+			}
+		}
+	}
+	return ((*this) * middleStepMatr);
 }
 //-------------------------------------------------------------------------------------------------
