@@ -143,8 +143,8 @@ TEST(TMatrix, An_equality_matrix_false_chack)
   for (int i = 0; i < m1.GetDlina(); i++)
     for (int j = 0; j < m1.GetDlina() - i; j++)
     {
-      M1[i][j] = i*2;
-      M2[i][j] = 3*(i+j);
+      m1[i][j] = i*2;
+      m2[i][j] = 3*(i+j);
     }
 	
   ASSERT_FALSE(m1 == m2);
