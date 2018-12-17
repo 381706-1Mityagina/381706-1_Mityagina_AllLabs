@@ -161,7 +161,7 @@ TEST(TMatrix, multiplication_is_impossible_if_size1_is_not_equal_to_size2)
 
 TEST(TMatrix, summ_is_correct)
 {
-	TMatrix<int> m1(5), m2(5), m(5);
+	TMatrix<int> m1(2), m2(2), m(2);
 
 	for (int i = 0; i < m1.GetDlina(); i++)
 		for (int j = 0; j < m1.GetDlina(); j++)
@@ -183,14 +183,14 @@ TEST(TMatrix, thorws_when_division_matrix_with_diff_size)
 	ASSERT_ANY_THROW(m1 / m2);
 }
 
-TEST(Matrix, thorws_when_division_matrix_with_det_eq_zero)
+TEST(TMatrix, thorws_when_division_matrix_with_det_eq_zero)
 {
 	TMatrix <int> m1(2), m2(2);
 
 	ASSERT_ANY_THROW(m2 / m1);
 }
 
-TEST(Matrix, is_able_to_divide_matrix)
+TEST(TMatrix, is_able_to_divide_matrix)
 {
 	TMatrix<int> m1(2), m2(2), res(2), smth(2);
 
@@ -212,10 +212,10 @@ TEST(Matrix, is_able_to_divide_matrix)
 
 TEST(TMatrix, razn_is_correct)
 {
-	TMatrix<int> m1(5), m2(5), m(5);
+	TMatrix<int> m1(2), m2(2), m(2);
 
-	for (int i = 0; i < m1.GetDlina(); i++)
-		for (int j = 0; j < m1.GetDlina(); j++)
+	for (int i = 0; i < 5; i++)
+		for (int j = 0; j < 5(); j++)
 		{
 			m1[i][j] = i;
 			m2[i][j] = j;
