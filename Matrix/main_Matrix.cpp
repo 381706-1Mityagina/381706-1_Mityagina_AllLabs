@@ -41,8 +41,10 @@ int main()
 	cout << "\t ||Result4 ||" << endl << Result4 << endl;
 	
 	
-	cout << "\t Время, потребовавшееся для выполнения умножения = " << ((double) endMult - startMult) / ((double) CLOCKS_PER_SEC)) << endl;
-	cout << "\t Время, потребовавшееся для выполнения деления = " << ((double) endDel - startDel) / ((double) CLOCKS_PER_SEC)) << endl;
+	cout << "\t Время, потребовавшееся для выполнения умножения = " << ((double) endMult - startMult) / ((double) CLOCKS_PER_SEC));
+	cout << endl;
+	cout << "\t Время, потребовавшееся для выполнения деления = " << ((double) endDel - startDel) / ((double) CLOCKS_PER_SEC));
+	cout << endl;
 
 	// Проверка работы операторов ввода-вывода
 	/* cout << "\n\t<<< Ввод матрицы >>>\n";
