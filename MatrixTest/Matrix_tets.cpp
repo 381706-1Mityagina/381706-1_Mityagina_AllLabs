@@ -170,7 +170,7 @@ TEST(TMatrix, summ_is_correct)
 			m2[i][j] = j;
 			m[i][j] = m1[i][j] + m2[i][j];
 		}
-	ASSERT_TRUE(m = m1+ m2);
+	 EXPECT_EQ(m, m1+ m2);
 }
 
 TEST(TMatrix, thorws_when_division_matrix_with_diff_size)
@@ -218,7 +218,7 @@ TEST(TMatrix, razn_is_correct)
 			m2[i][j] = j;
 		m[i][j] = m1[i][j] - m2[i][j];
 		}
-	ASSERT_TRUE(m = m1 - m2);
+	 EXPECT_EQ(m, m1 - m2);
 }
 
 TEST(TMatrix, can_multiplicate_matrix)
