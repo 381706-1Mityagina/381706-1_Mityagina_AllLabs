@@ -140,8 +140,8 @@ TEST(TMatrix, An_equality_matrix_false_chack)
 {
   TMatrix <int> m1(3), m2(3);
 	
-  for (int i = 0; i < m1.GetSize(); i++)
-    for (int j = 0; j < m1.GetSize() - i; j++)
+  for (int i = 0; i < m1.GetDlina(); i++)
+    for (int j = 0; j < m1.GetDlina() - i; j++)
     {
       M1[i][j] = i*2;
       M2[i][j] = 3*(i+j);
@@ -161,8 +161,8 @@ TEST(TMatrix, An_inequality_matrix_true_check)
 {
   TMatrix <int> m1(7), m2(7);
 	
-  for (int i = 0; i < m1.GetSize(); i++)
-    for (int j = 0; j < m2.GetSize() - i; j++)
+  for (int i = 0; i < m1.GetDlina(); i++)
+    for (int j = 0; j < m2.GetDlina() - i; j++)
     {
       m1[i][j] = i;
       m2[i][j] = i+1+j;
@@ -183,8 +183,8 @@ TEST(TMatrix, summ_is_correct)
 {
 	TMatrix<int> m1(2), m2(2), m(2);
 
-	for (int i = 0; i < m1.GetSize(); i++)
-		for (int j = 0; j < m1.GetSize() - i; j++)
+	for (int i = 0; i < m1.GetDlina(); i++)
+		for (int j = 0; j < m1.GetDlina() - i; j++)
 		{
 			m1[i][j] = i;
 			m2[i][j] = j;
@@ -231,8 +231,8 @@ TEST(TMatrix, razn_is_correct)
 {
 	TMatrix<int> m1(2), m2(2), m(2);
 
-	for (int i = 0; i < m1.GetSize(); i++)
-		for (int j = 0; j < m1.GetSize() - i; j++)
+	for (int i = 0; i < m1.GetDlina(); i++)
+		for (int j = 0; j < m1.GetDlina() - i; j++)
 		{
 			m1[i][j] = i;
 			m2[i][j] = j;
