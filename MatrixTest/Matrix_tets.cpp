@@ -154,7 +154,7 @@ TEST(TMatrix, An_equality_matrix_with_diff_size)
 {
   TMatrix <int> m1(8), m2(3);
 	
-  ASSERT_FALSE(M1 == M2);
+  ASSERT_FALSE(m1 == m2);
 }
 
 TEST(TMatrix, An_inequality_matrix_true_check)
@@ -168,7 +168,7 @@ TEST(TMatrix, An_inequality_matrix_true_check)
       m2[i][j] = i+1+j;
     }
 	
-  ASSERT_TRUE(M1 != M2);
+  ASSERT_TRUE(m1 != m2);
 }
 
 TEST(TMatrix, multiplication_is_impossible_if_size1_is_not_equal_to_size2)
