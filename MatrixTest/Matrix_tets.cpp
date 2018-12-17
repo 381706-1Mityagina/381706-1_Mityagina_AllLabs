@@ -136,19 +136,39 @@ TEST(TMatrix, matrixes_are_not_equal_if_are_not_equal)
 	ASSERT_TRUE(m1 != m2);
 }
 
-TEST(TMatrix, compare_equal_matrices)
+TEST(TMatrix, An_equality_matrix_false_chack)
 {
-	TMatrix<int> m1(5);
-	TMatrix<int> m2(5);
+  TMatrix <int> m1(3), m2(3);
+	
+  for (int i = 0; i < m1.GetSize(); i++)
+    for (int j = 0; j < m1.GetSize() - i; j++)
+    {
+      M1[i][j] = i*2;
+      M2[i][j] = 3*(i+j);
+    }
+	
+  ASSERT_FALSE(m1 == m2);
+}
 
-	for (int i = 0; i < m1.GetDlina(); i++)
-		for (int j = 0; j < m1.GetDlina(); j++)
-	{
-		m1[i][j] = 5;
-		m2[i][j] = m1[i][j];
-	}
+TEST(TMatrix, An_equality_matrix_with_diff_size)
+{
+  TMatrix <int> m1(8), m2(3);
+	
+  ASSERT_FALSE(M1 == M2);
+}
 
-	ASSERT_TRUE(m1 == m2);
+TEST(TMatrix, An_inequality_matrix_true_check)
+{
+  TMatrix <int> m1(7), m2(7);
+	
+  for (int i = 0; i < m1.GetSize(); i++)
+    for (int j = 0; j < m2.GetSize() - i; j++)
+    {
+      m1[i][j] = i;
+      m2[i][j] = i+1+j;
+    }
+	
+  ASSERT_TRUE(M1 != M2);
 }
 
 TEST(TMatrix, multiplication_is_impossible_if_size1_is_not_equal_to_size2)
@@ -163,8 +183,8 @@ TEST(TMatrix, summ_is_correct)
 {
 	TMatrix<int> m1(2), m2(2), m(2);
 
-	for (int i = 0; i < 2; i++)
-		for (int j = 0; j < 2; j++)
+	for (int i = 0; i < m1.GetSize(); i++)
+		for (int j = 0; j < m1.GetSize() - i; j++)
 		{
 			m1[i][j] = i;
 			m2[i][j] = j;
@@ -211,12 +231,12 @@ TEST(TMatrix, razn_is_correct)
 {
 	TMatrix<int> m1(2), m2(2), m(2);
 
-	for (int i = 0; i < 2; i++)
-		for (int j = 0; j < 2; j++)
+	for (int i = 0; i < m1.GetSize(); i++)
+		for (int j = 0; j < m1.GetSize() - i; j++)
 		{
 			m1[i][j] = i;
 			m2[i][j] = j;
-		m[i][j] = m1[i][j] - m2[i][j];
+		        m[i][j] = m1[i][j] - m2[i][j];
 		}
 	 EXPECT_EQ(m, m1 - m2);
 }
