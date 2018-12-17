@@ -218,7 +218,7 @@ TVector<T>& TMatrix<T>::operator[](int i)
 template <class T>
 TMatrix<T> TMatrix<T>::operator/(TMatrix<T> &A)
 {
-	if (this->dlina != mt.dlina)
+	if (this->dlina != A.dlina)
 		throw TException("Different dimentions");
 	int N = (*this).dlina;
 
@@ -230,7 +230,7 @@ TMatrix<T> TMatrix<T>::operator/(TMatrix<T> &A)
 	if (detChecking < 0.000001)
 		throw TException("Cannot work with matrixes that have det = 0");
 
-	TMatrix <T> replicaMatr(mt);
+	TMatrix <T> replicaMatr(A);
 	TMatrix <T> middleStepMatr(N);
 
 	for (int row = 0; row < N; row++)
