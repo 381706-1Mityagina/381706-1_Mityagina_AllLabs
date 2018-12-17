@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
   Result1 = Matr1 + Matr2;
   Result2 = Matr1 - Matr2;
   Result3 = Matr3 * Matr3;
-  Result4 = Matr3/Matr4;
+  Result4 = Matr3/Matr3;
 
   cout << "\t || Matr1 ||" << endl << Matr1 << endl;
   cout << "\t || Matr2 ||" << endl << Matr2 << endl;
