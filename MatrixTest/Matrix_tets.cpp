@@ -166,15 +166,15 @@ TEST(TMatrix, summ_is_correct)
 	for (int i = 0; i < m1.GetDlina(); i++)
 		for (int j = 0; j < m1.GetDlina(); j++)
 		{
-			m1[i][j] = i + j + 1;
-			m2[i][j] = 2 * (i + j + 1);
+			m1[i][j] = i;
+			m2[i][j] = j;
 		}
 
 	m = m1 + m2;
 
 	for (int i = 0; i < m1.GetDlina(); i++)
 		for (int j = 0; j < m1.GetDlina(); j++)
-			EXPECT_EQ(m[i][j], m1[i][j] + m2[i][j]);
+			ASSERT_TRUE(m[i][j] == m1[i][j] + m2[i][j]);
 }
 
 TEST(TMatrix, thorws_when_division_matrix_with_diff_size)
@@ -218,15 +218,15 @@ TEST(TMatrix, razn_is_correct)
 	for (int i = 0; i < m1.GetDlina(); i++)
 		for (int j = 0; j < m1.GetDlina(); j++)
 		{
-			m1[i][j] = i + j + 1;
-			m2[i][j] = 2*(i + j + 1);
+			m1[i][j] = i;
+			m2[i][j] = j;
 		}
 
 	m = m1 - m2;
 
 	for (int i = 0; i < m1.GetDlina(); i++)
 		for (int j = 0; j < m1.GetDlina(); j++)
-			EXPECT_EQ(m[i][j], m1[i][j] - m2[i][j]);
+			ASSERT_TRUE(m[i][j] == m1[i][j] - m2[i][j]);
 }
 
 TEST(TMatrix, can_multiplicate_matrix)
