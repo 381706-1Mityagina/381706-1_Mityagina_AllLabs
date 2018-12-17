@@ -133,21 +133,22 @@ TEST(TMatrix, matrixes_are_not_equal_if_are_not_equal)
 	TMatrix<int> m1(4);
 	TMatrix<int> m2(3);
 
-	ASSERT_FALSE(m1 == m2);
+	ASSERT_TRUE(m1 != m2);
 }
 
-TEST(TMatrix, compare_equal_matrices)
+TEST(TMatrix, compare_equal_matrices_false_check)
 {
 	TMatrix<int> m1(5);
 	TMatrix<int> m2(5);
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < m1.GetDlina(); i++)
+		for (int j = 0; j < m1.GetDlina(); j++)
 	{
-		m1[i][i] = 5;
+		m1[i][j] = 5*i+j;
 	}
 	m2 = m1;
 
-	EXPECT_EQ(m1, m2);
+	ASSERT_FALSE(m1 != m2);
 }
 
 TEST(TMatrix, multiplication_is_impossible_if_size1_is_not_equal_to_size2)
@@ -162,8 +163,8 @@ TEST(TMatrix, summ_is_correct)
 {
 	TMatrix<int> m1(5), m2(5), m(5);
 
-	for (int i = 0; i < 5; i++)
-		for (int j = 0; j < 5; j++)
+	for (int i = 0; i < m1.GetDlina(); i++)
+		for (int j = 0; j < m1.GetDlina(); j++)
 		{
 			m1[i][j] = i + j + 1;
 			m2[i][j] = 2 * (i + j + 1);
@@ -171,8 +172,8 @@ TEST(TMatrix, summ_is_correct)
 
 	m = m1 + m2;
 
-	for (int i = 0; i < 5; i++)
-		for (int j = 0; j < 5; j++)
+	for (int i = 0; i < m1.GetDlina(); i++)
+		for (int j = 0; j < m1.GetDlina(); j++)
 			EXPECT_EQ(m[i][j], m1[i][j] + m2[i][j]);
 }
 
@@ -183,19 +184,39 @@ TEST(TMatrix, thorws_when_division_matrix_with_diff_size)
 	ASSERT_ANY_THROW(m1 / m2);
 }
 
-TEST(TMatrix, thorws_when_division_matrix_with_det_eq_zero)
+TEST(Matrix, thorws_when_division_matrix_with_det_eq_zero)
 {
 	TMatrix <int> m1(2), m2(2);
 
 	ASSERT_ANY_THROW(m2 / m1);
 }
 
+TEST(Matrix, is_able_to_divide_matrix)
+{
+	TMatrix<int> m1(2), m2(2), res(2), smth(2);
+
+	m1[0][0] = 1;
+	m1[0][1] = 2;
+	m1[1][0] = 1;
+
+	m2[0][0] = 1;
+	m2[0][1] = 1;
+	m2[1][0] = 1;
+
+	res[0][0] = 1;
+	res[0][1] = 1;
+	res[1][0] = 1;
+
+	smth = m1 / m2;
+	EXPECT_EQ(res, smth);
+}
+
 TEST(TMatrix, razn_is_correct)
 {
 	TMatrix<int> m1(5), m2(5), m(5);
 
-	for (int i = 0; i < 5; i++)
-		for (int j = 0; j < 5; j++)
+	for (int i = 0; i < m1.GetDlina(); i++)
+		for (int j = 0; j < m1.GetDlina(); j++)
 		{
 			m1[i][j] = i + j + 1;
 			m2[i][j] = 2*(i + j + 1);
@@ -203,7 +224,26 @@ TEST(TMatrix, razn_is_correct)
 
 	m = m1 - m2;
 
-	for (int i = 0; i < 5; i++)
-		for (int j = 0; j < 5; j++)
+	for (int i = 0; i < m1.GetDlina(); i++)
+		for (int j = 0; j < m1.GetDlina(); j++)
 			EXPECT_EQ(m[i][j], m1[i][j] - m2[i][j]);
+}
+
+TEST(TMatrix, can_multiplicate_matrix)
+{
+	TMatrix <int> m1(2), m2(2), res(2);
+	
+	m1[0][0] = 1; 
+	m1[0][1] = 2; 
+	m1[1][0] = 3; 
+
+	m2[0][0] = 5;
+	m2[0][1] = 6; 
+	m2[1][0] = 7;
+
+	res[0][0] = 5;
+	res[0][1] = 20; 
+	res[1][0] = 21; 
+	
+	ASSERT_TRUE(res == m1 * m2);
 }
