@@ -163,16 +163,16 @@ TEST(TMatrix, summ_is_correct)
 {
 	TMatrix<int> m1(2), m2(2), m(2);
 
-	for (int i = 0; i < m1.GetDlina(); i++)
-		for (int j = 0; j < m1.GetDlina(); j++)
+	for (int i = 0; i < 2; i++)
+		for (int j = 0; j < 2; j++)
 		{
 			m1[i][j] = i;
 			m2[i][j] = j;
 		}
 	m = m1 + m2;
 
-	for (int i = 0; i < m1.GetDlina(); i++)
-		for (int j = 0; j < m1.GetDlina(); j++)
+	for (int i = 0; i < 2; i++)
+		for (int j = 0; j < 2; j++)
 			EXPECT_EQ(m[i][j], (i + j));
 }
 
@@ -214,8 +214,8 @@ TEST(TMatrix, razn_is_correct)
 {
 	TMatrix<int> m1(2), m2(2), m(2);
 
-	for (int i = 0; i < 5; i++)
-		for (int j = 0; j < 5(); j++)
+	for (int i = 0; i < 2; i++)
+		for (int j = 0; j < 2; j++)
 		{
 			m1[i][j] = i;
 			m2[i][j] = j;
@@ -223,8 +223,8 @@ TEST(TMatrix, razn_is_correct)
 
 	m = m1 - m2;
 
-	for (int i = 0; i < m1.GetDlina(); i++)
-		for (int j = 0; j < m1.GetDlina(); j++)
+	for (int i = 0; i < 2; i++)
+		for (int j = 0; j < 2; j++)
 			EXPECT_EQ(m[i][j], (i - j));
 }
 
