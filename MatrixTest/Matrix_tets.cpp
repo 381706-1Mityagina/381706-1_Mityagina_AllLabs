@@ -21,41 +21,41 @@ TEST(TMatrix, can_create_copied_matrix)
 TEST(TMatrix, can_get_size)
 {
   TMatrix<int> m(7);
-  
-  EXPECT_EQ(7, m.GetDlina());
+ 
+	EXPECT_EQ(7, m.GetDlina());
 }
 
 TEST(TMatrix, can_set_and_get_element)
 {
   TMatrix<int> m(7);
-  
+
   m[1][2] = 7;
-  
+
   EXPECT_EQ(7, m[1][2]);
 }
 
 TEST(TMatrix, throws_when_set_element_with_negative_index)
 {
   TMatrix<int> m(7);
-  
+
   ASSERT_ANY_THROW(m[-2][1] = 1);
 }
 
 TEST(TMatrix, throws_when_set_element_with_too_large_index)
 {
   TMatrix<int> m(7);
-  
+
   ASSERT_ANY_THROW(m[9][1] = 1);
 }
 
 TEST(TMatrix, can_assign_matrix_to_itself)
 {
   TMatrix<int> m1(7);
-  
+
   m1[1][1] = 1;
   m1 = m1;
   
-  EXPECT_EQ(m1, m1);
+	EXPECT_EQ(m1, m1);
 }
 
 TEST(TMatrix, can_assign_matrices_of_equal_size)
@@ -63,23 +63,23 @@ TEST(TMatrix, can_assign_matrices_of_equal_size)
   TMatrix<int> m1(7);
   TMatrix<int> m2(7);
   TMatrix<int> m3(7);
-  
+
   m1[1][1] = 1;
   m3[1][1] = 1;
   m2 = m1;
   
-  EXPECT_EQ(m3, m2);
+	EXPECT_EQ(m3, m2);
 }
 
 TEST(TMatrix, assign_operator_change_matrix_size)
 {
   TMatrix<int> m1(7);
   TMatrix<int> m2(8);
-  
+
   m1[1][1] = 1;
   m2 = m1;
   
-  EXPECT_EQ(7, m2.GetDlina());
+	EXPECT_EQ(7, m2.GetDlina());
 }
 
 TEST(TMatrix, can_add_matrices_with_equal_size)
@@ -87,23 +87,23 @@ TEST(TMatrix, can_add_matrices_with_equal_size)
   TMatrix<int> m1(3);
   TMatrix<int> m2(3);
   TMatrix<int> m3(3);
-  
+
   m1[1][1] = 1;
   m2[1][1] = 3;
   m3[1][1] = 4;
- 
+
   EXPECT_EQ(m3, m1 + m2);
 }
 
-TEST(TMatrix, cannot_add_matrices_with_not_equal_size)
+TEST(TMatrix, cant_add_matrices_with_not_equal_size)
 {
   TMatrix<int> m1(7);
   TMatrix<int> m2(8);
- 
+
   m1[1][1] = 1;
   m2[1][1] = 3;
   m2[2][2] = 3;
-  
+
   ASSERT_ANY_THROW(m1 + m2);
 }
 
@@ -128,12 +128,26 @@ TEST(TMatrix, cannot_subtract_matrixes_with_not_equal_size)
 	ASSERT_ANY_THROW(m1 - m2);
 }
 
-TEST(TMatrix, matrixes_are_not_equal_if_size1_is_not_eq_to_size2)
+TEST(TMatrix, matrixes_are_not_equal_if_are_not_equal)
 {
 	TMatrix<int> m1(4);
 	TMatrix<int> m2(3);
 
 	ASSERT_FALSE(m1 == m2);
+}
+
+TEST(TMatrix, return_true_when_compare_equal_matrices)
+{
+	TMatrix<int> m1(5);
+	TMatrix<int> m2(5);
+
+	for (int i = 0; i < 5; i++)
+	{
+		m1[i][i] = 5;
+	}
+	m2 = m1;
+
+	ASSERT_TRUE(m1 == m2);
 }
 
 TEST(TMatrix, multiplication_is_impossible_if_size1_is_not_equal_to_size2)
@@ -142,4 +156,54 @@ TEST(TMatrix, multiplication_is_impossible_if_size1_is_not_equal_to_size2)
 	TMatrix<int> m2(5);
 
 	ASSERT_ANY_THROW(m1 * m2);
+}
+
+TEST(TMatrix, summ_is_correct)
+{
+	TMatrix<int> m1(5), m2(5), m(5);
+
+	for (int i = 0; i < 5; i++)
+		for (int j = 0; j < 5; j++)
+		{
+			m1[i][j] = i + j + 1;
+			m2[i][j] = 2 * (i + j + 1);
+		}
+
+	m = m1 + m2;
+
+	for (int i = 0; i < 5; i++)
+		for (int j = 0; j < 5; j++)
+			ASSERT_TRUE(m[i][j] == m1[i][j] + m2[i][j]);
+}
+
+TEST(TMatrix, thorws_when_division_matrix_with_diff_size)
+{
+	TMatrix <int> m1(7), m2(8);
+
+	ASSERT_ANY_THROW(m1 / m2);
+}
+
+TEST(TMatrix, thorws_when_division_matrix_with_det_eq_zero)
+{
+	TMatrix <int> m1(2), m2(2);
+
+	ASSERT_ANY_THROW(m2 / m1);
+}
+
+TEST(TMatrix, razn_is_correct)
+{
+	TMatrix<int> m1(5), m2(5), m(5);
+
+	for (int i = 0; i < 5; i++)
+		for (int j = 0; j < 5; j++)
+		{
+			m1[i][j] = i + j + 1;
+			m2[i][j] = 2*(i + j + 1);
+		}
+
+	m = m1 - m2;
+
+	for (int i = 0; i < 5; i++)
+		for (int j = 0; j < 5; j++)
+			ASSERT_TRUE(m[i][j] == m1[i][j] - m2[i][j]);
 }
