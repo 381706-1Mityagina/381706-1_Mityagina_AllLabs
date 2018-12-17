@@ -22,7 +22,7 @@ TEST(TMatrix, can_get_size)
 {
   TMatrix<int> m(7);
  
-	EXPECT_EQ(7, m.GetDlina());
+  EXPECT_EQ(7, m.GetDlina());
 }
 
 TEST(TMatrix, can_set_and_get_element)
@@ -55,7 +55,7 @@ TEST(TMatrix, can_assign_matrix_to_itself)
   m1[1][1] = 1;
   m1 = m1;
   
-	EXPECT_EQ(m1, m1);
+  EXPECT_EQ(m1, m1);
 }
 
 TEST(TMatrix, can_assign_matrices_of_equal_size)
@@ -68,7 +68,7 @@ TEST(TMatrix, can_assign_matrices_of_equal_size)
   m3[1][1] = 1;
   m2 = m1;
   
-	EXPECT_EQ(m3, m2);
+  EXPECT_EQ(m3, m2);
 }
 
 TEST(TMatrix, assign_operator_change_matrix_size)
@@ -79,7 +79,7 @@ TEST(TMatrix, assign_operator_change_matrix_size)
   m1[1][1] = 1;
   m2 = m1;
   
-	EXPECT_EQ(7, m2.GetDlina());
+  EXPECT_EQ(7, m2.GetDlina());
 }
 
 TEST(TMatrix, can_add_matrices_with_equal_size)
@@ -144,11 +144,11 @@ TEST(TMatrix, compare_equal_matrices_false_check)
 	for (int i = 0; i < m1.GetDlina(); i++)
 		for (int j = 0; j < m1.GetDlina(); j++)
 	{
-		m1[i][j] = 5*i+j;
+		m1[i][j] = 5;
 	}
 	m2 = m1;
 
-	ASSERT_FALSE(m1 != m2);
+	ASSERT_TRUE(m1 == m2);
 }
 
 TEST(TMatrix, multiplication_is_impossible_if_size1_is_not_equal_to_size2)
@@ -174,7 +174,7 @@ TEST(TMatrix, summ_is_correct)
 
 	for (int i = 0; i < m1.GetDlina(); i++)
 		for (int j = 0; j < m1.GetDlina(); j++)
-			ASSERT_TRUE(m[i][j] == m1[i][j] + m2[i][j]);
+			ASSERT_TRUE(m[i][j] == i + j);
 }
 
 TEST(TMatrix, thorws_when_division_matrix_with_diff_size)
@@ -226,7 +226,7 @@ TEST(TMatrix, razn_is_correct)
 
 	for (int i = 0; i < m1.GetDlina(); i++)
 		for (int j = 0; j < m1.GetDlina(); j++)
-			ASSERT_TRUE(m[i][j] == m1[i][j] - m2[i][j]);
+			ASSERT_TRUE(m[i][j] == i - j);
 }
 
 TEST(TMatrix, can_multiplicate_matrix)
