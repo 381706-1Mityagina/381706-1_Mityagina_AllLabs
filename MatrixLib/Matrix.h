@@ -25,9 +25,7 @@ public:
   TVector<T>& operator[](int i);
   TMatrix operator/(TMatrix<T> &A);
  // TMatrix<T> op();
-
-  TVector<T>& operator[](int i);
-  //double Determinant();
+ //double Determinant();
  // TMatrix<T> SubMatrix(int i1, int j1);
 
 	// операторы ввода-вывода												
@@ -205,15 +203,6 @@ TMatrix<T> TMatrix<T>::op()
 	}
 	return res;
 } */
-//-------------------------------------------------------------------------------------------------
-template <class T>
-TVector<T>& TMatrix<T>::operator[](int i)
-{
-	if (i < 0 || i >= dlina)
-		throw TException("Overflow");
-	//assert(vector[i] != 0);
-	return TVector<TVector<T> >::operator[](i);
-}
 //-------------------------------------------------------------------------------------------------
 template <class T>
 TMatrix<T> TMatrix<T>::operator/(TMatrix<T> &A)
