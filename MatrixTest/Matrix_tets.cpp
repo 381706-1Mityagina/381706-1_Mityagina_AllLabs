@@ -136,7 +136,7 @@ TEST(TMatrix, matrixes_are_not_equal_if_are_not_equal)
 	ASSERT_FALSE(m1 == m2);
 }
 
-TEST(TMatrix, return_true_when_compare_equal_matrices)
+TEST(TMatrix, compare_equal_matrices)
 {
 	TMatrix<int> m1(5);
 	TMatrix<int> m2(5);
@@ -147,7 +147,7 @@ TEST(TMatrix, return_true_when_compare_equal_matrices)
 	}
 	m2 = m1;
 
-	EXPECT_EQ(m1 == m2, true);
+	EXPECT_EQ(m1, m2);
 }
 
 TEST(TMatrix, multiplication_is_impossible_if_size1_is_not_equal_to_size2)
