@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 
 #include "TElement.h"
 
@@ -38,29 +37,29 @@ TList<T>::TList()
 template <class T>
 TList<T>::TList(TList<T> &List)
 {
-	size = List.size;
-	TElement<T>* A = List.begin, B;
+	TElement<T> *a = List.begin, *b;
 	if (List.begin == 0)
 		begin = 0;
-	else {
-		begin = new TElement<T>(*List.begin); 
-		B = begin;
-		while (A->GetNext() != 0) 
+	else
+	{
+		begin = List.begin;
+		b = begin;
+		while (a->GetNext() != 0)
 		{
-			B->SetNext(new TElement<T>(*(A->GetNext()))); 
-			A = A->GetNext();
-			B = B->GetNext();
+			b->SetNext(new TElement<T>(*a->GetNext()));
+			a = a->GetNext();
+			b = b->GetNext();
 		}
 	}
 }
 //-----------------------------------------------------------
 template <class T>
-TList<T>::~TList() 
+TList<T>::~TList()
 {
-	while (begin != 0)          
+	while (begin != 0)
 	{
-		TElement <T> *temporary = begin->GetNext();   
-		delete begin;                
+		TElement <T> *temporary = begin->GetNext();
+		delete begin;
 		begin = temporary;
 	}
 }
@@ -68,12 +67,12 @@ TList<T>::~TList()
 template <class T>
 void TList<T>::PutBegin(T A)
 {
-	if (begin == 0) 
+	if (begin == 0)
 	{
 		TElement <T>* temporary = new TElement <T>(A, 0);
 		begin = temporary;
 	}
-	else 
+	else
 	{
 		TElement <T>* temporary = new TElement <T>(A, begin);
 		begin = temporary;
@@ -84,14 +83,15 @@ void TList<T>::PutBegin(T A)
 template <class T>
 void TList<T>::PutEnd(T A)
 {
-  if (begin != 0) {
-    TElement <T> *a = begin;
-    while (a->GetNext() != 0)
-      a = a->GetNext();
-    a->SetNext(new TElement <T>(A, 0));
-  }
-  else 
-    begin = new TElement<T>(A, 0);
+	if (begin != 0) 
+	{
+		TElement <T> *a = begin;
+		while (a -> GetNext() != 0)
+			a = a -> GetNext();
+		a -> SetNext(new TElement <T>(A, 0));
+	}
+	else
+		begin = new TElement<T>(A, 0);
 }
 //-----------------------------------------------------------
 template <class T>
@@ -99,7 +99,7 @@ T TList<T>::GetBegin()
 {
 	if (IsEmpty())
 		throw "List's empty";
-	else 
+	else
 	{
 		TElement<T> *A = begin;
 		T temporary = begin->TElement<T>::GetData();
@@ -112,31 +112,43 @@ T TList<T>::GetBegin()
 template <class T>
 T TList<T>::GetEnd()
 {
-	if (!IsEmpty()) 
+	if (!IsEmpty())
 	{
-		TElement<T>* temp = begin;
-		while ((temp->GetNext())->GetNext() != 0)
-			temp = temp->GetNext();
-
-		T temp1 = (temp->GetNext())->GetData();
-
-		temp->SetNext(0);
-
-		return temp1;
+		TElement<T>* a = begin;
+		TElement<T>* b = begin->GetNext();
+		if (b == 0)
+		{
+			T temp = a->TElement<T>::GetData();
+			delete a;
+			begin = 0;
+			return temp;
+		}
+		else
+		{
+			while (b->GetNext() != 0)
+			{
+				a = b;
+				b = b->GetNext();
+			}
+			T temp = b->GetData();
+			delete b;
+			a->SetNext(0);
+			return temp;
+		}
 	}
 	else
-		throw "smth";
+		throw -1;
 }
 //-----------------------------------------------------------
 template <class T>
 bool TList<T>::IsFull()
 {
-	try
+	try 
 	{
 		TElement<T>* A = new TElement<T>();
 		if (A == 0)
 			return false;
-		else 
+		else
 		{
 			delete A;
 			return true;
