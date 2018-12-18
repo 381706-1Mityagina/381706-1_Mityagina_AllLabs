@@ -37,29 +37,11 @@ TEST(TList, can_put_end)
 	ASSERT_NO_THROW (lost.PutEnd(5));
 }
 
-TEST(TList, can_get_end)
-{
-	TList<int> lost;
-	
-  lost.PutEnd(3);
-  
-	ASSERT_NO_THROW (int a = lost.GetEnd());
-}
-
 TEST(TList, throws_when_get_end_from_empty_list)
 {
 	TList<int> lost;
   
 	ASSERT_ANY_THROW (int a = lost.GetEnd());
-}
-
-TEST(TList, put_end_gives_right_answer)
-{
-	TList<int> lost;
-  
-	lost.PutEnd(5);
-	
-  EXPECT_EQ (5, lost.GetEnd());
 }
 
 TEST (TList, isfull_gives_right_answer)
@@ -92,4 +74,45 @@ TEST(TList, can_get_begin)
   lost.PutBegin(3);
 	
   ASSERT_NO_THROW (int a = lost.GetBegin());
+}
+
+TEST(TList, can_check_empty_true)
+{
+	TList<int> lost;
+
+	ASSERT_TRUE(lost.IsEmpty());
+}
+
+TEST(TList, can_get_end)
+{
+	TList<int> lost;
+
+	lost.PutBegin(7);
+	lost.PutBegin(6);
+
+	ASSERT_EQ(lost.GetEnd(), 7);
+}
+
+TEST(TElement, can_get_data)
+{
+	TElement<int> element(5, 0);
+
+	ASSERT_EQ(element.GetData(), 5);
+}
+
+TEST(TElement, can_get_next)
+{
+	TElement<int>* el = 0;
+	TElement<int> element(5, el);
+
+	ASSERT_EQ(element.GetNext(), el);
+}
+
+TEST(TElement, can_set_data)
+{
+	TElement<int> element;
+
+	element.SetData(5);
+
+	ASSERT_EQ(element.GetData(), 5);
 }
