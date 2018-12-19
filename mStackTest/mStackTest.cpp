@@ -32,23 +32,23 @@ TEST(TMStack, can_get_smth)
 	
 	lost.Set(2, 25);
 	
-	EXPECT_EQ(25,test1.Get(2));
+	EXPECT_EQ(25,lost.Get(2));
 }
 
 TEST(TMStack, can_check_if_msctack_is_empty)
 {
 	TMStack<int> lost(5, 15);
 	
-	EXPECT_EQ(1, test1.isEmpty(1));
+	EXPECT_EQ(1, lost.isEmpty(1));
 }
 
 TEST(TMStack, can_check_if_msctack_is_full)
 {
-	TMStack<int> test1(3, 15);
+	TMStack<int> lost(3, 15);
 	
-	test1.Set(1, 43);
-	test1.Set(1, 43);
-	test1.Set(1, 43);
+	lost.Set(1, 43);
+	lost.Set(1, 43);
+	lost.Set(1, 43);
 
-	EXPECT_EQ(1, test1.isFull(1));
+	EXPECT_EQ(1, lost.isFull(1));
 }
