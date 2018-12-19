@@ -58,9 +58,9 @@ TEST(TArrayList, can_use_free_elements)
 {
 	TArrayList <int> List(5);
 
-	List.PutBegin(6); //6
-	List.PutBegin(7); //7 6
-	List.PutEnd(3); //7 6 3
+	List.PutBegin(6); // 6
+	List.PutBegin(7); // 7 6
+	List.PutEnd(3); // 7 6 3
 
 	ASSERT_EQ(7, List.GetBegin()); //6 3
 }
