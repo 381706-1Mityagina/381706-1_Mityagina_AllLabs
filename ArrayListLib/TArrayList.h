@@ -1,157 +1,167 @@
 #pragma once
+#include "..//Exception/Exception.h"
+#include "..//QueueLib/Queue.h"
+
 
 template <class T>
-class TArrayList
+class TArrList 
 {
-protected:
-  int Size, Count, Start;
-  T* Mas; 
-  int *Index;
+private:
+
+	T * mas;
+	int *nextIndex; // индексы, указывающие на следюущий элемент списка
+	int *prevIndex; // индексы, указывающие на предыдущий элемент списка
+	int size; // размер списка
+	int begin; // первый элемент списка(точнее, его индекс)
+	int end; // последний элемент списка(точнее, его индекс)
+	int count; // количество элементов в списке
+	
+	TQueue <int> FE; //Очередь свободных элементов
+
 public:
-  TArrayList(int n = 0);
-  TArrayList(TArrayList<T> &A);
-  bool IsFul();
-  bool IsEmpty();
-  void PutStart(T B);
-  void PutEnd(T B);
-  T GetStart();
-  T GetEnd();
+
+	TArrList(int _size = 10); // конструктор 
+	TArrList(TArrList<T> &A); // конструктор копирования
+	void PutBegin(T element); // положить в начало списка
+	void PutEnd(T element);  // положить в конец списка 
+	T GetBegin(); // забрать из начала списка 
+	T GetEnd();  // забрать из конца списка 
+	bool IsFull(); // проверка на полноту
+	bool IsEmpty(); // проверка на пустоту
 };
+//-----------------------------------------------------------------------------
+template <class T>
+TArrList<T>::TArrList(int _size) : FE(_size)
+{
+	if (_size <= 0)
+		throw TException("Negative size argument when creating a list.");
+	size = _size;
+	count = 0; begin = -1; end = -1;
 
-//---------------------------------------------------------------------
-template <class T>
-TArrayList<T>::TArrayList(int n)
-{
-  T* mas; int* ind;
-  if (Size <= 0) 
-	throw "Wrong";
-  else
-  {
-	Size = n;
-	mas = new T[Size];
-	ind = new int[Size];
-	for (int i = 0; i < Size; i++)
-	  ind[i] = -2;
-  }
-}
-//---------------------------------------------------------------------
-template <class T>
-bool TArrayList<T>::IsEmpty()
-{
-  if (Count == 0)
-	return true;
-  else 
-	return false;
-}
-//---------------------------------------------------------------------
-template <class T>
-bool TArrayList<T>::IsFul()
-{
-  if (Count == Size)
-	return true;
-  else
-	return false;
-}
-//---------------------------------------------------------------------
-template <class T>
-TArrayList<T>::TArrayList(TArrayList<T> &A)
-{
-  Start = A.Start;
-  Size = A.Size;
-  Count = A.Count;
-  if (Size == 0)
-  {
-	Mas = 0;
-	Index = 0;
-  }
-  else if (Size < 0)
-	throw "Wrong";
-  else
-  {
-	Mas = new T[Size];
-	Index = new int[Size];
-  }
-  for (int i = 0; i < Size; i++)
-  {
-	Mas[i] = A.Mas[i];
-	Index[i] = A.Index[i];
-  }
+	mas = new T[size];
 
-}
-//---------------------------------------------------------------------
-template <class T>
-void TArrayList<T>::PutStart(T B)
-{
-  if (IsFul())
-	throw "Wrong";
-  else
-  {
-	for (int i=0; i < Size; i++)
-	  if (Index[i] == -2)
-	  {
-		Index[i] = Start;
-		Mas[i] = B;
-		Start = i;
-		Count++;
-		break;
-	  }
-  }
-}
-//---------------------------------------------------------------------
-template <class T>
-void TArrayList<T>::PutEnd(T B)
-{
-  if (IsFul())
-	throw "Wrong";
-  else
-	for (int i=0; i < Size; i++)
-	  if (Index[i]==-2)
-  {
-		Mas[i] = B;
-		for (int j = 0; j < Size; j++)
-		  if (Index[i] == -1)
-		  {
-			Index[j] = i;
-			Index[i] = -1;
-			break;
-		  }
-		Count++;
-		break;
-  }
-}
-//---------------------------------------------------------------------
-template <class T>
-T TArrayList<T>::GetStart()
-{
-  if (IsEmpty())
-	throw "Wrong";
-  else
-  {
-	T temporary = Mas[Start];
-	int _Start = Index[Start];
-	Index[Start] = -2;
-	Start = _Start;
-	Count--;
-	return temporary;
-  }
-}
-//---------------------------------------------------------------------
-template <class T>
-T TArrayList<T>::GetEnd()
-{
-  if (IsEmpty())
-	throw "Wrong";
-  else
-  {
-	int last_ind = Start, last_but_one_ind = Index[Start];
-	while (Mas[last_but_one_ind] != -1)
+	nextIndex = new int[size];
+	prevIndex = new int[size];
+
+	for (int i = 0; i < size; i++)
 	{
-	  last_ind = last_but_one_ind;
-	  last_but_one_ind = Index[last_but_one_ind];
+		nextIndex[i] = -2;
+		prevIndex[i] = -2;
+		FE.Put(i);
 	}
-	Index[last_ind] = -1;
-	Count--;
-	return Mas[last_but_one_ind];
-  }
 }
-//---------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+template <class T>
+TArrList<T>::TArrList(TArrList<T> &A)
+{
+	begin = A.begin; end = A.end;
+	size = A.size; count = A.count;
+
+	mas = new T[size];
+	
+	nextIndex = new int[size];
+	prevIndex = new int[size];
+	FE = A.FE;
+	
+	for (int i = 0; i < size; i++)
+	{
+		mas[i] = A.mas[i];
+		nextIndex[i] = A.nextIndex[i];
+		prevIndex[i] = A.prevIndex[i];
+	}
+}
+//-----------------------------------------------------------------------------
+template <class T>
+void TArrList<T>::PutBegin(T elem)
+{
+	if (IsFull())
+		throw TException("List is full.");
+	
+	int free = FE.Get();
+	mas[free] = elem;
+	nextIndex[free] = begin;
+
+	if (begin != -1)
+		prevIndex[begin] = free;
+	else
+		end = free;
+
+	begin = free;
+	count++;
+}
+//-----------------------------------------------------------------------------
+template <class T>
+void TArrList<T>::PutEnd(T element)
+{
+	if (IsFull())
+		throw TException("List is full.");
+	int free = FE.Get();
+	mas[free] = element;
+
+	if (end != -1)
+		nextIndex[end] = free;
+	else
+	{
+		begin = free;
+		prevIndex[free] = -1;
+	}
+	prevIndex[free] = end;
+	end = free;
+	count++;
+}
+//-----------------------------------------------------------------------------
+template <class T>
+T TArrList<T>::GetBegin()
+{
+	if (IsEmpty())
+		throw TException("List is empty.");
+
+	T element = mas[begin];
+	int newstart = nextIndex[begin];
+
+	FE.Put(begin);
+	nextIndex[begin] = prevIndex[begin] = -2;
+
+	if (newstart != -1)
+		prevIndex[newstart] = -1;
+	count--;
+	begin = newstart;
+	return element;
+}
+//-----------------------------------------------------------------------------
+template <class T>
+T TArrList<T>::GetEnd()
+{
+	if (IsEmpty())
+		throw TException("List is empty.");
+	T elem = mas[end];
+	int newFinish = prevIndex[end];
+	prevIndex[end] = nextIndex[end] = -2;
+	FE.Put(end);
+	end = newFinish;
+	if (newFinish != -1)
+		nextIndex[newFinish] = -1;
+	else
+		begin = -1;
+	count--;
+	return elem;
+}
+//-----------------------------------------------------------------------------
+template <class T>
+bool TArrList<T>::IsFull()
+{
+	if (count == size)
+		return true;
+	else
+		return false;
+}
+//-----------------------------------------------------------------------------
+template <class T>
+bool TArrList<T>::IsEmpty()
+{
+	if (count == 0)
+		return true;
+	else
+		return false;
+}
+//-----------------------------------------------------------------------------
