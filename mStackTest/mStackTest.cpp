@@ -46,9 +46,9 @@ TEST(TMStack, can_check_if_msctack_is_full)
 {
 	TMStack<int> lost(3, 15);
 	
-	lost.Set(1, 43);
-	lost.Set(1, 43);
-	lost.Set(1, 43);
+	lost.Set(1, 9);
+	lost.Set(1, 8);
+	lost.Set(1, 7);
 
 	EXPECT_EQ(1, lost.IsFull(1));
 }
