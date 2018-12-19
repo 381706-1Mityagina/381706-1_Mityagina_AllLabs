@@ -1,4 +1,4 @@
-#include "..//multiLib/multi.h"
+#include "..//MStackLib/MStack.h"
 
 #include <gtest.h>
 
