@@ -1,4 +1,4 @@
-#include "..//multiLib/multi.h"
+#include "..//MStackLib/MStack.h"
 #include "..//Exception/Exception.h"
 #include <iostream>
 
