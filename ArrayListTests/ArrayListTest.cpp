@@ -88,7 +88,7 @@ TEST(TArrayList, throws_when_push_begin_or_end_elem_in_full_list)
 	List.PutBegin(7);
 	
 	ASSERT_ANY_THROW(List.PutBegin(2));
-	ASSERT_ANY_THROW(List.PutFinish(2));
+	ASSERT_ANY_THROW(List.PutEnd(2));
 }
 
 TEST(TArrayList, throws_when_pull_begin_or_end_elem_in_empty_list)
