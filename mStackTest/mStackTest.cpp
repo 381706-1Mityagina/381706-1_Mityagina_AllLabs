@@ -35,20 +35,25 @@ TEST(TMStack, can_get_smth)
 	EXPECT_EQ(25,lost.Get(2));
 }
 
-TEST(TMStack, can_check_if_msctack_is_empty)
+TEST(TMStack, can_check_if_msctack_is_empty_true_check)
 {
 	TMStack<int> lost(5, 15);
 	
 	EXPECT_EQ(1, lost.IsEmpty(1));
 }
 
-TEST(TMStack, can_check_if_msctack_is_full)
+TEST(TMStack, can_check_if_msctack_is_empty_false_check)
 {
-	TMStack<int> lost(3, 15);
+	TMStack<int> lost(5, 15);
 	
 	lost.Set(1, 9);
-	lost.Set(1, 8);
-	lost.Set(1, 7);
 
-	EXPECT_EQ(1, lost.IsFull(1));
+	EXPECT_EQ(1, lost.IsEmpty(1));
+}
+
+TEST(TMStack, can_check_if_msctack_is_full_false_check)
+{
+	TMStack<int> lost(3, 15);
+
+	EXPECT_EQ(0, lost.IsFull(1));
 }
