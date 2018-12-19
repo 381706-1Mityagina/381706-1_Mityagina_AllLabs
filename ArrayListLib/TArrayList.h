@@ -2,9 +2,8 @@
 #include "..//Exception/Exception.h"
 #include "..//QueueLib/Queue.h"
 
-
 template <class T>
-class TArrList 
+class TArrayList 
 {
 private:
 
@@ -15,13 +14,11 @@ private:
 	int begin; // первый элемент списка(точнее, его индекс)
 	int end; // последний элемент списка(точнее, его индекс)
 	int count; // количество элементов в списке
-	
 	TQueue <int> FE; //Очередь свободных элементов
-
 public:
 
-	TArrList(int _size = 10); // конструктор 
-	TArrList(TArrList<T> &A); // конструктор копирования
+	TArrayList(int _size = 10); // конструктор 
+	TArrayList(TArrayList<T> &A); // конструктор копирования
 	void PutBegin(T element); // положить в начало списка
 	void PutEnd(T element);  // положить в конец списка 
 	T GetBegin(); // забрать из начала списка 
@@ -31,7 +28,7 @@ public:
 };
 //-----------------------------------------------------------------------------
 template <class T>
-TArrList<T>::TArrList(int _size) : FE(_size)
+TArrayList<T>::TArrayList(int _size) : FE(_size)
 {
 	if (_size <= 0)
 		throw TException("Negative size argument when creating a list.");
@@ -52,7 +49,7 @@ TArrList<T>::TArrList(int _size) : FE(_size)
 }
 //-----------------------------------------------------------------------------
 template <class T>
-TArrList<T>::TArrList(TArrList<T> &A)
+TArrayList<T>::TArrayList(TArrayList<T> &A)
 {
 	begin = A.begin; end = A.end;
 	size = A.size; count = A.count;
@@ -72,7 +69,7 @@ TArrList<T>::TArrList(TArrList<T> &A)
 }
 //-----------------------------------------------------------------------------
 template <class T>
-void TArrList<T>::PutBegin(T elem)
+void TArrayList<T>::PutBegin(T elem)
 {
 	if (IsFull())
 		throw TException("List is full.");
@@ -91,7 +88,7 @@ void TArrList<T>::PutBegin(T elem)
 }
 //-----------------------------------------------------------------------------
 template <class T>
-void TArrList<T>::PutEnd(T element)
+void TArrayList<T>::PutEnd(T element)
 {
 	if (IsFull())
 		throw TException("List is full.");
@@ -111,7 +108,7 @@ void TArrList<T>::PutEnd(T element)
 }
 //-----------------------------------------------------------------------------
 template <class T>
-T TArrList<T>::GetBegin()
+T TArrayList<T>::GetBegin()
 {
 	if (IsEmpty())
 		throw TException("List is empty.");
@@ -130,7 +127,7 @@ T TArrList<T>::GetBegin()
 }
 //-----------------------------------------------------------------------------
 template <class T>
-T TArrList<T>::GetEnd()
+T TArrayList<T>::GetEnd()
 {
 	if (IsEmpty())
 		throw TException("List is empty.");
@@ -148,7 +145,7 @@ T TArrList<T>::GetEnd()
 }
 //-----------------------------------------------------------------------------
 template <class T>
-bool TArrList<T>::IsFull()
+bool TArrayList<T>::IsFull()
 {
 	if (count == size)
 		return true;
@@ -157,7 +154,7 @@ bool TArrList<T>::IsFull()
 }
 //-----------------------------------------------------------------------------
 template <class T>
-bool TArrList<T>::IsEmpty()
+bool TArrayList<T>::IsEmpty()
 {
 	if (count == 0)
 		return true;
