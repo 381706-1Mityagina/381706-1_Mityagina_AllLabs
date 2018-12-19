@@ -48,7 +48,7 @@ TEST(TMStack, can_check_if_msctack_is_empty_false_check)
 	
 	lost.Set(1, 9);
 
-	EXPECT_EQ(1, lost.IsEmpty(1));
+	EXPECT_EQ(0, lost.IsEmpty(1));
 }
 
 TEST(TMStack, can_check_if_msctack_is_full_false_check)
