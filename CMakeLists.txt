@@ -11,6 +11,8 @@ set(Exception Exception)
 
 set(QueueLib QueueLib)
 
+set(StackLib StackLib)
+
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)  
 if(NOT CMAKE_BUILD_TYPE) 
   set(CMAKE_BUILD_TYPE Release) 
@@ -35,3 +37,6 @@ add_subdirectory(Exception)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/QueueLib)
 add_subdirectory(QueueLib)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StackLib)
+add_subdirectory(StackLib)
