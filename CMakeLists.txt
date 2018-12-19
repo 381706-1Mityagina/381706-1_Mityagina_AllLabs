@@ -8,6 +8,7 @@ set(MStackLib MStackLib) #Переменная с именем библиоте�
 set (mStackTest mStackTest)
 
 set(Exception Exception)
+set(stackL stackL)
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)  
 if(NOT CMAKE_BUILD_TYPE) 
@@ -29,3 +30,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/MStackLib)
 add_subdirectory(MStack)
 add_subdirectory(MStackLib)
 add_subdirectory(mStackTest)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/stackL)
+add_subdirectory(stackL)
