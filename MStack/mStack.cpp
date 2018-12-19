@@ -26,6 +26,6 @@ int main()
 	catch (TException exp) {
 		exp.Show();
 	}
-	system("pause");
+	//system("pause");
 	return 0;
 }
