@@ -105,7 +105,7 @@ TEST(TElement, can_get_next)
 	TElement<int>* elem = 0;
 	TElement<int> element(5, elem);
 
-	ASSERT_EQ(element.GetNext(), el);
+	ASSERT_EQ(element.GetNext(), elem);
 }
 
 TEST(TElement, can_set_data)
