@@ -115,3 +115,4 @@ TEST(TElement, can_set_data)
 	element.SetData(5);
 
 	ASSERT_EQ(element.GetData(), 5);
+}
