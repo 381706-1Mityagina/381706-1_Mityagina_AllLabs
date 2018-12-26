@@ -42,6 +42,9 @@ int main()
 	cout << "\t ||Result3 ||" << endl << Result3 << endl;
 	cout << "\t ||Result4 ||" << endl << Result4 << endl;
 	
+	TMatrix <int> M(2);
+	cout << "M[1][0] = " << M[1][0] << endl;
+	
 		 cout << "\t Время, потребовавшееся для выполнения умножения = " << t1;
 		cout << endl; 
 cout << "\t Время, потребовавшееся для выполнения деления = " << t2;
