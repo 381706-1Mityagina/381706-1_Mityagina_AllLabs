@@ -78,7 +78,7 @@ TEST(TElement, can_set_data)
 {
 	TElement<int> element;
 
-	element.SetData(5);
+	element.Set(5);
 
 	ASSERT_EQ(element.GetData(), 5);
 }
