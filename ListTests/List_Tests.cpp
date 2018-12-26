@@ -14,13 +14,6 @@ TEST(TList, can_create_copy_of_the_list)
 	ASSERT_NO_THROW (TList<int> lost(lost1));
 }
 
-TEST(TList, throws_when_get_begin_from_empty_list)
-{
-	TList<int> lost1;
-  
-	ASSERT_ANY_THROW (int a = lost1.GetBegin());
-}
-
 TEST(TList, put_begin_has_right_answer)
 {
 	TList<int> lost1;
