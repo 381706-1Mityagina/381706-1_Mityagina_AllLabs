@@ -102,8 +102,8 @@ TEST(TElement, can_get_data)
 
 TEST(TElement, can_get_next)
 {
-	TElement<int>* el = 0;
-	TElement<int> element(5, el);
+	TElement<int>* elem = 0;
+	TElement<int> element(5, elem);
 
 	ASSERT_EQ(element.GetNext(), el);
 }
@@ -115,4 +115,3 @@ TEST(TElement, can_set_data)
 	element.SetData(5);
 
 	ASSERT_EQ(element.GetData(), 5);
-}
