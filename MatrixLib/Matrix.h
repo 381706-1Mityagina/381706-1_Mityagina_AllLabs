@@ -23,6 +23,8 @@ public:
   TMatrix  operator - (const TMatrix &Matr); // перегрузка оператора -
   TMatrix operator*(TMatrix<T> &A); // перегрузка оператора *
   TMatrix operator/(TMatrix<T> &A);
+	TVector<T>& operator [] (int i);
+
  // TMatrix<T> op();
  //double Determinant();
  // TMatrix<T> SubMatrix(int i1, int j1);
@@ -245,5 +247,15 @@ TMatrix<T> TMatrix<T>::operator/(TMatrix<T> &A)
 		}
 	}
 	return ((*this) * middleStepMatr);
+}
+//-------------------------------------------------------------------------------------------------
+template <class T>
+TVector<T>& TMatrix<T>::operator[](int i)
+{
+	if (i >= 0)
+		if (i < this->dlina)
+			return this->vector[i];
+		else throw 1;
+	else throw -1;
 }
 //-------------------------------------------------------------------------------------------------
