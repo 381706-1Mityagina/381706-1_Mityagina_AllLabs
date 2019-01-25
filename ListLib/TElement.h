@@ -3,10 +3,10 @@
 template <class T>
 class TElement 
 {
-protected:
+public:
 	T data; 
 	TElement <T>* next;
-public:
+	
 	TElement(T _data = 0, TElement <T>* _next = 0);
 	TElement(TElement<T> &Elem);
 	virtual ~TElement();
