@@ -108,5 +108,5 @@ TEST(TList, index_operator_check)
 
 	lost.AddFirst(7);
 
-	ASSERT_EQ(lost[0], 7);
+	ASSERT_EQ(lost[1], 7);
 }
