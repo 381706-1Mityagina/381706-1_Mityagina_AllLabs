@@ -10,25 +10,29 @@ protected:
 	TElement<T> *pFirst, *pLast, *pPrev, *pCurr, *pStop;
 	int size, pos;
 public:
-	TList();
-	void AddFirst(T a);
-	void AddCurrent(T a);
-	void AddLast(T a);
+	TList(); // конструктор
+	~TList();// деструктор
+	void AddFirst(T a);     // добавить в начало
+	void AddCurrent(T a);   // добавить текущий
+	void AddLast(T a);      // добавить в конец
 
-	T getElelm() { return pCurr->data; }
+	T viewData() { return pCurr->data; } // получить элемент
+	T* viewPtr() { return pCurr; }
 
-	void delFirst();
-	void delCurrent();
-	void delLast();
+	void delFirst();   // удалить из начала
+	void delCurrent(); // удалить текущий
 
-	void reset();
-	void goNext();
-
-	bool isEnd() { return pCurr == pStop; }
+	// проверки 
+	bool isEnd() { return pCurr == pStop; } 
 	bool isStart() { return pCurr == pFirst; }
 	bool isEmpty() { return pFirst == NULL; }
+	bool isFull();
+
 	T operator[](int m);
-	~TList();
+
+	// helpers
+	void reset();
+	void goNext();
 };
 //-------------------------------------------------------------------------------
 template <class T>
@@ -73,7 +77,6 @@ void TList<T>::AddCurrent(T a)
 		pCurr = tmp;
 		size++;
 	}
-
 }
 //-------------------------------------------------------------------------------
 template <class T>
@@ -123,20 +126,6 @@ void TList<T>::delCurrent()
 	}
 }
 //-------------------------------------------------------------------------------
-//template <class T>
-//void TList<T>::delLast() 
-//{
-//	if (pLast == pFirst) delFirst();
-//	else {
-//		for (reset(); !(pCurr == pLast); goNext()) {}
-//		delete pLast;
-//		pLast = pCurr = pPrev;
-//		pLast->next = pStop;
-//		size--;
-//		pos--;
-//	}
-//}
-//-------------------------------------------------------------------------------
 template <class T>
 void TList<T>::reset() 
 {
@@ -150,7 +139,6 @@ void TList<T>::goNext()
 	pPrev = pCurr;
 	pCurr = pCurr->next;
 	pos++;
-
 }
 //-------------------------------------------------------------------------------
 template <class T>
@@ -171,3 +159,25 @@ TList<T>::~TList()
 		delFirst();
 }
 //-------------------------------------------------------------------------------
+template <class T>
+bool TList<T>::isFull()
+{
+	try
+	{
+		TElement<T>* A = new TElement<T>();
+		if (A == 0)
+			return false;
+		else
+		{
+			delete A;
+			return true;
+		}
+	}
+	catch (...)
+	{
+		return false;
+	}
+	//return true; 
+	//do i really need this line? 
+}
+//-----------------------------------------------------------
