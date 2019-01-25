@@ -29,13 +29,13 @@ TEST(TList, can_put_end)
 	ASSERT_NO_THROW (lost.AddLast(5));
 }
 
-TEST (TList, isfull_gives_right_answer)
+TEST (TList, isFull_gives_right_answer)
 {
 	TList<int> lost;
   
 	lost.AddLast(8);
 	
-  EXPECT_EQ (true, lost.isEnd());
+  EXPECT_EQ (true, lost.isFull());
 }
 
 TEST (TList, isempty_gives_right_answer)
@@ -81,4 +81,32 @@ TEST(TElement, can_set_data)
 	element.Set(5);
 
 	ASSERT_EQ(element.GetData(), 5);
+}
+
+TEST(TList, can_delete_begin)
+{
+	TList<int> lost;
+
+	lost.AddFirst(7);
+
+	ASSERT_NO_THROW(lost.delFirst());
+}
+
+TEST(TList, can_delete_curr)
+{
+	TList<int> lost;
+
+	lost.AddFirst(7);
+
+	ASSERT_NO_THROW(lost.delCurrent());
+}
+
+TEST(TList, index_operator_check)
+{
+	TList<int> lost;
+	int ind_ch = 7;
+
+	lost.AddFirst(7);
+
+	ASSERT_EQ(lost[0], 7);
 }
