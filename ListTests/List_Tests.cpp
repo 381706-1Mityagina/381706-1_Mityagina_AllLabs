@@ -104,9 +104,17 @@ TEST(TList, can_delete_curr)
 TEST(TList, index_operator_check)
 {
 	TList<int> lost;
-	int ind_ch = 7;
 
 	lost.AddFirst(7);
 
 	ASSERT_EQ(lost[1], 7);
+}
+
+TEST(TList, isfull_gives_right_answer)
+{
+	TList<int> lost;
+
+	lost.AddLast(8);
+
+	EXPECT_EQ(true, lost.isFull());
 }
