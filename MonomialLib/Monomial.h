@@ -73,11 +73,13 @@ TMonomial::TMonomial(int _size, int* _power, double _coeff)
 TMonomial::TMonomial(TMonomial &A)
 {
 	size = A.size;
-	power = new int[size];
-	for (int i = 0; i < size; i++)
-		power[i] = A.power[i];
 	coeff = A.coeff;
 	next = A.next;
+	power = new int[size];
+	for (int i = 0; i < size; i++)
+	{
+		power[i] = A.power[i];
+	}
 }
 //------------------------------------------------------------------
 void TMonomial::SetPower(int *M)
