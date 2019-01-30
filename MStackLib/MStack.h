@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "..//stackL/Stack.h"
 #include "../Exception/Exception.h"
 
@@ -7,14 +6,14 @@ template <class T>
 class TNewStack :public TStack<T> 
 {
 public:
-	TNewStack(int _size = 0, T* _mas = 0);
-	TNewStack(TNewStack <T> &NS);
-	int GetFreeMemory();
-	int GetSize();
-	int GetTop();
-	void SetMas(int _size, T* _mas);
-	void Put(T _A);
-	T Get();
+	TNewStack(int _size = 0, T* _mas = 0);     // конструктор
+	TNewStack(TNewStack <T> &NS);              // конструктор копирования
+	int GetFreeMemory();                       // получение свободной памяти (кол-во свободных позиций)
+	int GetSize();                             // получение размера
+	int GetTop();                              // получение первого элемента
+	void SetMas(int _size, T* _mas);           // задать массив 
+	void Put(T _A);                            // положить элемент  
+	T Get();                                   // получить значение элемента
 };
 
 //--------------------------------------------------------------------------
@@ -73,8 +72,8 @@ void TNewStack<T>::Put(T _A)
 template <class T>
 T TNewStack<T>::Get()
 {
-	TStack<T>::top--;
-	return TStack<T>::mas[TStack<T>::top];
+	TStack<T> :: top--;
+	return TStack<T> :: mas[TStack<T> :: top];
 }
 //--------------------------------------------------------------------------
 //                                                                        //
@@ -85,35 +84,35 @@ template <class T>
 class TMStack 
 {
 protected:
-	int size;
-	T* mas;
-	int n;
-	TNewStack<T>** newS;
-	int GetFreeMemory();
-	void Repack(int k);
+	int size;                          // размер 
+	T* mas;                            // массив элементов
+	int n;                             // кол-во стеков
+	TNewStack<T>** newS;               // массив указателей
+	int GetFreeMemory();               // получить свободную память 
+	void Repack(int k);                // перепаковка
 
 public:
-	TMStack(int _n, int _size);
-	TMStack(TMStack<T> &A);
+	TMStack(int _n, int _size);        // конструктор инициализации
+	TMStack(TMStack<T> &A);            // конструктор копирования
 
-	int GetSize() 
+	int GetSize()                      // получить размер
 	{
 		return size; 
 	}
 
-	T Get(int _n);
+	T Get(int _n);                     // взять значение из n-ого стека
 
-	void Set(int _n, T p); 
+	void Set(int _n, T p);             // положить значение в _n-ый стек
 
-	bool IsFull(int _n); 
-	bool IsEmpty(int _n); 
+	bool IsFull(int _n);               // проверка стека на полноту 
+	bool IsEmpty(int _n);              // проверка стека на пустоту 
 };
 //--------------------------------------------------------------------------
 template <class T>
 TMStack<T> ::TMStack(int _n, int _size)
 {
 	if (_n <= 0 || _size <= 0)
-			throw TException ("Negative leight.");
+			throw TException ("Negative leight, unfortunatelly");
 
 	n = _n; 
 	size = _size; 
@@ -123,12 +122,13 @@ TMStack<T> ::TMStack(int _n, int _size)
 
 	int* smth = new int[n];
 
-	smth[0] = int(double(size) / n) + (size%n);
+	smth[0] = int(double(size) / n) + (size % n);
 
 	for (int i = 1; i < n; i++)
 		smth[i] = int(double(size) / n);
 
 	newS[0] = new TNewStack<T>(smth[0], &mas[0]);
+
 	for (int i = 1; i < n; i++)
 	{
 		int temp = smth[0] + (i - 1)*smth[i];
@@ -180,9 +180,9 @@ template<class T>
 T TMStack<T>::Get(int _n)
 {
 	if (IsEmpty(_n))
-		throw TException("Empty");
+		throw TException("Empty, unfortunatelly");
 
-	return newS[_n]->Get();
+	return newS[_n] -> Get();
 }
 //--------------------------------------------------------------------------
 template<class T>
@@ -213,7 +213,7 @@ int TMStack<T>::GetFreeMemory()
 template <class T>
 void TMStack<T>::Repack(int k)
 {
-	cout << "Repacking starts" << endl;
+	cout << "\tRepacking ..." << endl;
 
 	int FreeForNow = GetFreeMemory();
 	int eq_add = FreeForNow / n;
