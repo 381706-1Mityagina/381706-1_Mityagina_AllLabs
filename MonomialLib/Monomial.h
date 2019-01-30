@@ -1,6 +1,9 @@
 #pragma once
+#include <iostream>
+#include "..//Exception/Exception.h"
 
-template <class T>
+using namespace std;
+
 class TMonomial
 {
 protected:
@@ -10,7 +13,7 @@ protected:
 	TMonomial *next; // указатель на следующий моном полинома
 public:
 	TMonomial(int _Size, int *M, double _Coeff);  // конструктор
-	TMonomial(TMonomial<T> &A);                   // конструктор копирования
+	TMonomial(TMonomial &A);                   // конструктор копирования
 
 	// "сеттеры"
 	void SetPower(int *M);                        
@@ -39,20 +42,11 @@ public:
 	bool operator > (TMonomial &A);              
 
 	// операторы ввода-вывода
-	friend istream& operator>>(istream &in, TMonomial &m)
-	{
-		in >> m.coeff >> m.power;
-		return in;
-	}
-	friend ostream& operator<<(ostream &out, TMonomial &m)
-	{
-		out << m.GetCoeff() << ' ' << m.GetPower();
-		return out;
-	}
+	friend istream& operator>>(istream &in, TMonomial &m);
+	friend ostream& operator<<(ostream &out, TMonomial &m);
 };
 
 //------------------------------------------------------------------
-template <class T>
 TMonomial::TMonomial(int _size, int* _power, double _coeff)
 {
 	if (_size < 0)
@@ -76,8 +70,7 @@ TMonomial::TMonomial(int _size, int* _power, double _coeff)
 	}
 }
 //------------------------------------------------------------------
-template <class T>
-TMonomial<T>::TMonomial(TMonomial<T> &A)
+TMonomial::TMonomial(TMonomial &A)
 {
 	size = A.size;
 	power = new int[size];
@@ -87,8 +80,7 @@ TMonomial<T>::TMonomial(TMonomial<T> &A)
 	next = A.next;
 }
 //------------------------------------------------------------------
-template <class T>
-void TMonomial<T>::SetPower(int *M)
+void TMonomial::SetPower(int *M)
 {
 	try
 	{
@@ -100,88 +92,80 @@ void TMonomial<T>::SetPower(int *M)
 				throw - 1;
 		}
 	}
-	catch (..)
+	catch (...)
 	{
 		throw - 2;
 	}
 }
 //------------------------------------------------------------------
-template <class T>
-void TMonomial<T>::SetSize(int _Size)
+void TMonomial::SetSize(int _Size)
 {
 	if (_Size <= 0)
 		throw TException("Negative size.-. Sorry");
+	
+	else if (_Size == 0)
+	{
+		if (power != 0)
+			delete[] power;
+		size = 0; power = 0;
+	}
+
 	else
 	{
+		int *temporary = new int[size];
+		for (int i = 0; i < size; i++)
+			temporary[i] = power[i];
+		delete[]power;
+		int i = 0;
+		power = new int[_Size];
+
+		if (size < _Size)
+		{
+			for (; i < size; i++)
+				power[i] = temporary[i];
+			for (; i < _Size; i++)
+				power[i] = 0;
+		}
+
+		if (_Size < size)
+			for (; i < _Size; i++)
+				power[i] = temporary[i];
+
 		size = _Size;
-		TMonomial temp;
-		if (_Size == size)
-		{
-			temp = *this;
-		}
-		else if (_Size < size)
-		{
-			temp.power = new int[_Size];
-			for (int i = 0; i < _Size; i++)
-				temp.power[i] = power[i];
-			delete[]power;
-			size = _Size;
-			power = new int[size];
-			for (int i = 0; i < size; i++)
-				power[i] = temp.power[i];
-		}
-		else if (_Size > size)
-		{
-			temp.power = new int[size];
-			for (int i = 0; i < size; i++)
-				temp.power[i] = power[i];
-			delete[]power;
-			size = _Size;
-			power = new int[size];
-			for (int i = 0; i < size; i++)
-				power[i] = temp.power[i];
-		}
 	}
 }
 //------------------------------------------------------------------
-template <class T>
-void TMonomial<T>::SetCoeff(double _Coeff)
+void TMonomial::SetCoeff(double _Coeff)
 {
 	coeff = _Coeff;
 }
 //------------------------------------------------------------------
-template <class T>
-void TMonomial<T>::SetNext(TMonomial* _Next)
+void TMonomial::SetNext(TMonomial* _Next)
 {
 	next = _Next;
 }
 //------------------------------------------------------------------
-template <class T>
-int *TMonomial<T>::GetPower()
+int *TMonomial::GetPower()
 {
 	return power;
 }
 //------------------------------------------------------------------
-template <class T>
-int TMonomial<T>::GetSize()
+int TMonomial::GetSize()
 {
 	return size;
 }
 //------------------------------------------------------------------
-template <class T>
-double TMonomial<T>::GetCoeff()
+double TMonomial::GetCoeff()
 {
 	return coeff;
 }
 //------------------------------------------------------------------
-template <class T>
-TMonomial* TMonomial<T>::GetNext()
+TMonomial* TMonomial::GetNext()
 {
 	return next;
 }
 //------------------------------------------------------------------
-template <class T>
-TMonomial &TMonomial<T>::operator = (TMonomial &A)
+TMonomial &TMonomial::operator = (TMonomial &A)
 {
 	if (size != A.size)
 		throw TException("Different size.-. Sorry");
@@ -195,8 +179,7 @@ TMonomial &TMonomial<T>::operator = (TMonomial &A)
 	return *this;
 }
 //------------------------------------------------------------------
-template <class T>
-TMonomial TMonomial<T>::operator + (TMonomial &A)
+TMonomial TMonomial::operator + (TMonomial &A)
 {
 	TMonomial temporary(A);
 	if (size != A.size)
@@ -207,7 +190,6 @@ TMonomial TMonomial<T>::operator + (TMonomial &A)
 	return temporary;
 }
 //------------------------------------------------------------------
-template <class T>
 TMonomial TMonomial::operator+=(TMonomial & A)
 {
 	if (size != A.size)
@@ -218,8 +200,7 @@ TMonomial TMonomial::operator+=(TMonomial & A)
 	return *this;
 }
 //------------------------------------------------------------------
-template <class T>
-TMonomial TMonomial<T>::operator - (TMonomial &A)
+TMonomial TMonomial::operator - (TMonomial &A)
 {
 	TMonomial temporary(A);
 	if (size != A.size)
@@ -230,7 +211,6 @@ TMonomial TMonomial<T>::operator - (TMonomial &A)
 	return temporary;
 }
 //------------------------------------------------------------------
-template <class T>
 TMonomial TMonomial::operator-=(TMonomial & A)
 {
 	if (size != A.size)
@@ -241,8 +221,7 @@ TMonomial TMonomial::operator-=(TMonomial & A)
 	return *this;
 }
 //------------------------------------------------------------------
-template <class T>
-TMonomial TMonomial<T>::operator * (TMonomial &A)
+TMonomial TMonomial::operator * (TMonomial &A)
 {
 	TMonomial temporary(A);
 	if (size != A.size)
@@ -256,7 +235,6 @@ TMonomial TMonomial<T>::operator * (TMonomial &A)
 	}
 }
 //------------------------------------------------------------------
-template <class T>
 TMonomial TMonomial::operator *= (TMonomial & A)
 {
 	if (size != A.size)
@@ -267,8 +245,7 @@ TMonomial TMonomial::operator *= (TMonomial & A)
 	return *this;
 }
 //------------------------------------------------------------------
-template <class T>
-bool TMonomial<T>::operator == (TMonomial &A)
+bool TMonomial::operator == (TMonomial &A)
 {
 	if (size == A.size)
 	{
@@ -281,13 +258,12 @@ bool TMonomial<T>::operator == (TMonomial &A)
 		return false;
 }
 //------------------------------------------------------------------
-template <class T>
 bool TMonomial::operator > (TMonomial& A)
 {
-	if (*this == A)
-		throw TException("Monomials are equal.-. Sorry");
 	if (size != A.size)
 		throw TException("Different size.-. Sorry");
+	if (*this == A)
+		throw TException("Monomials are equal.-. Sorry");
 	for (int i = 0; i < size; i++)
 	{
 		if (power[i] == A.power[i])
@@ -301,24 +277,37 @@ bool TMonomial::operator > (TMonomial& A)
 	// smth is not right, is it?
 }
 //------------------------------------------------------------------
-template <class T>
 bool TMonomial::operator < (TMonomial& A)
 {
-	if (*this == A)
-		throw TException("Monomials are equal.-. Sorry");
 	if (size != A.size)
 		throw TException("Different size.-. Sorry");
+	if (*this == A)
+		throw TException("Monomials are equal.-. Sorry");
 	for (int i = 0; i < size; i++)
 	{
-		if (power[i] == A.power[i])
-			continue;
-		else if (power[i] < A.power[i])
+		if (power[i] < A.power[i])
 			return true;
+		else if (power[i] == A.power[i])
+			continue;
 		else
 			return false;
 	}
 	if (coeff > A.coeff)
 		return false;
 	return true;
+}
+//------------------------------------------------------------------
+istream& operator>>(istream &in, TMonomial &M)
+{
+	in >> M.coeff;
+	for (int i = 0; i < M.size; i++)
+		in >> M.power[i];
+	return in;
+}
+//------------------------------------------------------------------
+ostream& operator<<(ostream &out, TMonomial &M)
+{
+	out << M.GetCoeff() << ' ' << M.GetPower();
+	return out;
 }
 //------------------------------------------------------------------
