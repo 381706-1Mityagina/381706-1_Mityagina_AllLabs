@@ -11,6 +11,8 @@ set (Polinomial Polinomial)
 set(PolinomialLib PolinomialLib)
 set (PolinomialTest PolinomialTest)
 
+set(Exception Exception)
+
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE) #Создается переменная CMAKE_CONFIGURATION_TYPES со значением "Debug;Release" и меткой/разделом Configs, переменная сохраниется в специальном файле доступном из всех файлов,
 if(NOT CMAKE_BUILD_TYPE) # проверка имеющихся у компилятора вариантов сборки
   set(CMAKE_BUILD_TYPE Release) #Если нет то устанавливаем Release
@@ -21,6 +23,8 @@ endif()
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest)
 add_subdirectory(gtest)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Exception)
+add_subdirectory(Exception)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/MonomialLib)
 add_subdirectory(Monomial)
