@@ -1,55 +1,134 @@
 #pragma once
-
+#include <iostream>
 #include "..//MonomialLib/Monomial.h"
+
+using namespace std;
 
 class TPolinomial
 {
 protected:
-  TMonomial *Mass;
-  int Size, N;
+	TMonomial *mass;
+  int sizee, n;
 public:
   TPolinomial(int _N = 10);
   TPolinomial(TPolinomial &A);
+
+	int GetSize()
+	{
+		return sizee;
+	}
+
+	TMonomial* GetMass()
+	{
+		return mass;
+	}
+
   TPolinomial operator + (TPolinomial &A);
   TPolinomial operator - (TPolinomial &A);
   TPolinomial operator * (TPolinomial &A);
   TPolinomial &operator = (TPolinomial &A);
   TPolinomial &operator += (TPolinomial &A);
-};
+	TPolinomial &operator += (TMonomial &M);
+	TPolinomial &operator -= (TMonomial &M);
 
+	bool operator==(TPolinomial &A);
+
+	friend ostream& operator<<(ostream& out, TPolinomial& M)
+	{
+		TMonomial *temporary = M.mass;
+		if (temporary != 0)
+		{
+			out << *temporary;
+			temporary = temporary->GetNext();
+		}
+		while (temporary != 0)
+		{
+			if (temporary->GetCoeff() != 0)
+				out << " + " << *temporary;
+			temporary = temporary-> GetNext();
+		}
+		return out;
+	}
+};
 //----------------------------------------------------------------------
-TPolinomial::TPolinomial(int _N = 10)
+TPolinomial::TPolinomial(int _N)
 {
   if (_N < 0)
-    throw "Negative";
+    throw TException("Negative number of el");
   else
   {
-    N = _N; 
-    Size = 0;
-    Mass = 0;
+    n = _N; 
+		sizee = 0;
+    mass = 0;
   }
 }
 //----------------------------------------------------------------------
-TPolinomial &TPolinomial:: operator =(TPolinomial &A)
+TPolinomial::TPolinomial(TPolinomial &A)
 {
-  if (A = this)
-    return this;
-  if (A.N != this -> N) throw -1;
+	n = A.n;
+	sizee = A.sizee;
+	if (A.mass == 0)
+		mass = 0;
+	else
+	{
+		mass = new TMonomial(*A.mass);
+		TMonomial *a = A.mass, *b = mass;
+
+		while (a -> GetNext() != 0)
+		{
+			b -> SetNext(new TMonomial(*(a -> GetNext())));
+			b = b -> GetNext();
+			a = a -> GetNext();
+		}
+		b -> SetNext(NULL);
+	}
+}
+//----------------------------------------------------------------------
+bool TPolinomial::operator == (TPolinomial &A)
+{
+	if (A.n != this->n)
+		throw TException("Different size");
+
+	if (this->sizee != A.sizee)
+		return false;
+
+	TMonomial *a = mass, *b = A.mass;
+	while (a != 0)
+	{
+		if (!(*a == *b))
+			return false;
+		if (a -> GetCoeff() != b -> GetCoeff())
+			return false;
+		a = a -> GetNext();
+		b = b -> GetNext();
+	}
+	return true;
+}
+//----------------------------------------------------------------------
+TPolinomial &TPolinomial:: operator = (TPolinomial &A)
+{
+  if (*this == A)
+    return *this;
+  if (A.n != this -> n) 
+		throw TException("Different size");
+
   else 
   {
-    TMonomial *Buf1 = a, *Buf2 = a;
-    while (Buf1 != 0)
+    TMonomial *a = mass, *b = mass;
+    while (a != 0)
     {
-      Buf1 = Buf1.GetNext();
-      delete [] Buf2;
-      Buf2 = Buf1;
+      a = a -> GetNext();
+      delete [] b;
+      b = a;
     }
-    Buf1 = A.Mass; Buf2 = new TMonomial(*A.Mass);
-    Mass = Buf2;
-    while (Buf1 != 0)
+    a = A.mass ->GetNext(); b = new TMonomial(*A.mass);
+    mass = b;
+
+    while (a != 0)
     {
-     Buf2 -> SetNext(new TMonomial(Buf1));
-     Buf1 = Buf1.GetNext();
+     b -> SetNext(new TMonomial(*a));
+		 b = b -> GetNext();
+     a = a -> GetNext();
     }
     return *this;
   }
@@ -57,178 +136,294 @@ TPolinomial &TPolinomial:: operator =(TPolinomial &A)
 //----------------------------------------------------------------------
 TPolinomial TPolinomial:: operator + (TPolinomial &A)
 {
-  if (this -> N != A.N) 
-    throw 1;
-  TMonomial *i1 = Mass, *i2 = A.Mass;
-  TPolinomial Rez(N);
-  TMonomial *i = Rez.Mass;
-  while (i1 != 0 && i2 != 0)
+  if (this -> n != A.n) 
+		throw TException("Different size");
+
+	TMonomial *a = mass, *b = A.mass;
+  TPolinomial Rez(n);
+  TMonomial *i = Rez.mass;
+  while (a != 0 && b != 0)
   {
     TMonomial *tmp = NULL;
-    if (*i1 == *i2)
+    if (*a == *b)
       {
-        tmp = new TMonomial(*i1 + *i2);
-        i1 = i1.GetNext();
-        i2 = i2.GetNext();
+        tmp = new TMonomial(*a + *b);
+        a = a -> GetNext();
+        b = b -> GetNext();
       }
-    if (*i1 > *i2)
+    if (*a > *b)
       {
-        tmp = new TMonomial(*i1);
-        i1 = i1.GetNext();
+        tmp = new TMonomial(*a);
+        a = a -> GetNext();
       }
-    if (*i1 < *i2)
+    if (*a < *b)
       {
-        tmp = new TMonomial(*i2);
-        i2 = i2.GetNext();
+        tmp = new TMonomial(*b);
+        a = b -> GetNext();
       }
     if (i == 0)
     {
       i = tmp;
-      Rez.Mass = i;
+      Rez.mass = i;
     }
     else 
       i -> SetNext(tmp);
-    Rez.Size++;
+    Rez.sizee++;
   }
-  if (i1 == 0)
-    i1 = i2;
-  while (i1 != 0)
+  if (a == 0)
+    a = b;
+  while (a != 0)
   {
-    i -> SetNext(new TMonomial(i1));
-    Rez.Size++;
+    i -> SetNext(new TMonomial(*a));
+    Rez.sizee++;
   }
-  i1 = i1.GetNext();
+  a = a -> GetNext();
   return Rez;
 }
 //----------------------------------------------------------------------
 TPolinomial TPolinomial:: operator - (TPolinomial &A)
 {
-  if (this -> N != A.N) 
-    throw 1;
-  TMonomial *i1 = Mass, *i2 = A.Mass;
-  TPolinomial Rez(N);
-  TMonomial *i = Rez.Mass;
-  while (i1 != 0 && i2 != 0)
+  if (this -> n != A.n) 
+		throw TException("Different size");
+	
+	TMonomial *a = mass, *b = A.mass;
+  TPolinomial Rez(n);
+  TMonomial *i = Rez.mass;
+  while (a != 0 && b != 0)
   {
     TMonomial *tmp = NULL;
-    if (*i1 == *i2)
+    if (*a == *b)
       {
-        tmp = new TMonomial(*i1 - *i2);
-        i1 = i1.GetNext();
-        i2 = i2.GetNext();
+        tmp = new TMonomial(*a - *b);
+        a = a -> GetNext();
+        b = b -> GetNext();
       }
-    if (*i1 > *i2)
+    if (*a > *b)
       {
-        tmp = new TMonomial(*i1);
-        i1 = i1.GetNext();
+        tmp = new TMonomial(*a);
+        a = a -> GetNext();
       }
-    if (*i1 < *i2)
+    if (*a < *b)
       {
-        tmp = new TMonomial(*i2);
-        i2 = i2.GetNext();
+        tmp = new TMonomial(*b);
+        b = b -> GetNext();
       }
     if (i == 0)
     {
       i = tmp;
-      Rez.Mass = i;
+      Rez.mass = i;
     }
     else 
       i -> SetNext(tmp);
-    Rez.Size++;
+    Rez.sizee++;
   }
-  if (i1 == 0)
-    i1 = i2;
-  while (i1 != 0)
+  if (a == 0)
+    a = b;
+  while (a != 0)
   {
-    i -> SetNext(new TMonomial(i1));
-    Rez.Size++;
+    i -> SetNext(new TMonomial(*a));
+    Rez.sizee++;
   }
-  i1 = i1.GetNext();
+  a = a -> GetNext();
   return Rez;
 }
 //----------------------------------------------------------------------
-TPolinomial TPolinomial:: operator * (TPolinomail &A)
+TPolinomial TPolinomial:: operator * (TPolinomial &A)
 {
- if (N != A.N)
-   throw -1;
+ if (n != A.n)
+	 throw TException("Different size");
  else
  {
    TMonomial* Sum;
-   TPolinomial Rez(N);
-   TMonom *i1 = Mass;
-   TMonom *i2 = A.Mass;
-   while (i1 != 0) 
+   TPolinomial Rez(n);
+   TMonomial *a = mass, *b = A.mass;
+   while (a != 0) 
    {
-     while (i2 != 0)
+		 if (a -> GetCoeff() == 0)
+			 continue;
+     while (b != 0)
     {
-     Sum = new TMonomial((*i1)*(*i2));
-     Rez += Sum;
-     i2 = i2 -> GetNext();
+		 TMonomial s = (*a)*(*b);
+     Sum = new TMonomial(s);
+		 Sum -> SetNext(NULL);
+		 Rez += *Sum;
+		 b = b -> GetNext();
     }
-   i1 = i1 -> GetNext();
+   a = a -> GetNext();
+	 b = A.mass;
    }
- }
-  return Rez;
+ return Rez;
+ } 
 }
 //----------------------------------------------------------------------
-TPolinomial::TPolinomial(TPolinomail &A)
+TPolinomial &TPolinomial:: operator += (TPolinomial &A)
 {
-  Size = A.Size;
-  N = A.N;
-  if (A.Mass == 0)
-    Mass = 0;
-  else 
-    tMonomial *tmp = new TMonomial(*A.Mass);
-  TMonomial *Buf = A.Mass;
-  Mass = tmp;
-  while (Buf != 0)
-  {
-    tmp -> SetNext (new TMonomial(Buf));
-    Buf = Buf.GetNext();
-  }
-}
-//----------------------------------------------------------------------
-TPolinomial &TPolinomial:: operator += (TPolinomail &A)
-{
-  if (N != A.N)
-    throw -1;
-	TMonomial *_start, *_end;
-	_start = Mass;
-	_end = Mass -> getnext();
-	if (Mass == 0) // если полином пуст
+	if (this->n != A.n)
+		throw TException("Different size");
+
+	TMonomial *a = mass, *b = A.mass;
+	//TPolinomial Rez(n);
+	TMonomial *i = mass;
+	while (a != 0 && b != 0)
 	{
-		Mass = new TMonomial(A);
-		end = Mass;
-	}
-	else 
-	{
-		if (Mass < A) // если моном меньше, чем первый член полинома
+		TMonomial *tmp = NULL;
+		if (*a == *b)
 		{
-			TMonom* tmp = new TMonomial(A);
-			tmp->SetNext(Mass);
-			Mass = tmp;
+			tmp = new TMonomial(*a + *b);
+			a = a -> GetNext();
+			b = b -> GetNext();
 		}
-		else 
+		if (*a > *b)
 		{
-			while (_end != 0)// пробегаемся по всему полиному
+			tmp = new TMonomial(*a);
+			a = a -> GetNext();
+		}
+		if (*a < *b)
+		{
+			tmp = new TMonomial(*b);
+			a = b -> GetNext();
+		}
+		if (i == 0)
+		{
+			i = tmp;
+			this -> mass = i;
+		}
+		else
+			i->SetNext(tmp);
+		this -> sizee++;
+	}
+	if (a == 0)
+		a = b;
+	while (a != 0)
+	{
+		i -> SetNext(new TMonomial(*a));
+		this -> sizee++;
+	}
+	a = a -> GetNext();
+	return *this;
+}
+//----------------------------------------------------------------------
+TPolinomial &TPolinomial::operator+=(TMonomial &M)
+{
+	if (this-> n != M.GetSize())
+		throw TException("Different size");
+
+	if (mass == 0) 
+		mass = new TMonomial(M);
+	if (M.GetCoeff() == 0)
+		return *this;
+	
+	else
+	{
+		TMonomial *a = mass, *b = mass->GetNext();
+		
+		if (*mass < M)
+		{
+			TMonomial* temporary = new TMonomial(M);
+			temporary->SetNext(mass);
+			mass = temporary;
+		}
+		else if (*mass == M)
+		{
+			*mass += M;
+			if (mass->GetCoeff() == 0)
 			{
-				if (_start < A && A < _end)
+				TMonomial* tmp = mass->GetNext();
+				delete[] mass;
+				mass = tmp;
+			}
+		}
+		else
+		{
+			while (b != 0)
+			{
+				if (*b == M)
 				{
-					TMonom* tmp = new TMonomial(A);
-					_start -> GetNext();
-					tmp -> SetNext(_end);
-					break;
+					*b += M;
+					if (b->GetCoeff() == 0)
+					{
+						mass->SetNext(b->GetNext());
+						delete[] b;
+					}
+					return *this;
 				}
-				_start = _end;
-				_end = _end -> GetNext();
+				if (*b < M)
+				{
+					TMonomial* tmp = new TMonomial(M);
+					a->SetNext(tmp);
+					tmp->SetNext(b);
+					sizee++;
+					return *this;
+				}
+				a = b;
+				b = b->GetNext();
 			}
-			if (_end == 0)
-			{
-				Mass->SetNext(new TMonomial(A));
-				end = start->getnext();
-			}
+			a -> SetNext(new TMonomial(M));
 		}
 	}
+	sizee++;
+	return *this;
+}
+//----------------------------------------------------------------------
+TPolinomial &TPolinomial::operator-=(TMonomial &M)
+{
+	if (this->n != M.GetSize())
+		throw TException("Different size");
+
+	if (mass == 0)
+		mass = new TMonomial(M);
+	if (M.GetCoeff() == 0)
+		return *this;
+
+	else
+	{
+		TMonomial *a = mass, *b = mass->GetNext();
+
+		if (*mass < M)
+		{
+			TMonomial* temporary = new TMonomial(M);
+			temporary->SetNext(mass);
+			mass = temporary;
+		}
+		else if (*mass == M)
+		{
+			*mass -= M;
+			if (mass->GetCoeff() == 0)
+			{
+				TMonomial* tmp = mass->GetNext();
+				delete[] mass;
+				mass = tmp;
+			}
+		}
+		else
+		{
+			while (b != 0)
+			{
+				if (*b == M)
+				{
+					*b += M;
+					if (b->GetCoeff() == 0)
+					{
+						mass->SetNext(b->GetNext());
+						delete[] b;
+					}
+					return *this;
+				}
+				if (*b < M)
+				{
+					TMonomial* tmp = new TMonomial(M);
+					a->SetNext(tmp);
+					tmp->SetNext(b);
+					sizee++;
+					return *this;
+				}
+				a = b;
+				b = b->GetNext();
+			}
+			a->SetNext(new TMonomial(M));
+		}
+	}
+	sizee++;
 	return *this;
 }
 //----------------------------------------------------------------------
