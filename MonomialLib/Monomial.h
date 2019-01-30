@@ -14,6 +14,23 @@ protected:
 public:
 	TMonomial(int _Size, int *M, double _Coeff);  // конструктор
 	TMonomial(TMonomial &A);                   // конструктор копирования
+	
+	TMonomial()              // конструктор по умолчанию
+	{
+		next = NULL;
+		power = NULL;
+		coeff = 0;
+		size = 0;
+	}
+
+	TMonomial::~TMonomial()  // деструктор
+	{
+		if (power != 0)
+			delete[]power;
+		size = 0;
+		coeff = 0;
+		next = 0;
+	}
 
 	// "сеттеры"
 	void SetPower(int *M);                        
@@ -30,11 +47,11 @@ public:
 	// перегрузка арифметических операторов 
 	TMonomial &operator = (TMonomial &A);         
 	TMonomial operator + (TMonomial &A);          
-	TMonomial operator += (TMonomial &A);         
+	TMonomial &operator += (TMonomial &A);         
 	TMonomial operator - (TMonomial &A);          
-	TMonomial operator -= (TMonomial &A);          
+	TMonomial &operator -= (TMonomial &A);          
 	TMonomial operator * (TMonomial &A);          
-	TMonomial operator *= (TMonomial &A);         
+	TMonomial &operator *= (TMonomial &A);         
 
 	// операторы сравнения 
 	bool operator == (TMonomial &A);              
@@ -70,7 +87,7 @@ TMonomial::TMonomial(int _size, int* _power, double _coeff)
 	}
 }
 //------------------------------------------------------------------
-TMonomial::TMonomial(TMonomial &A)
+TMonomial :: TMonomial(TMonomial &A)
 {
 	size = A.size;
 	coeff = A.coeff;
@@ -192,7 +209,7 @@ TMonomial TMonomial::operator + (TMonomial &A)
 	return temporary;
 }
 //------------------------------------------------------------------
-TMonomial TMonomial::operator+=(TMonomial & A)
+TMonomial &TMonomial::operator+=(TMonomial & A)
 {
 	if (size != A.size)
 		throw TException("Different size.-. Sorry");
@@ -213,7 +230,7 @@ TMonomial TMonomial::operator - (TMonomial &A)
 	return temporary;
 }
 //------------------------------------------------------------------
-TMonomial TMonomial::operator-=(TMonomial & A)
+TMonomial &TMonomial::operator-=(TMonomial & A)
 {
 	if (size != A.size)
 		throw TException("Different size.-. Sorry");
@@ -237,7 +254,7 @@ TMonomial TMonomial::operator * (TMonomial &A)
 	}
 }
 //------------------------------------------------------------------
-TMonomial TMonomial::operator *= (TMonomial & A)
+TMonomial &TMonomial::operator *= (TMonomial & A)
 {
 	if (size != A.size)
 		throw TException("Different size.-. Sorry");
