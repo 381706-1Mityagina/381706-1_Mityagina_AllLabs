@@ -1,5 +1,5 @@
 file(GLOB hdrs "*.h*")
 file(GLOB srcs "*.cpp")
 
-add_executable(${PolinomialTests} ${srcs} ${hdrs})
-target_link_libraries(${PolinomialTests} ${PolinomialLib} gtest)
+add_executable(${PolinomialTest} ${srcs} ${hdrs})
+target_link_libraries(${PolinomialTest} ${PolinomialLib} gtest)
