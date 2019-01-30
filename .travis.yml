@@ -8,7 +8,7 @@ before_script:
 script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
-  - ./Monomial/Monomial
-  - ./Polinomial/Polinomial
+  - ../Monomial/Monomial
+  - ../Polinomial/Polinomial
 notifications:
   email: false
