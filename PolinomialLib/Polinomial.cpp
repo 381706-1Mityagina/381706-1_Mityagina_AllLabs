@@ -1,0 +1,1 @@
+#include "Polinomial.h"
