@@ -4,32 +4,44 @@ template <class T>
 class TMonomial
 {
 protected:
-	int* Power;
-	int Size;
-	double Coeff;
-	TMonomial *Next;
+	int* power;      // массив степеней
+	int size;        // кол-во пер-ых в каждом мономе
+	double coeff;    // коэффициент
+	TMonomial *next; // указатель на следующий моном полинома
 public:
-	TMonomial(int _Size, int *M, double _Coeff, TMonomial *_Next);
-	TMonomial(TMonomial<T> &A);
-	void SetPower(int *M);
-	void SetSize(int _Size);
-	void SetCoeff(double _Coeff);
-	void SetNext(TMonomial* _Next);
-	int *GetPower();
-	int GetSize();
-	double GetCoeff();
-	TMonomial* GetNext();
-	TMonomial &operator = (TMonomial &A);
-	TMonomial operator + (TMonomial &A);
-	TMonomial operator - (TMonomial &A);
-	TMonomial operator * (TMonomial &A);
-	bool operator == (TMonomial &A);
-	bool operator < (TMonomial &A);
-	bool operator > (TMonomial &A);
+	TMonomial(int _Size, int *M, double _Coeff);  // конструктор
+	TMonomial(TMonomial<T> &A);                   // конструктор копирования
 
+	// "сеттеры"
+	void SetPower(int *M);                        
+	void SetSize(int _Size);                      
+	void SetCoeff(double _Coeff);                 
+	void SetNext(TMonomial* _Next);               
+
+	// "геттеры"
+	int *GetPower();                              
+	int GetSize();                                
+	double GetCoeff();                            
+	TMonomial* GetNext();      
+
+	// перегрузка арифметических операторов 
+	TMonomial &operator = (TMonomial &A);         
+	TMonomial operator + (TMonomial &A);          
+	TMonomial operator += (TMonomial &A);         
+	TMonomial operator - (TMonomial &A);          
+	TMonomial operator -= (TMonomial &A);          
+	TMonomial operator * (TMonomial &A);          
+	TMonomial operator *= (TMonomial &A);         
+
+	// операторы сравнения 
+	bool operator == (TMonomial &A);              
+	bool operator < (TMonomial &A);               
+	bool operator > (TMonomial &A);              
+
+	// операторы ввода-вывода
 	friend istream& operator>>(istream &in, TMonomial &m)
 	{
-		in >> m.Coeff >> m.Power;
+		in >> m.coeff >> m.power;
 		return in;
 	}
 	friend ostream& operator<<(ostream &out, TMonomial &m)
@@ -41,31 +53,38 @@ public:
 
 //------------------------------------------------------------------
 template <class T>
-TMonomial<T>::TMonomial(int _Size, int *M, double _Coeff, TMonomial *_Next)
+TMonomial::TMonomial(int _size, int* _power, double _coeff)
 {
-	if (_Size > 999999)
+	if (_size < 0)
+		throw TException("Negative size.-. Sorry");
+	else if (_size == 0)
 	{
-		throw "Int overflow";
+		power = NULL; next = NULL;
+		coeff = _coeff; size = _size; 
 	}
 	else
 	{
-		if (_Size <= 0) throw "Wrong";
-		else Size = _Size;
-		Coeff = _Coeff;
-		Power = M;
-		Next = _Next;
+		size = _size; coeff = _coeff; next = NULL;
+		power = new int[_size];
+		for (int i = 0; i < _size; i++)
+		{
+			if (_power[i] >= 0)
+				power[i] = _power[i];
+			else
+				throw TException("Negative power.-. Sorry");
+		}
 	}
 }
 //------------------------------------------------------------------
 template <class T>
 TMonomial<T>::TMonomial(TMonomial<T> &A)
 {
-	Size = A.Size;
-	Power = new int[Size];
-	for (int i = 0; i < Size; i++)
-		Power[i] = A.Power[i];
-	Coeff = A.Coeff;
-	Next = A.Next;
+	size = A.size;
+	power = new int[size];
+	for (int i = 0; i < size; i++)
+		power[i] = A.power[i];
+	coeff = A.coeff;
+	next = A.next;
 }
 //------------------------------------------------------------------
 template <class T>
@@ -73,10 +92,10 @@ void TMonomial<T>::SetPower(int *M)
 {
 	try
 	{
-		for (int i = 0; i < Size; i++)
+		for (int i = 0; i < size; i++)
 		{
 			if (M[i] >= 0)
-				Power[i] = M[i];
+				power[i] = M[i];
 			else
 				throw - 1;
 		}
@@ -91,36 +110,36 @@ template <class T>
 void TMonomial<T>::SetSize(int _Size)
 {
 	if (_Size <= 0)
-		throw "Wrong";
+		throw TException("Negative size.-. Sorry");
 	else
 	{
-		Size = _Size;
+		size = _Size;
 		TMonomial temp;
-		if (_Size == Size)
+		if (_Size == size)
 		{
 			temp = *this;
 		}
-		else if (_Size < Size)
+		else if (_Size < size)
 		{
-			temp.Power = new int[_Size];
+			temp.power = new int[_Size];
 			for (int i = 0; i < _Size; i++)
-				temp.Power[i] = Power[i];
-			delete[]Power;
-			Size = _Size;
-			Power = new int[Size];
-			for (int i = 0; i < Size; i++)
-				Power[i] = temp.Power[i];
+				temp.power[i] = power[i];
+			delete[]power;
+			size = _Size;
+			power = new int[size];
+			for (int i = 0; i < size; i++)
+				power[i] = temp.power[i];
 		}
-		else if (_Size > Size)
+		else if (_Size > size)
 		{
-			temp.Power = new int[Size];
-			for (int i = 0; i < Size; i++)
-				temp.Power[i] = Power[i];
-			delete[]Power;
-			Size = _Size;
-			Power = new int[Size];
-			for (int i = 0; i < Size; i++)
-				Power[i] = temp.Power[i];
+			temp.power = new int[size];
+			for (int i = 0; i < size; i++)
+				temp.power[i] = power[i];
+			delete[]power;
+			size = _Size;
+			power = new int[size];
+			for (int i = 0; i < size; i++)
+				power[i] = temp.power[i];
 		}
 	}
 }
@@ -128,105 +147,133 @@ void TMonomial<T>::SetSize(int _Size)
 template <class T>
 void TMonomial<T>::SetCoeff(double _Coeff)
 {
-	Coeff = _Coeff;
+	coeff = _Coeff;
 }
 //------------------------------------------------------------------
 template <class T>
 void TMonomial<T>::SetNext(TMonomial* _Next)
 {
-
+	next = _Next;
 }
 //------------------------------------------------------------------
 template <class T>
 int *TMonomial<T>::GetPower()
 {
-	return Power;
+	return power;
 }
 //------------------------------------------------------------------
 template <class T>
 int TMonomial<T>::GetSize()
 {
-	return Size;
+	return size;
 }
 //------------------------------------------------------------------
 template <class T>
 double TMonomial<T>::GetCoeff()
 {
-	return Coeff;
+	return coeff;
 }
 //------------------------------------------------------------------
 template <class T>
 TMonomial* TMonomial<T>::GetNext()
 {
-	return Next;
+	return next;
 }
 //------------------------------------------------------------------
 template <class T>
 TMonomial &TMonomial<T>::operator = (TMonomial &A)
 {
-	Coeff = A.Coeff;
-	delete[]Index;
-	Size = A.Size;
-	Index = new int[Size];
-	for (int i = 0; i < Size; i++)
-		Index[i] = A.Inde[i];
-	Next = A.Next;
+	if (size != A.size)
+		throw TException("Different size.-. Sorry");
+	coeff = A.coeff;
+	size = A.size;
+	next = A.next;
+	delete[] power;
+	power = new int[size];
+	for (int i = 0; i < size; i++)
+		power[i] = A.power[i];
+	return *this;
 }
 //------------------------------------------------------------------
 template <class T>
 TMonomial TMonomial<T>::operator + (TMonomial &A)
 {
-	TMonomial temporary(*this);
-	if (Size != A.Size)
-		throw "Wrong";
-	else
-	{
-		for (int i = 0; i < Size; i++)
-			if (Index[i] != A.Index[i])
-				throw "Wrong";
-		temporary.Coeff = Coeff + A.Coeff;
-		return temporary;
-	}
+	TMonomial temporary(A);
+	if (size != A.size)
+		throw TException("Different size.-. Sorry");
+	if (!(*this == A))
+		throw TException("Different power.-. Sorry");
+	temporary.coeff = coeff + A.coeff;
+	return temporary;
+}
+//------------------------------------------------------------------
+template <class T>
+TMonomial TMonomial::operator+=(TMonomial & A)
+{
+	if (size != A.size)
+		throw TException("Different size.-. Sorry");
+	if (!(*this == A))
+		throw TException("Different power.-. Sorry");
+	coeff += A.coeff;
+	return *this;
 }
 //------------------------------------------------------------------
 template <class T>
 TMonomial TMonomial<T>::operator - (TMonomial &A)
 {
-	TMonomial temporary(*this);
-	if (Size != A.Size)
-		throw "Wrong";
-	else
-	{
-		for (int i = 0; i < Size; i++)
-			if (Index[i] != A.Index[i])
-				throw "Wrong";
-		temporary.Coeff = Coeff - A.Coeff;
-		return temporary;
-	}
+	TMonomial temporary(A);
+	if (size != A.size)
+		throw TException("Different size.-. Sorry");
+	if (!(*this == A))
+		throw TException("Different power.-. Sorry");
+	temporary.coeff = coeff - A.coeff;
+	return temporary;
+}
+//------------------------------------------------------------------
+template <class T>
+TMonomial TMonomial::operator-=(TMonomial & A)
+{
+	if (size != A.size)
+		throw TException("Different size.-. Sorry");
+	if (!(*this == A))
+		throw TException("Different power.-. Sorry");
+	coeff -= A.coeff;
+	return *this;
 }
 //------------------------------------------------------------------
 template <class T>
 TMonomial TMonomial<T>::operator * (TMonomial &A)
 {
-	TMonomial temporary(*this);
-	if (Size != A.Size)
-		throw "Wrong";
+	TMonomial temporary(A);
+	if (size != A.size)
+		throw TException("Different size.-. Sorry");
 	else
 	{
-		Coeff = Coeff * A.Coeff;
-		for (int i = 0; i < Size; i++)
-			temporary.Index[i] = Index[i] + A.Index[i];
+		temporary.coeff = coeff * A.coeff;
+		for (int i = 0; i < size; i++)
+			temporary.power[i] = power[i] + A.power[i];
 		return temporary;
 	}
 }
 //------------------------------------------------------------------
 template <class T>
+TMonomial TMonomial::operator *= (TMonomial & A)
+{
+	if (size != A.size)
+		throw TException("Different size.-. Sorry");
+	coeff = coeff * A.coeff;
+	for (int i = 0; i < size; i++)
+		power[i] += A.power[i];
+	return *this;
+}
+//------------------------------------------------------------------
+template <class T>
 bool TMonomial<T>::operator == (TMonomial &A)
 {
-	if (Size == A.Size)
+	if (size == A.size)
 	{
-		for (int i = 0; i < Size; i++)
-			if (Index[i] != A.Index[i])
+		for (int i = 0; i < size; i++)
+			if (power[i] != A.power[i])
 				return false;
 		return true;
 	}
@@ -235,24 +282,43 @@ bool TMonomial<T>::operator == (TMonomial &A)
 }
 //------------------------------------------------------------------
 template <class T>
-bool TMonomial<T>::operator < (TMonomial &A)
+bool TMonomial::operator > (TMonomial& A)
 {
-	if (Size != A.Size)
-		throw "Wrong";
-	for (int i = 0; i < Size; i++)
-		if (Index[i] > A.Index[i])
+	if (*this == A)
+		throw TException("Monomials are equal.-. Sorry");
+	if (size != A.size)
+		throw TException("Different size.-. Sorry");
+	for (int i = 0; i < size; i++)
+	{
+		if (power[i] == A.power[i])
+			continue;
+		else if (power[i] > A.power[i])
+			return true;
+		else
 			return false;
+	}
 	return true;
+	// smth is not right, is it?
 }
 //------------------------------------------------------------------
 template <class T>
-bool TMonomial<T>::operator > (TMonomial &A)
+bool TMonomial::operator < (TMonomial& A)
 {
-	if (Size != A.Size)
-		throw "Wrong";
-	for (int i = 0; i < Size; i++)
-		if (Index[i] < A.Index[i])
+	if (*this == A)
+		throw TException("Monomials are equal.-. Sorry");
+	if (size != A.size)
+		throw TException("Different size.-. Sorry");
+	for (int i = 0; i < size; i++)
+	{
+		if (power[i] == A.power[i])
+			continue;
+		else if (power[i] < A.power[i])
+			return true;
+		else
 			return false;
+	}
+	if (coeff > A.coeff)
+		return false;
 	return true;
 }
 //------------------------------------------------------------------
