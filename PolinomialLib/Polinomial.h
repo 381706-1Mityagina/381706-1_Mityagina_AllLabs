@@ -292,8 +292,9 @@ TPolinomial TPolinomial:: operator * (TPolinomial &A)
 			 continue;
      while (b != 0)
     {
-		 TMonomial s = (*a)*(*b);
-     Sum = new TMonomial(s);
+		 TMonomial smth = (*a);
+	     smth *= (*b)
+     Sum = new TMonomial(smth);
 		 Sum -> SetNext(NULL);
 		 Rez += *Sum;
 		 b = b -> GetNext();
