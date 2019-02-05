@@ -87,7 +87,7 @@ TMonomial::TMonomial(int _size, int* _power, double _coeff)
 	}
 }
 //------------------------------------------------------------------
-TMonomial :: TMonomial(TMonomial &A)
+TMonomial::TMonomial(TMonomial &A)
 {
 	size = A.size;
 	coeff = A.coeff;
