@@ -5,6 +5,8 @@ project(${PROJECT_NAME})
 
 set (ListLib ListLib)
 
+set(Exception Exception)
+
 set (StackList StackList)
 set(StackListLib StackListLib) 
 set (StackListTest StackListTest)
@@ -17,6 +19,8 @@ endif()
 file(GLOB hdrs "*.h*") 
 file(GLOB srcs "*.cpp") 
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Exception)
+add_subdirectory(Exception)
 
 #add_executable(${PROJECT_NAME} ${srcs} ${hdrs}) 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest)
