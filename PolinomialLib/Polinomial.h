@@ -293,7 +293,7 @@ TPolinomial TPolinomial:: operator * (TPolinomial &A)
      while (b != 0)
     {
 		 TMonomial smth = (*a);
-	     smth *= (*b)
+	     smth *= (*b);
      Sum = new TMonomial(smth);
 		 Sum -> SetNext(NULL);
 		 Rez += *Sum;
