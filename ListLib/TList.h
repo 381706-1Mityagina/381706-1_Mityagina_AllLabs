@@ -209,7 +209,7 @@ T TList<T>::GetFirst()
 		TElement<T> *b = pFirst;
 		T tmp = pFirst->GetData();
 		pFirst = pFirst->GetNext();
-		delete[]b;
+		//delete[]b;
 		size--;
 		return tmp;
 	}
