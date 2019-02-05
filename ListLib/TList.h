@@ -210,7 +210,7 @@ T TList<T>::GetFirst()
 		T tmp = pFirst->GetData();
 		pFirst = pFirst->GetNext();
 		delete[]b;
-		pos--;
+		size--;
 		return tmp;
 	}
 }
