@@ -14,7 +14,8 @@ public:
 	TStackUsingList <T>(TStackUsingList<T> &A);
 	~TStackUsingList();
 
-	T Get();
+	T Get(); // без удаления
+	void Del();
 	void Put(T A);
 	void Show();
 	int GetSize();
@@ -51,6 +52,14 @@ void TStackUsingList <T>::Put(T A)
 //-------------------------------------------------------------------------
 template <class T>
 T TStackUsingList <T>::Get()
+{
+	if (this->IsEmpty())
+		throw TException("Stack is empty. Nothing to get.");
+	TList<T>::GetFirst();
+}
+//-------------------------------------------------------------------------
+template <class T>
+void TStackUsingList <T>::Del()
 {
 	if (this->IsEmpty())
 		throw TException("Stack is empty. Nothing to get.");
