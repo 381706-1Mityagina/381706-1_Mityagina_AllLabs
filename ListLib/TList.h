@@ -207,8 +207,8 @@ T TList<T>::GetFirst()
 	else
 	{
 		TElement<T> *b = pFirst;
-		T tmp = pFirst->TElement<T>::GetData();
-		pFirst = pFirst->TElement<T>::GetNext();
+		T tmp = pFirst->GetData();
+		pFirst = pFirst->GetNext();
 		delete[]b;
 		pos--;
 		return tmp;
