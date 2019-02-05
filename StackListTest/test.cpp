@@ -128,5 +128,6 @@ TEST(TStackUsingList, can_get)
 	stack.Put(2);
 	stack.Put(3);
 
-	EXPECT_EQ(3, stack.Get());
+	ASSERT_NO_THROW(stack.Get());
+	EXPECT_EQ(2, stack.Get());
 }
