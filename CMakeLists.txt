@@ -3,8 +3,7 @@ cmake_minimum_required(VERSION 2.8) #Проверка версии CMake.
 set(PROJECT_NAME AllLabs) #Создаем обычную локальную переменную с именем проекта
 project(${PROJECT_NAME}) # Название проекта
 
-set (Monomial Monomial)
-set(MonomialLib MonomialLib)
+set (MonomialLib MonomialLib)
 set (MonomialTest MonomialTest)
 
 set (Polinomial Polinomial)
@@ -27,7 +26,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Exception)
 add_subdirectory(Exception)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/MonomialLib)
-add_subdirectory(Monomial)
 add_subdirectory(MonomialLib)
 add_subdirectory(MonomialTest)
 
