@@ -71,17 +71,6 @@ TEST(TStackUsingList, can_del)
 	ASSERT_NO_THROW(stack.Del());
 }
 
-TEST(TStackUsingList, can_get)
-{
-	TStackUsingList<int> stack(3);
-
-	stack.Put(1);
-	stack.Put(2);
-	stack.Put(3);
-
-	EXPECT_EQ(3, stack.Get());
-}
-
 TEST(TStackUsingList, cannot_get_from_empty_stack)
 {
 	TStackUsingList<int> stack(5);
@@ -96,7 +85,7 @@ TEST(TStackUsingList, true_check_full)
 	stack.Put(1);
 	stack.Put(2);
 	
-	ASSERT_TRUE(stack.IsFull());
+	EXPECT_EQ(true, stack.IsFull());
 }
 
 TEST(TStackUsingList, false_check_full)
@@ -105,14 +94,14 @@ TEST(TStackUsingList, false_check_full)
 
 	stack.Put(1);
 
-	ASSERT_FALSE(stack.IsFull());
+	EXPECT_EQ(false, stack.IsFull());
 }
 
 TEST(TStackUsingList, true_check_empty)
 {
 	TStackUsingList<int> stack(7);
 
-	ASSERT_TRUE(stack.IsEmpty());
+	EXPECT_EQ(true, stack.IsEmpty());
 }
 
 TEST(TStackUsingList, false_check_empty)
@@ -121,7 +110,7 @@ TEST(TStackUsingList, false_check_empty)
 
 	stack.Put(1);
 
-	ASSERT_FALSE(stack.IsEmpty());
+	EXPECT_EQ(false, stack.IsEmpty());
 }
 
 TEST(TStackUsingList, can_assign_stack_to_itself)
@@ -129,4 +118,15 @@ TEST(TStackUsingList, can_assign_stack_to_itself)
 	TStackUsingList<int> stack(7);
 
 	ASSERT_NO_THROW(stack = stack);
+}
+
+TEST(TStackUsingList, can_get)
+{
+	TStackUsingList<int> stack(5);
+
+	stack.Put(1);
+	stack.Put(2);
+	stack.Put(3);
+
+	EXPECT_EQ(3, stack.Get());
 }
