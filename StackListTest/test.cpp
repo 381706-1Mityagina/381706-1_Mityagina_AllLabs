@@ -96,7 +96,7 @@ TEST(TStackUsingList, true_check_full)
 	stack.Put(1);
 	stack.Put(2);
 	
-	EXPECT_EQ(true, stack.IsFull());
+	ASSERT_TRUE(stack.IsFull());
 }
 
 TEST(TStackUsingList, false_check_full)
@@ -105,14 +105,14 @@ TEST(TStackUsingList, false_check_full)
 
 	stack.Put(1);
 
-	EXPECT_EQ(false, stack.IsFull());
+	ASSERT_FALSE(stack.IsFull());
 }
 
 TEST(TStackUsingList, true_check_empty)
 {
 	TStackUsingList<int> stack(7);
 
-	EXPECT_EQ(true, stack.IsEmpty());
+	ASSERT_TRUE(stack.IsEmpty());
 }
 
 TEST(TStackUsingList, false_check_empty)
@@ -121,7 +121,7 @@ TEST(TStackUsingList, false_check_empty)
 
 	stack.Put(1);
 
-	EXPECT_EQ(false, stack.IsEmpty());
+	ASSERT_FALSE(stack.IsEmpty());
 }
 
 TEST(TStackUsingList, can_assign_stack_to_itself)
