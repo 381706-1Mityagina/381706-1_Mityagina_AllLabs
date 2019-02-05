@@ -9,5 +9,7 @@ script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
   - ./Polinomial/Polinomial
+  - ./PolinomialTest/PolinomialTest
+  - ./MonomialTest/MonomialTest
 notifications:
   email: false
