@@ -7,7 +7,10 @@ int main()
 {
   cout << "An example of using the StackList will be implemented here" << endl;
   
-	setlocale(LC_ALL, "Russian");
+	
+	// из-за ожидания ввода не проходит тревис, закомментирую пока
+	
+	/*setlocale(LC_ALL, "Russian");
 
 	int n;
 	cout << "\t <<< Введите кол-во элементов в стеке >>>\n";
@@ -32,7 +35,7 @@ int main()
 
 	symbolStack.Show(); // печать стека
 
-	cout << "\n\n";
+	cout << "\n\n"; */
 
 	return 0;
 }
