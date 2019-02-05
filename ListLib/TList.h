@@ -20,6 +20,7 @@ public:
 
 	T viewData() { return pCurr->data; } // получить элемент
 	T* viewPtr() { return pCurr; }
+	T GetFirst();
 
 	void delFirst();   // удалить из начала
 	void delCurrent(); // удалить текущий
@@ -198,3 +199,16 @@ void TList<T>::Show()
 	cout << b -> GetData() << " ";
 }
 //-----------------------------------------------------------
+template <class T>
+T TList<T>::GetFirst()
+{
+	if (isEmpty())
+		throw TException("Stack is empty");
+	else
+	{
+		TElement<T> *b = pFirst;
+		T tmp = b->GetData();
+		return tmp;
+	}
+}
+//-------------------------------------------------------------------------------
