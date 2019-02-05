@@ -10,10 +10,10 @@ protected:
 	TMonomial *begin;
   int sizee, n;
 public:
-  TPolinomial(int _N = 10);      // конструктор
-  TPolinomial(TPolinomial &A);   // конструктор копирования
+  TPolinomial(int _N = 10);      // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+  TPolinomial(TPolinomial &A);   // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 
-  // "геттеры"
+  // "РіРµС‚С‚РµСЂС‹"
 	int GetSize()                 
 	{
 		return sizee;
@@ -29,7 +29,7 @@ public:
 		return begin ;
 	}
 
-	// перегрузки операторов
+	// РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂРѕРІ
   TPolinomial operator + (TPolinomial &A);
   TPolinomial operator - (TPolinomial &A);
   TPolinomial operator * (TPolinomial &A);
@@ -211,15 +211,18 @@ TPolinomial TPolinomial:: operator - (TPolinomial &A)
   if (this -> n != A.n) 
 		throw TException("Different size");
 	
-	TMonomial *a = begin , *b = A.begin ;
+  TMonomial *a = begin , *b = A.begin ;
   TPolinomial Rez(n);
-  TMonomial *i = Rez.begin ;
+  TMonomial *i = Rez.begin;
   while (a != 0 && b != 0)
   {
-    TMonomial *tmp = NULL;
+    TMonomial *tmp;
     if (*a == *b)
       {
-        tmp = new TMonomial(*a - *b);
+	TMonomial smth;
+	smth = (*a);
+	smth -= (*b);
+        tmp = new TMonomial(smth);
         a = a -> GetNext();
         b = b -> GetNext();
       }
