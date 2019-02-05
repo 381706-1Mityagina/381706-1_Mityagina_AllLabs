@@ -7,15 +7,15 @@ using namespace std;
 class TMonomial
 {
 protected:
-	int* power;      // массив степеней
-	int size;        // кол-во пер-ых в каждом мономе
-	double coeff;    // коэффициент
-	TMonomial *next; // указатель на следующий моном полинома
+	int* power;      // РјР°СЃСЃРёРІ СЃС‚РµРїРµРЅРµР№
+	int size;        // РєРѕР»-РІРѕ РїРµСЂ-С‹С… РІ РєР°Р¶РґРѕРј РјРѕРЅРѕРјРµ
+	double coeff;    // РєРѕСЌС„С„РёС†РёРµРЅС‚
+	TMonomial *next; // СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ РјРѕРЅРѕРј РїРѕР»РёРЅРѕРјР°
 public:
-	TMonomial(int _Size, int *M, double _Coeff);  // конструктор
-	TMonomial(TMonomial &A);                   // конструктор копирования
+	TMonomial(int _Size, int *M, double _Coeff);  // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+	TMonomial(TMonomial &A);                   // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 
-	TMonomial()              // конструктор по умолчанию
+	TMonomial()              // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	{
 		next = NULL;
 		power = NULL;
@@ -23,7 +23,7 @@ public:
 		size = 0;
 	}
 
-	virtual ~TMonomial()  // деструктор
+	virtual ~TMonomial()  // РґРµСЃС‚СЂСѓРєС‚РѕСЂ
 	{
 		if (power != 0)
 			delete[]power;
@@ -32,19 +32,19 @@ public:
 		next = 0;
 	}
 
-	// "сеттеры"
+	// "СЃРµС‚С‚РµСЂС‹"
 	void SetPower(int *M);                        
 	void SetSize(int _Size);                      
 	void SetCoeff(double _Coeff);                 
 	void SetNext(TMonomial* _Next);               
 
-	// "геттеры"
+	// "РіРµС‚С‚РµСЂС‹"
 	int *GetPower();                              
 	int GetSize();                                
 	double GetCoeff();                            
 	TMonomial* GetNext();      
 
-	// перегрузка арифметических операторов 
+	// РїРµСЂРµРіСЂСѓР·РєР° Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРёС… РѕРїРµСЂР°С‚РѕСЂРѕРІ 
 	TMonomial &operator = (TMonomial &A);         
 	TMonomial operator + (TMonomial &A);          
 	TMonomial operator += (TMonomial &A);         
@@ -53,12 +53,12 @@ public:
 	TMonomial operator * (TMonomial &A);          
 	TMonomial operator *= (TMonomial &A);         
 
-	// операторы сравнения 
+	// РѕРїРµСЂР°С‚РѕСЂС‹ СЃСЂР°РІРЅРµРЅРёСЏ 
 	bool operator == (TMonomial &A);              
 	bool operator < (TMonomial &A);               
 	bool operator > (TMonomial &A);              
 
-	// операторы ввода-вывода
+	// РѕРїРµСЂР°С‚РѕСЂС‹ РІРІРѕРґР°-РІС‹РІРѕРґР°
 	friend istream& operator>>(istream &in, TMonomial &m);
 	friend ostream& operator<<(ostream &out, TMonomial &m);
 };
