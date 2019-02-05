@@ -2,8 +2,6 @@
 #include <iostream>
 #include "TElement.h"
 
-#include "../Exception/Exception.h"
-
 using namespace std;
 template <class T>
 class TList
@@ -207,7 +205,10 @@ T TList<T>::GetFirst()
 	else
 	{
 		TElement<T> *b = pFirst;
-		T tmp = b->GetData();
+		T tmp = pFirst->TElement<T>::GetData();
+		pFirst = pFirst->TElement<T>::GetNext();
+		delete[]b;
+		pos--;
 		return tmp;
 	}
 }
