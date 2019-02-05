@@ -60,6 +60,17 @@ TEST(TStackUsingList, cannot_put_in_full_stack)
 	ASSERT_ANY_THROW(stack.Put(5));
 }
 
+TEST(TStackUsingList, can_del)
+{
+	TStackUsingList<int> stack(3);
+
+	stack.Put(1);
+	stack.Put(2);
+	stack.Put(3);
+
+	ASSERT_NO_THROW(stack.Del());
+}
+
 TEST(TStackUsingList, can_get)
 {
 	TStackUsingList<int> stack(3);
@@ -68,7 +79,7 @@ TEST(TStackUsingList, can_get)
 	stack.Put(2);
 	stack.Put(3);
 
-	ASSERT_NO_THROW(stack.Get());
+	EXPECT_EQ(3, stack.Get());
 }
 
 TEST(TStackUsingList, cannot_get_from_empty_stack)
