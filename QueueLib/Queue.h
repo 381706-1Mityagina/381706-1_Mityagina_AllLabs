@@ -55,7 +55,7 @@ if (IsEmpty())
  throw TException("Queue is empty.");
 else 
 {
- T temporary = TStack<T>::mas[size];
+ T temporary = TStack<T>::mas[TStack<T>::size];
  /*TStack<T>::top = (TStack<T>::top + 1) % TStack<T>::size;
  Count--;*/
  Start = (Start + 1) % TStack<T>::size;
