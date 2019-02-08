@@ -253,14 +253,12 @@ double GettingRez(TQueue<char> queue)
 	TStack <double> St(queue.GetSize());
 	if (IsOperation(queue.GetButDontDelQ()))
 		throw TException("Shouldnt be here. Queue is uncurr.");
-	int a = 0, dit = 0;
+	
 	while (!queue.IsEmpty())
 	{
-		a++;
 		char A = queue.Get();
 		if (A == '[')
 		{
-			dit++;
 			A = queue.Get();
 			double temporary = atof(&A);
 			while (!queue.IsEmpty() && queue.GetButDontDelQ() != ']')
@@ -283,8 +281,7 @@ double GettingRez(TQueue<char> queue)
 		}
 		else
 			throw TException("Shouldnt be here .-.");
-		if (dit != 2 && a == 2)
-			throw TException("Shouldnt be here. Queue is uncurr.");
+
 	}
 	r = St.Get();
 	if (!St.IsEmpty())
