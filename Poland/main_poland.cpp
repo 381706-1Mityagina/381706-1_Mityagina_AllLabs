@@ -8,11 +8,12 @@ int main()
 {
 		cout << "\n\t<<< An example of using reverse polish notation will be implemented here >>>" << endl;
 		
-		TString Example = "((44-25)*17+9)";
+		char a[] = "(44-25)*17+9"; 
+	TString Example(a);
 		cout << "\t\t";
 		Example.Print();
 	
-		TQueue<char> B(ToPolish(Example));
+		TQueue<char> B;
 		B = ToPolish(Example);
 		B.Show();
 		cout << GettingRez(B) << "\n";
