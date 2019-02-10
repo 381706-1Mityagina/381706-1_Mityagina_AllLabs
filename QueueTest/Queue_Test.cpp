@@ -82,3 +82,17 @@ TEST(TQueue, can_check_if_queue_is_full)
 	EXPECT_EQ(1, Q.IsFull());
 }
 //------------------------------------------------------------------------
+TEST(TQueue, can_get_in_the_right_order)
+{
+  TQueue<int> queue(4);
+	
+  queue.Put(1);
+  queue.Put(2);
+  queue.Put(3);
+  queue.Put(5);
+	
+  ASSERT_EQ(queue.Get(), 1);
+  ASSERT_EQ(queue.Get(), 2);
+  ASSERT_EQ(queue.Get(), 3);
+  ASSERT_EQ(queue.Get(), 3);
+}
