@@ -94,5 +94,5 @@ TEST(TQueue, can_get_in_the_right_order)
   ASSERT_EQ(queue.Get(), 1);
   ASSERT_EQ(queue.Get(), 2);
   ASSERT_EQ(queue.Get(), 3);
-  ASSERT_EQ(queue.Get(), 3);
+  ASSERT_EQ(queue.Get(), 5);
 }
