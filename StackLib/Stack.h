@@ -21,6 +21,7 @@ public:
   bool IsFull(); // проверка на полноту
   bool IsEmpty(); // проверка на пустоту
   void PrintStack(); // вывод стека на экран
+  virtual ~TStack(); // деструктор
 
   int operator!=(const TStack<T>& stack) const; // проверка на неравенство
   int operator==(const TStack<T>& stack) const; //проверка на равенство
@@ -153,3 +154,9 @@ void TStack<T>:: PrintStack()
 		cout << "\t|" << Mas[i] << "|" << endl;
 }
 //----------------------------------------------------------------------
+template<class T>
+TStack <T>::~TStack()
+{
+  top = Size = 0;
+  delete[] Mas;
+｝
