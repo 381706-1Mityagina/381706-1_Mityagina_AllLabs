@@ -19,6 +19,7 @@ public:
 
 	TArrayList(int _size = 10); // конструктор 
 	TArrayList(TArrayList<T> &A); // конструктор копирования
+	~TArrayList();
 	void PutBegin(T element); // положить в начало списка
 	void PutEnd(T element);  // положить в конец списка 
 	T GetBegin(); // забрать из начала списка 
@@ -26,6 +27,14 @@ public:
 	bool IsFull(); // проверка на полноту
 	bool IsEmpty(); // проверка на пустоту
 };
+//-----------------------------------------------------------------------------
+template<class T>
+inline TArrayList<T>::~TArrayList()
+{
+  delete[] mas;
+  delete[] nextIndex;
+  delete[] predIndex;
+}
 //-----------------------------------------------------------------------------
 template <class T>
 TArrayList<T>::TArrayList(int _size) : FE(_size)
