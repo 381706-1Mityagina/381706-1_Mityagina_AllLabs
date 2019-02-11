@@ -22,6 +22,7 @@ public:
 	~TArrayList();
 	void PutBegin(T element); // положить в начало списка
 	void PutEnd(T element);  // положить в конец списка 
+	void PutElInN(T element, int n); // положить значение element в n-ую позицию
 	T GetBegin(); // забрать из начала списка 
 	T GetEnd();  // забрать из конца списка 
 	bool IsFull(); // проверка на полноту
@@ -29,11 +30,35 @@ public:
 };
 //-----------------------------------------------------------------------------
 template<class T>
+void TArrayList<T>::PutElInN(T element,int n)
+{
+  if (n < 1 || n > count - 1)
+    throw TException("Wrong index");
+  if (IsFull())
+    throw TException("List is full.-.");
+  
+  int f_index = FE.Get(), a = begin, b = nextIndex[begin];
+  mas[f_index] = element;
+	
+  for (int i = 0; i < n - 1; i++)
+  {
+    a = b;
+    b = nextIndex[b];
+  }
+  nextIndex[f_index] = b;
+  nextIndex[a] = f_index;
+  prevIndex[f_index] = a;
+  prevIndex[b] = f_index;
+	
+  count++;
+}
+//-----------------------------------------------------------------------------
+template<class T>
 inline TArrayList<T>::~TArrayList()
 {
   delete[] mas;
   delete[] nextIndex;
-  delete[] predIndex;
+  delete[] prevIndex;
 }
 //-----------------------------------------------------------------------------
 template <class T>
