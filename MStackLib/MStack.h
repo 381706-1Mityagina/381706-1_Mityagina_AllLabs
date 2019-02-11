@@ -270,8 +270,6 @@ TMStack<T>:: ~TMStack()
 {
 if(mas!=NULL)
   delete[]mas;
-if(newS!=NULL)
-  delete[]newS;
 size = 0;
 n = 0;
 }
