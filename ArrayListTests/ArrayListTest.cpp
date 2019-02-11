@@ -101,9 +101,9 @@ TEST(TArrayList, throws_when_pull_begin_or_end_elem_in_empty_list)
 
 TEST(TArrayList, can_put_in_the_position_n)
 {
-	TArrayList <int> List(3);
+	TArrayList <int> List(5);
 	
-	List.PutElInN(1, 1);
+	List.PutElInN(1, 3);
 	
-	ASSERT_EQ(1, List.GetElFromN(1));
+	ASSERT_EQ(1, List.GetElFromN(3));
 }
