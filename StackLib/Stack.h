@@ -157,6 +157,7 @@ void TStack<T>:: PrintStack()
 template<class T>
 TStack <T>::~TStack()
 {
-  top = Size = 0;
+  Top = 0;
+  Size = 0;
   delete[] Mas;
-｝
+}
