@@ -271,5 +271,5 @@ TMStack<T>:: ~TMStack()
 size = 0;
 n = 0;
 delete[]mas;
-delete[]newS;
+newS.TStack<T>::~TStack();
 }
