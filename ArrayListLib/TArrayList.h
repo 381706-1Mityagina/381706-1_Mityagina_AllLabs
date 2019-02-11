@@ -71,8 +71,9 @@ T TArrayList<T>::GetElFromN(int n)
     i = nextIndex[i];
   T t = mas[i]; 
 	
-  nextIndex[prevIndex[i]] = nextIndex[i];
-  //prevIndex[nextIndex[i]] = prevIndex[i]; do i need this? yeah, but let's checkcheck
+  nextIndex[prevIndex[i]] = nextIndex[i]; 
+	
+  prevIndex[nextIndex[i]] = prevIndex[i]; 
 
   FE.Put(i);
   count--;
