@@ -98,3 +98,12 @@ TEST(TArrayList, throws_when_pull_begin_or_end_elem_in_empty_list)
 	ASSERT_ANY_THROW(List.GetBegin());
 	ASSERT_ANY_THROW(List.GetEnd());
 }
+
+TEST(TArrayList, can_put_in_the_position_n)
+{
+	TArrayList <int> List(3);
+	
+	List.PutElInN(1, 0);
+	
+	ASSERT_EQ(1, List.GetBegin());
+}
