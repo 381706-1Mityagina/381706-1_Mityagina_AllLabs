@@ -16,7 +16,8 @@ public:
   TStack(int n = 0);
   TStack(TStack<T> &S);
   T Get();
-	void PrintStack();
+  virtual ~TStack();
+  void PrintStack();
   void Put(T A);
   bool IsFull();
   bool IsEmpty();
