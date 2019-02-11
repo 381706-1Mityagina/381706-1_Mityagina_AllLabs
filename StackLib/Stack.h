@@ -108,22 +108,22 @@ bool TStack<T> ::IsEmpty()
 template <class T>
 TStack<T>& TStack<T> ::operator=(const TStack<T>& stack) 
 {
-		if (this != &stack)
-		{
-			if (Top != stack.Top) 
-			{
-				Top = stack.Top;
-				delete[] Mas;
-				Mas = new T[Top];
-			}
-			Size = stack.Size;
-			for (int i = 0; i < Size; i++) 
-			{
-				Mas[i] = stack.Mas[i];
-			}
-		}
-		return *this;
+if (this != &stack)
+ {
+	if (Top != stack.Top) 
+	{
+	Top = stack.Top;
+	delete[] Mas;
+	Mas = new T[Top];
 	}
+	Size = stack.Size;
+	for (int i = 0; i < Size; i++) 
+	{
+	Mas[i] = stack.Mas[i];
+	}
+}
+return *this;
+}
 
 //----------------------------------------------------------------------
 template <class T>
