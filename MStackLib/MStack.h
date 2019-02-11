@@ -14,6 +14,7 @@ public:
 	void SetMas(int _size, T* _mas);           // задать массив 
 	void Put(T _A);                            // положить элемент  
 	T Get();                                   // получить значение элемента
+	~TNewStack();                              // деструктор
 };
 
 //--------------------------------------------------------------------------
@@ -74,6 +75,11 @@ T TNewStack<T>::Get()
 {
 	TStack<T> :: top--;
 	return TStack<T> :: mas[TStack<T> :: top];
+}
+//--------------------------------------------------------------------------
+template <class T>
+TNewStack<T>::~TNewStack() : ~TStack()
+{
 }
 //--------------------------------------------------------------------------
 //                                                                        //
@@ -266,10 +272,9 @@ void TMStack<T>::Repack(int k)
 }
 //--------------------------------------------------------------------------
 template<class T>
-TMStack<T>:: ~TMStack()
+TMStack<T>:: ~TMStack() : ~TNewStack()
 {
 size = 0;
 n = 0;
 delete[]mas;
-delete[]newS;
 }
