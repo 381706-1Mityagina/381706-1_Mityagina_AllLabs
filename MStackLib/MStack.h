@@ -94,7 +94,7 @@ protected:
 public:
 	TMStack(int _n, int _size);        // конструктор инициализации
 	TMStack(TMStack<T> &A);            // конструктор копирования
-
+        ~TMStack();                        // деструктор
 	int GetSize()                      // получить размер
 	{
 		return size; 
@@ -265,3 +265,11 @@ void TMStack<T>::Repack(int k)
 	delete[] startOldOne;
 }
 //--------------------------------------------------------------------------
+template<class T>
+TMstack<T>:: ~TMStack()
+{
+size = 0;
+n = 0;
+delete[]mas;
+delete[]newS;
+}
