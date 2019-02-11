@@ -266,7 +266,7 @@ void TMStack<T>::Repack(int k)
 }
 //--------------------------------------------------------------------------
 template<class T>
-TMstack<T>:: ~TMStack()
+TMStack<T>:: ~TMStack()
 {
 size = 0;
 n = 0;
