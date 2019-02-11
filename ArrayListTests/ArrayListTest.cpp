@@ -105,5 +105,7 @@ TEST(TArrayList, can_put_in_the_position_n)
 	
 	List.PutElInN(1, 3);
 	
-	ASSERT_EQ(1, List.GetElFromN(3));
+	ASSERT_NO_THROW(List.PutElInN(3, 4));
+	ASSERT_ANY_THROW(List.PutElInN(3, -4));
+	EXPECT_EQ(1, List.GetElFromN(3));
 }
