@@ -103,7 +103,7 @@ TEST(TArrayList, can_put_in_the_position_n)
 {
 	TArrayList <int> List(3);
 	
-	List.PutElInN(1, 0);
+	List.PutElInN(1, 1);
 	
-	ASSERT_EQ(1, List.GetBegin());
+	ASSERT_EQ(1, List.GetEnd());
 }
