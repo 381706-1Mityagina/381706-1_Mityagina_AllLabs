@@ -268,8 +268,8 @@ void TMStack<T>::Repack(int k)
 template<class T>
 TMStack<T>:: ~TMStack()
 {
-if(mas!=NULL)
-  delete[]mas;
 size = 0;
 n = 0;
+delete[]mas;
+delete[]newS;
 }
