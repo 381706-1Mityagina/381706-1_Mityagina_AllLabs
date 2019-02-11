@@ -33,11 +33,18 @@ public:
 template<class T>
 void TArrayList<T>::PutElInN(T element,int n)
 {
-  if (n < 1 || n > count - 1)
-    throw TException("Wrong index");
+  //if (n < 1 || n > count - 1)
+  //   throw TException("Wrong index");
+  if (n < 0 || n > count)
+   throw TException("Wrong index");
   if (IsFull())
     throw TException("List is full.-.");
   
+  if (n == 0)
+    PutBegin(element);
+  if (n == count)
+    PutEnd(element);
+   
   int f_index = FE.Get(), a = begin, b = nextIndex[begin];
   mas[f_index] = element;
 	
@@ -60,11 +67,17 @@ void TArrayList<T>::PutElInN(T element,int n)
 template<class T>
 T TArrayList<T>::GetElFromN(int n)
 {
-  if (n < 1 || n > count - 1)
-    throw TException("Wrong index");
+  if (n < 0 || n > count)
+   throw TException("Wrong index");
   if (IsFull())
     throw TException("List is full.-.");
-	
+  
+  if (n == 0)
+    return GetBegin();
+  if (n == count)
+    return GetEnd();
+else
+{
   int i = begin;
 	
   for (int j = 0; j < n; j++) // проходим по списку
@@ -79,6 +92,7 @@ T TArrayList<T>::GetElFromN(int n)
   count--;
 	
   return t;
+}
 }
 //-----------------------------------------------------------------------------
 template<class T>
