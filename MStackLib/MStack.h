@@ -78,7 +78,7 @@ T TNewStack<T>::Get()
 }
 //--------------------------------------------------------------------------
 template <class T>
-TNewStack<T>::~TNewStack() : ~TStack()
+TNewStack<T>::~TNewStack() : ~TStack<T>()
 {
 }
 //--------------------------------------------------------------------------
@@ -272,7 +272,7 @@ void TMStack<T>::Repack(int k)
 }
 //--------------------------------------------------------------------------
 template<class T>
-TMStack<T>:: ~TMStack() : ~TNewStack()
+TMStack<T>:: ~TMStack() : ~TNewStack<T>()
 {
 size = 0;
 n = 0;
