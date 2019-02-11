@@ -67,15 +67,17 @@ void TArrayList<T>::PutElInN(T element,int n)
 template<class T>
 T TArrayList<T>::GetElFromN(int n)
 {
-  if (n < 0 || n > count)
-   throw TException("Wrong index");
+  if (n < 1 || n > count - 1)
+     throw TException("Wrong index");
+  
   if (IsFull())
     throw TException("List is full.-.");
   
-  if (n == 0)
+/*  if (n == 0)
     return GetBegin();
   if (n == count)
     return GetEnd();
+*/
 else
 {
   int i = begin;
