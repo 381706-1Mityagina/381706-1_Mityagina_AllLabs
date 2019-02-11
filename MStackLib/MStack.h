@@ -275,9 +275,9 @@ template<class T>
 TMStack<T>:: ~TMStack() 
 {
 size = 0;
-for (int i = 0; i < n; ++i)
-    delete[] newS[i];
-  delete[] newS;
+//for (int i = 0; i < n; ++i)
+//    delete[] newS[i];
+//  delete[] newS;
 n = 0;
 mas = NULL;
 }
