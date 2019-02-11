@@ -150,3 +150,10 @@ void TStack<T>:: PrintStack()
 		cout << "\t|" << mas[i] << "|" << endl;
 }
 //----------------------------------------------------------------------
+template<class T>
+TStack <T>::~TStack()
+{
+  top = 0;
+  size = 0;
+  delete[] mas;
+}
