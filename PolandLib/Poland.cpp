@@ -4,31 +4,31 @@
 //-------------------------------------------------------------
 TString::TString()
 {
-	mas = 0; size = 0;
+  mas = 0; size = 0;
 }
 //-------------------------------------------------------------
 TString::TString(TString &A)
 {
-	size = A.size;
-	if (size != 0)
-	{
-		mas = new char[size];
-		//mas[0] = '('; mas[size - 1] = ')';
-		for (int i = 0; i < size; i++)
-			mas[i] = A.mas[i];
-	}
-	else mas = 0;
-	/*size = A.size + 2;
-	if (size != 0)
-	{
-	mas = new char[size];
+  size = A.size;
+  if (size != 0)
+   {
+    mas = new char[size];
+    //mas[0] = '('; mas[size - 1] = ')';
+    for (int i = 0; i < size; i++)
+     mas[i] = A.mas[i];
+   }
+  else mas = 0;
+  /*size = A.size + 2;
+  if (size != 0)
+  {
+  mas = new char[size];
 
-	for (int i = 1; i < size - 2; i++)
-	mas[i] = A.mas[i];
-	A.mas[A.size - 2] = ')';
-	A.mas[A.size - 1] = '\0';
-	}
-	else mas = 0;*/
+  for (int i = 1; i < size - 2; i++)
+  mas[i] = A.mas[i];	
+  A.mas[A.size - 2] = ')';
+  A.mas[A.size- 1] = '\0';
+  }
+  else mas = 0;*/
 }
 //-------------------------------------------------------------
 TString::TString(char *str)
@@ -288,7 +288,7 @@ TQueue<char> ToPolish(TString str)
 				i++;
 			}
 			Qu.Put(str[i]);
-			Qu.Put('}');
+	 		Qu.Put('}');
 		}
 
 		else if (St.IsEmpty() && IsOperation(str[i]))
@@ -318,7 +318,6 @@ TQueue<char> ToPolish(TString str)
 				//St.Put(str[i + 1]);
 				cl_sk++;
 			}
-
 			else
 			{
 				int pr = GetPriority(str[i]);
