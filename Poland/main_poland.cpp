@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	try
+	//try
 	{
 		cout << "\n\t<<< An example of using reverse polish notation will be implemented here >>>" << endl;
 
@@ -30,10 +30,10 @@ int main()
 		//cout << " = " << GettingRez(C) << "\n\n";
 	}
 
-	catch (TException exc)
-	{
-		exc.Show();
-	}
+	//catch (TException exc)
+	//{
+	//	exc.Show();
+	//}
 	
 	return 0;
 }
