@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "..//PolandLib/Poland.c"
+#include "..//PolandLib/Poland.cpp"
 
 using namespace std;
 
