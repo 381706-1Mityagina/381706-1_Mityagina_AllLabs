@@ -35,7 +35,7 @@ TEST(ReversePolishNotation, can_check_if_is_an_operation_false_check)
 
 TEST(ReversePolishNotation, can_turn_into_RevPolNot)
 {
-	char *a = "(-19+8*7+98)";
+	char a[] = "(-19+8*7+98)";
 	TString example(a);
 	TQueue<char> B;
 
