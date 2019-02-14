@@ -16,14 +16,23 @@ public:
   TStack(int n = 0);
   TStack(TStack<T> &S);
   T Get();
-	void PrintStack();
+  ~TStack();
+  void PrintStack();
   void Put(T A);
   bool IsFull();
   bool IsEmpty();
   int operator!=(const TStack<T>& stack) const;
   int operator==(const TStack<T>& stack) const;
-	TStack& operator=(const TStack<T>& stack);
+  TStack& operator=(const TStack<T>& stack);
 };
+//----------------------------------------------------------------------
+template <class T>
+TStack <T> ::~TStack()
+{
+  top = 0;
+  size = 0;
+  delete[]mas;
+}
 //----------------------------------------------------------------------
 template <class T>
 TStack <T> ::TStack(int n)
