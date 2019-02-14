@@ -17,7 +17,7 @@ int main()
 		cout << "\t" << example << "\n\n";
 		B = ToPolish(example); 
 
-		cout << "\t"; B.Show();
+		cout << "\t"; B.ShowQ();
 		cout << " = " << GettingRez(B) << "\n";
 
 		cout << "\n\t\t||| An example, written by you |||" << endl;
@@ -26,7 +26,7 @@ int main()
 		cout << "\t"; cin >> example2;
 		cout << "\n";
 		C = ToPolish(example2);
-		cout << "\t"; C.Show();
+		cout << "\t"; C.ShowQ();
 		cout << " = " << GettingRez(C) << "\n\n";
 	}
 
