@@ -33,10 +33,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/QueueLib)
 add_subdirectory(QueueLib)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StackLib)
-add_subdirectory(StackLib StackLib) 
+add_subdirectory(StackLib) 
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/PolandLib)
-add_subdirectory(PolandLib PolandLib) 
-add_subdirectory(Poland Poland) 
-add_subdirectory(PolandTest PolandTest) 
+add_subdirectory(PolandLib) 
+add_subdirectory(Poland) 
+add_subdirectory(PolandTest) 
 
