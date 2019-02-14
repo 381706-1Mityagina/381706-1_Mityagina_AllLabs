@@ -78,11 +78,13 @@ void TStack<T> ::Put(T A)
 template <class T>
 T TStack<T> ::Get()
 {
-	if (IsEmpty())
-		throw TException("Stack is empty");
-	T t = mas[top];
-	top--;
-	return t;
+	 if (IsEmpty())
+	throw TException("Stack is empty");
+  else
+  {
+	Top--;
+	return Mas[Top];
+  }
 }
 //----------------------------------------------------------------------
 template <class T>
@@ -90,7 +92,7 @@ T TStack<T> ::GetButDontDel()
 {
 	if (IsEmpty())
 		throw "Stack is empty.-.";
-	return mas[top];
+	return mas[top - 1];
 }
 //----------------------------------------------------------------------
 template <class T>
