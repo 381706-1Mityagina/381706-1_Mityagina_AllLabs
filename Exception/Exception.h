@@ -9,10 +9,9 @@ private:
 	std::string str;
 public:
 	TException(std::string _str) : str(_str) {}
-	void Show();
-};
-
-void TException::Show() 
-{
+	
+	void Show()
+	{
 	std::cout << "\nWarning! \nMessage: " << str << std::endl;
-}
+        }
+};
