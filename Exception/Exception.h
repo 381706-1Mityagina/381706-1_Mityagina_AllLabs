@@ -8,11 +8,9 @@ class TException
 private:
 	std::string str;
 public:
-	TException(std::string _str);
+	TException(std::string _str) : str(_str) {}
 	void Show();
 };
-
-TException::TException(std::string _str) : str(_str) {}
 
 void TException::Show() 
 {
