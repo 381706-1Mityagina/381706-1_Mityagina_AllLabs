@@ -82,8 +82,8 @@ T TStack<T> ::Get()
 	throw TException("Stack is empty");
   else
   {
-	Top--;
-	return Mas[Top];
+	top--;
+	return mas[top];
   }
 }
 //----------------------------------------------------------------------
