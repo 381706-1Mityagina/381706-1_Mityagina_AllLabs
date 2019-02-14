@@ -11,7 +11,7 @@ int main()
 		cout << "\n\t<<< An example of using reverse polish notation will be implemented here >>>" << endl;
 
 		cout << "\n\t\t||| An example, written by me |||\n" << endl;
-		char *a = "(-1*7+9/3)";
+		char a[] = "(-1*7+9/3)";
 		TString example(a), example2;
 		TQueue<char> B, C;
 		cout << "\t" << example << "\n\n";
