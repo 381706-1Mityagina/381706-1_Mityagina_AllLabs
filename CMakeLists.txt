@@ -26,6 +26,9 @@ file(GLOB srcs "*.cpp")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest)
 add_subdirectory(gtest)
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Exception)
+add_subdirectory(Exception)
+
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/QueueLib)
 add_subdirectory(QueueLib)
 
