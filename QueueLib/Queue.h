@@ -12,7 +12,7 @@ public:
   TQueue(int N = 0); // конструктор с параметром
   TQueue(TQueue <T> &Q); // конструктор копирования
   T Get(); // взять элемент
-	void Show();
+	void ShowQ();
 	T GetButDontDelQ();
   void Put(T A); // положить в конец очереди
   bool IsFull(); // проверка на полноту
@@ -71,7 +71,7 @@ T TQueue<T>::GetButDontDelQ()
 }
 //-----------------------------------------------------------------
 template <class T>
-void TQueue<T>::Show()
+void TQueue<T>::ShowQ()
 {
 	int t = TStack<T>::top;
 	int s = TStack<T>::size;
