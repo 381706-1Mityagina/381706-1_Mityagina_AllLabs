@@ -9,6 +9,6 @@ script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
   - ./Poland/Poland
-  - cd ./PolandTest
+  - ./PolandTest/PolandTest
 notifications:
   email: false
