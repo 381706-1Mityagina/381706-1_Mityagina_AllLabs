@@ -8,8 +8,6 @@ before_script:
 script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
-  
   - ./StackTest/StackTest
- 
 notifications:
   email: false
