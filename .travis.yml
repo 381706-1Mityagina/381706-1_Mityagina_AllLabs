@@ -8,7 +8,7 @@ before_script:
 script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
-  - ./StackListTest/StackListTest
-  - ./StackList/StackList
+  - ./MStack/MStack
+  - ./mStackTest/mStackTest
 notifications:
   email: false
