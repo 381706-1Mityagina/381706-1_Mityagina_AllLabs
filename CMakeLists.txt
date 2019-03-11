@@ -5,17 +5,17 @@ project(${PROJECT_NAME}) # Название проекта
 
 set(Exception Exception)
 
-set(Vector Vector) #Переменная с именем библиотеки
-set(VectorLib VectorLib)
-set(VectorTest VectorTest)
+##set(Vector Vector) #Переменная с именем библиотеки
+##set(VectorLib VectorLib)
+##set(VectorTest VectorTest)
 
-set(Matrix Matrix)
-set(MatrixLib MatrixLib)
-set(MatrixTest MatrixTest)
+##set(Matrix Matrix)
+##set(MatrixLib MatrixLib)
+##set(MatrixTest MatrixTest)
 
-set(Stack Stack)
-set(StackLib StackLib)
-set(StackTest StackTest)
+##set(Stack Stack)
+##set(StackLib StackLib)
+##set(StackTest StackTest)
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE) #Создается переменная CMAKE_CONFIGURATION_TYPES со значением "Debug;Release" и меткой/разделом Configs, переменная сохраниется в специальном файле доступном из всех файлов,
 if(NOT CMAKE_BUILD_TYPE) # проверка имеющихся у компилятора вариантов сборки
@@ -29,23 +29,23 @@ file(GLOB srcs "*.cpp") #Добавляем в переменную srcs все 
 #add_executable(${PROJECT_NAME} ${srcs} ${hdrs}) #Создаем проект с именем из переменной ${PROJECT_NAME}, в него добавляются файлы из переменных ${srcs} и ${hdrs}
 
 #${CMAKE_CURRENT_SOURCE_DIR}
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest)
-add_subdirectory(gtest)
+##include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest)
+##add_subdirectory(gtest)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Exception)
-add_subdirectory(Exception)
+##include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Exception)
+##add_subdirectory(Exception)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/VectorLib)
-add_subdirectory(Vector)
-add_subdirectory(VectorLib)
-add_subdirectory(VectorTest)
+##include_directories(${CMAKE_CURRENT_SOURCE_DIR}/VectorLib)
+##add_subdirectory(Vector)
+##add_subdirectory(VectorLib)
+##add_subdirectory(VectorTest)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/MatrixLib)
-add_subdirectory(Matrix)
-add_subdirectory(MatrixLib)
-add_subdirectory(MatrixTest)
+##include_directories(${CMAKE_CURRENT_SOURCE_DIR}/MatrixLib)
+##add_subdirectory(Matrix)
+##add_subdirectory(MatrixLib)
+##add_subdirectory(MatrixTest)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StackLib)
-add_subdirectory(Stack)
-add_subdirectory(StackLib)
-add_subdirectory(StackTest)
+##include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StackLib)
+##add_subdirectory(Stack)
+##add_subdirectory(StackLib)
+##add_subdirectory(StackTest)
