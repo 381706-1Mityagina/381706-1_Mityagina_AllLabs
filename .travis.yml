@@ -10,5 +10,7 @@ script:
   - make -j
   - ./StackTest/StackTest
   - ./QueueTest/QueueTest
+  - ./PolinomialTest/PolinomialTest
+  - ./MonomialTest/MonomialTest
 notifications:
   email: false
