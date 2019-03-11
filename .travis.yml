@@ -10,6 +10,5 @@ script:
   - make -j
   - ./StackTest/StackTest
   - ./QueueTest/QueueTest
-  - ./Queue/Queue
 notifications:
   email: false
