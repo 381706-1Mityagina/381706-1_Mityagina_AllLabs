@@ -1,60 +1,61 @@
 #pragma once
-#include <iostream>
-
-using namespace std;
-
+ 
 template <class T>
-class TElement
+class TElement 
 {
-protected:
-	T data;
-	TElement<T>* next;
-
 public:
-	TElement<T>(T _data = 0, TElement<T>* n = 0);
-	TElement<T>(TElement<T>& A);
+	T data; 
+	TElement <T>* next;
+	
+	TElement(T _data = 0, TElement <T>* _next = 0);
+	TElement(TElement<T> &Elem);
+	virtual ~TElement();
 
+	TElement* GetNext();
 	T GetData();
-	TElement<T>* GetNext();
-	void SetData(T _data);
-	void SetNext(TElement<T>* n);
+	void Set(T Elem);
+	void SetNext(TElement <T>* n);
 };
-//-------------------------------------------------------------------------------------------------
+
+//------------------------------------------------------------
 template <class T>
-TElement<T>::TElement(T _data, TElement<T>* n)
+TElement<T>::TElement(T _data, TElement<T>* _next)
 {
 	data = _data;
-	next = n;
+	next = _next;
 }
-//-------------------------------------------------------------------------------------------------
+//------------------------------------------------------------
 template <class T>
-TElement<T>::TElement(TElement<T>& A)
+TElement<T>::TElement(TElement<T> &Elem)
 {
-	data = A.data;
-	next = A.next;
+	data = Elem.data;
+	next = Elem.next;
 }
-//-------------------------------------------------------------------------------------------------
+//------------------------------------------------------------
+template <class T>
+TElement<T>::~TElement() {}
+//------------------------------------------------------------
 template <class T>
 T TElement<T>::GetData()
 {
 	return data;
 }
-//-------------------------------------------------------------------------------------------------
+//------------------------------------------------------------
 template <class T>
 TElement<T>* TElement<T>::GetNext()
 {
 	return next;
 }
-//-------------------------------------------------------------------------------------------------
+//------------------------------------------------------------
 template <class T>
-void TElement<T>::SetData(T _data)
+void TElement<T>::Set(T Elem)
 {
-	data = _data;
+	data = Elem;
 }
-//-------------------------------------------------------------------------------------------------
+//------------------------------------------------------------
 template <class T>
-void TElement<T>::SetNext(TElement<T>* n)
+void TElement<T>::SetNext(TElement<T>* _n)
 {
-	next = n;
+	next = _n;
 }
-//------------------------------------------------------------------------------------------------
+//------------------------------------------------------------
