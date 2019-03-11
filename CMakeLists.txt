@@ -72,6 +72,7 @@ add_subdirectory(Exception)
 ##add_subdirectory(MatrixTest)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StackLib)
+add_subdirectory(gtest)
 add_subdirectory(Stack)
 add_subdirectory(StackLib)
 add_subdirectory(StackTest)
