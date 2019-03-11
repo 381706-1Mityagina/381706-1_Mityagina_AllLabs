@@ -37,8 +37,8 @@ void TQueue<T>::Put(T A)
     throw TException("Queue is full.");
   else
   {
-    TStack<T>::mas[Start] = A;
-    Start = (Start + 1) % TStack<T>::size;
+    TStack<T>::Mas[Start] = A;
+    Start = (Start + 1) % TStack<T>::Size;
     Count++;
   }
 }
@@ -50,8 +50,8 @@ T TQueue<T>::Get()
     throw TException("Queue is empty.");
   else
   {
-    T temporary = TStack<T>::mas[TStack<T>::top];
-    TStack<T>::top = (TStack<T>::top + 1) % TStack<T>::size;
+    T temporary = TStack<T>::Mas[TStack<T>::Top];
+    TStack<T>::Top = (TStack<T>::Top + 1) % TStack<T>::Size;
     Count--;
 
     return temporary;
@@ -61,7 +61,7 @@ T TQueue<T>::Get()
 template <class T>
 bool TQueue<T>::IsFull()
 {
-if (Count == TStack<T>::size)
+if (Count == TStack<T>::Size)
  return true;
 else
  return false;
