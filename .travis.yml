@@ -8,8 +8,8 @@ before_script:
 script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
-  - ./StackTest/StackTest
-  - ./QueueTest/QueueTest
+  ##- ./StackTest/StackTest
+  ##- ./QueueTest/QueueTest
   - ./PolinomialTest/PolinomialTest
   - ./MonomialTest/MonomialTest
 notifications:
