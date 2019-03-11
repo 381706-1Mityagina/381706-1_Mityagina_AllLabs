@@ -9,6 +9,5 @@ script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
   - ./ListTests/ListTests
-  - ./List/List
 notifications:
   email: false
