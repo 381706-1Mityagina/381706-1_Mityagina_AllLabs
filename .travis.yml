@@ -9,5 +9,7 @@ script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
   - ./StackTest/StackTest
+  - ./QueueTest/QueueTest
+  - ./Queue/Queue
 notifications:
   email: false
