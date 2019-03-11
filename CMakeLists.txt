@@ -9,6 +9,10 @@ set(Stack Stack)
 set(StackLib StackLib)
 set(StackTest StackTest)
 
+set(Queue Queue)
+set(QueueLib QueueLib)
+set(QueueTest QueueTest)
+
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE) #Создается переменная CMAKE_CONFIGURATION_TYPES со значением "Debug;Release" и меткой/разделом Configs, переменная сохраниется в специальном файле доступном из всех файлов,
 if(NOT CMAKE_BUILD_TYPE) # проверка имеющихся у компилятора вариантов сборки
   set(CMAKE_BUILD_TYPE Release) #Если нет то устанавливаем Release
@@ -25,3 +29,8 @@ add_subdirectory(gtest)
 add_subdirectory(Stack)
 add_subdirectory(StackLib)
 add_subdirectory(StackTest)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/QueueLib)
+add_subdirectory(Queue)
+add_subdirectory(QueueLib)
+add_subdirectory(QueueTest)
