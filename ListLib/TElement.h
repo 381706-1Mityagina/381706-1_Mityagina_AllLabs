@@ -1,12 +1,15 @@
 #pragma once
- 
+#include <iostream>
+
+using namespace std;
+
 template <class T>
-class TElement 
+class TElement
 {
 public:
-	T data; 
+	T data;
 	TElement <T>* next;
-	
+
 	TElement(T _data = 0, TElement <T>* _next = 0);
 	TElement(TElement<T> &Elem);
 	virtual ~TElement();
@@ -16,7 +19,6 @@ public:
 	void Set(T Elem);
 	void SetNext(TElement <T>* n);
 };
-
 //------------------------------------------------------------
 template <class T>
 TElement<T>::TElement(T _data, TElement<T>* _next)
