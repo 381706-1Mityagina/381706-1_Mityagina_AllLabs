@@ -2,6 +2,8 @@
 #include <iostream>
 #include "TElement.h"
 
+#include "../Exception/Exception.h"
+
 using namespace std;
 template <class T>
 class TList
@@ -18,15 +20,17 @@ public:
 
 	T viewData() { return pCurr->data; } // получить элемент
 	T* viewPtr() { return pCurr; }
+	T GetFirst();
 
 	void delFirst();   // удалить из начала
 	void delCurrent(); // удалить текущий
 
-	// проверки 
-	bool isEnd() { return pCurr == pStop; } 
+										 // проверки 
+	bool isEnd() { return pCurr == pStop; }
 	bool isStart() { return pCurr == pFirst; }
 	bool isEmpty() { return pFirst == NULL; }
 	bool isFull();
+	void Show();
 
 	T operator[](int m);
 
@@ -65,7 +69,7 @@ void TList<T>::AddFirst(T a)
 }
 //-------------------------------------------------------------------------------
 template <class T>
-void TList<T>::AddCurrent(T a) 
+void TList<T>::AddCurrent(T a)
 {
 	if (pFirst == pCurr) AddFirst(a);
 	else
@@ -80,10 +84,10 @@ void TList<T>::AddCurrent(T a)
 }
 //-------------------------------------------------------------------------------
 template <class T>
-void TList<T>::AddLast(T a) 
+void TList<T>::AddLast(T a)
 {
 	if (pFirst == NULL) AddFirst(a);
-	else 
+	else
 	{
 		TElement<T> *tmp = new TElement<T>;
 		tmp->data = a;
@@ -95,7 +99,7 @@ void TList<T>::AddLast(T a)
 }
 //-------------------------------------------------------------------------------
 template <class T>
-void TList<T>::delFirst() 
+void TList<T>::delFirst()
 {
 	if (size == 1)
 	{
@@ -113,7 +117,7 @@ void TList<T>::delFirst()
 }
 //-------------------------------------------------------------------------------
 template <class T>
-void TList<T>::delCurrent() 
+void TList<T>::delCurrent()
 {
 	if (pCurr == pFirst)
 		delFirst();
@@ -127,14 +131,14 @@ void TList<T>::delCurrent()
 }
 //-------------------------------------------------------------------------------
 template <class T>
-void TList<T>::reset() 
+void TList<T>::reset()
 {
 	pPrev = pCurr = pFirst;
 	pos = 0;
 }
 //-------------------------------------------------------------------------------
 template <class T>
-void TList<T>::goNext() 
+void TList<T>::goNext()
 {
 	pPrev = pCurr;
 	pCurr = pCurr->next;
@@ -142,9 +146,9 @@ void TList<T>::goNext()
 }
 //-------------------------------------------------------------------------------
 template <class T>
-T TList<T>::operator[](int m) 
+T TList<T>::operator[](int m)
 {
-	for (reset(); !isEnd(); goNext()) 
+	for (reset(); !isEnd(); goNext())
 	{
 		if (pos == m - 1)
 			return pCurr->data;
@@ -152,7 +156,7 @@ T TList<T>::operator[](int m)
 }
 //-------------------------------------------------------------------------------
 template <class T>
-TList<T>::~TList() 
+TList<T>::~TList()
 {
 	int listsize = size;
 	for (int i = 0; i < listsize; i++)
@@ -180,4 +184,34 @@ bool TList<T>::isFull()
 	//return true; 
 	//do i really need this line? 
 }
+//----------------------------------------------------------
+template <class T>
+void TList<T>::Show()
+{
+	if (pFirst == 0)
+		throw TException("Nothing to show. List is empty");
+	TElement<T> *b = pFirst;
+	while (b -> GetNext() != 0)
+	{
+		cout << b -> GetData() << " ";
+		b = b -> GetNext();
+	}
+	cout << b -> GetData() << " ";
+}
 //-----------------------------------------------------------
+template <class T>
+T TList<T>::GetFirst()
+{
+	if (isEmpty())
+		throw TException("Stack is empty");
+	else
+	{
+		TElement<T> *b = pFirst;
+		T tmp = pFirst->GetData();
+		pFirst = pFirst->GetNext();
+		//delete[]b;
+		size--;
+		return tmp;
+	}
+}
+//-------------------------------------------------------------------------------
