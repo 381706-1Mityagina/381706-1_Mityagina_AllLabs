@@ -1,14 +1,17 @@
-cmake_minimum_required(VERSION 2.8) #Проверка версии CMake.
+cmake_minimum_required(VERSION 2.8) 
 
-set(PROJECT_NAME AllLabs) #Создаем обычную локальную переменную с именем проекта
-project(${PROJECT_NAME}) # Название проекта
+set(PROJECT_NAME AllLabs) 
+project(${PROJECT_NAME}) 
 
-set (MStack MStack)
-set(MStackLib MStackLib) #Переменная с именем библиотеки
-set (mStackTest mStackTest)
+set (ArrayList ArrayList)
+set(ArrayListLib ArrayListLib) 
+set (ArrayListTests ArrayListTests)
 
 set(Exception Exception)
-set(stackL stackL)
+
+set(QueueLib QueueLib)
+
+set(StackLib StackLib)
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)  
 if(NOT CMAKE_BUILD_TYPE) 
@@ -23,13 +26,17 @@ file(GLOB srcs "*.cpp")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest)
 add_subdirectory(gtest)
 
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ArrayListLib)
+add_subdirectory(ArrayList)
+add_subdirectory(ArrayListLib)
+add_subdirectory(ArrayListTests)
+
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Exception)
 add_subdirectory(Exception)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/MStackLib)
-add_subdirectory(MStack)
-add_subdirectory(MStackLib)
-add_subdirectory(mStackTest)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/QueueLib)
+add_subdirectory(QueueLib)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/stackL)
-add_subdirectory(stackL)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StackLib)
+add_subdirectory(StackLib)
