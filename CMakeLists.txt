@@ -1,17 +1,17 @@
 cmake_minimum_required(VERSION 2.8) 
 
-set(PROJECT_NAME AllLabs) 
+set(PROJECT_NAME 381706-1_Mityagina_AllLabs) 
 project(${PROJECT_NAME}) 
 
-set (ArrayList ArrayList)
-set(ArrayListLib ArrayListLib) 
-set (ArrayListTests ArrayListTests)
-
-set(Exception Exception)
-
+set(StackLib StackLib)
+ 
 set(QueueLib QueueLib)
 
-set(StackLib StackLib)
+set(Exception Exception) 
+
+set(PolandLib PolandLib)
+set(Poland Poland)
+set(PolandTest PolandTest)
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)  
 if(NOT CMAKE_BUILD_TYPE) 
@@ -26,12 +26,6 @@ file(GLOB srcs "*.cpp")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest)
 add_subdirectory(gtest)
 
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ArrayListLib)
-add_subdirectory(ArrayList)
-add_subdirectory(ArrayListLib)
-add_subdirectory(ArrayListTests)
-
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/Exception)
 add_subdirectory(Exception)
 
@@ -39,4 +33,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/QueueLib)
 add_subdirectory(QueueLib)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StackLib)
-add_subdirectory(StackLib)
+add_subdirectory(StackLib) 
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/PolandLib)
+add_subdirectory(PolandLib) 
+add_subdirectory(Poland) 
+add_subdirectory(PolandTest) 
