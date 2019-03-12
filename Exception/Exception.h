@@ -9,12 +9,11 @@ private:
 	std::string str;
 public:
 	TException(std::string _str);
-	void Show();
+	void Show()
+	{
+	std::cout << "\nWarning! \nMessage: " << str << std::endl;
+        }
+
 };
 
 TException::TException(std::string _str) : str(_str) {}
-
-void TException::Show() 
-{
-	std::cout << "\nWarning! \nMessage: " << str << std::endl;
-}
