@@ -70,7 +70,6 @@ add_subdirectory(MatrixLib)
 add_subdirectory(MatrixTest)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/StackLib)
-add_subdirectory(Stack)
 add_subdirectory(StackLib)
 add_subdirectory(StackTest)
 
@@ -85,7 +84,6 @@ add_subdirectory(ArrayListLib)
 add_subdirectory(ArrayListTests)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ListLib)
-add_subdirectory(List)
 add_subdirectory(ListLib)
 add_subdirectory(ListTests)
 
