@@ -8,9 +8,16 @@ before_script:
 script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
-  - ./Vector/Vector
   - ./VectorTest/VectorTest
-  - ./Matrix/Matrix
   - ./MatrixTest/MatrixTest
+  - ./ArrayListTests/ArrayListTests
+  - ./ListTests/ListTests
+  - ./mStackTest/mStackTest
+  - ./MonomialTest/MonomialTest
+  - ./PolandTest/PolandTest
+  - ./PolinomialTest/PolinomialTest
+  - ./QueueTest/QueueTest
+  - ./StackTest/StackTest
+  - ./StackListTest/StackListTest
 notifications:
   email: false
