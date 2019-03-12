@@ -8,7 +8,7 @@ before_script:
 script:
   - cmake ../381706-1_Mityagina_AllLabs
   - make -j
-  - ./ArrayList/ArrayList
-  - ./ArrayListTests/ArrayListTests
+  - ./Poland/Poland
+  - ./PolandTest/PolandTest
 notifications:
   email: false
