@@ -43,7 +43,7 @@ else
   /*TStack<T>::mas[Start] = A;
   Start = (Start + 1) % TStack<T>::size;*/
   TStack<T>::Put(A);
-  TStack<T>::top = TStack<T>::top % TStack<T>::size;
+  TStack<T>::Top = TStack<T>::Top % TStack<T>::Size;
   Count++;
  }
 }
@@ -55,8 +55,8 @@ if (IsEmpty())
  throw TException("Queue is empty.");
 else 
 {
- T temporary = TStack<T>::mas[Start];
- Start = (Start + 1) % TStack<T>::size;
+ T temporary = TStack<T>::Mas[Start];
+ Start = (Start + 1) % TStack<T>::Size;
  Count--;
  return temporary;
  }
@@ -65,22 +65,22 @@ else
 template <class T>
 T TQueue<T>::GetButDontDelQ()
 {
-  return TStack<T>::mas[Start];
+  return TStack<T>::Mas[Start];
 }
 //-----------------------------------------------------------------
 template <class T>
 void TQueue<T>::ShowQ()
 {
-  int t = TStack<T>::top;
-  int s = TStack<T>::size;
+  int t = TStack<T>::Top;
+  int s = TStack<T>::Size;
   for (int i = Start; i < t; i = (i + 1) % s)
-  cout << TStack<T>::mas[i];
+  cout << TStack<T>::Mas[i];
 }
 //-----------------------------------------------------------------
 template <class T>
 bool TQueue<T>::IsFull()
 {
-if (Count == TStack<T>::size)
+if (Count == TStack<T>::Size)
  return true;
 else
  return false;
