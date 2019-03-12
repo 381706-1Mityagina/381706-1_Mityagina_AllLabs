@@ -15,7 +15,6 @@ set(MatrixTest MatrixTest)
 
 set(stackL stackL)
 
-set(Stack Stack)
 set(StackLib StackLib)
 set(StackTest StackTest)
 
@@ -23,7 +22,6 @@ set(Queue Queue)
 set(QueueLib QueueLib)
 set(QueueTest QueueTest)
 
-set(List List)
 set(ListLib ListLib)
 set(ListTests ListTests)
 
