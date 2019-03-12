@@ -9,11 +9,11 @@ template <class T>
 class TStack
 {
 protected:
-  int size;
-  int top;
-  T* mas;
+  int Size;
+  int Top;
+  T* Mas;
 public:
-  int GetSize() { return size; }
+  int GetSize() { return Size; }
   TStack(int n = 0);
   TStack(TStack<T> &S);
   T Get();
@@ -35,31 +35,31 @@ TStack <T> ::TStack(int n)
   else
    if (n == 0)
    {
-     size = top = 0;
-     mas = NULL;
+     Size = Top = 0;
+     Mas = NULL;
    }
   else
    {
-     size = n;
-     top = 0;
-     mas = new T[size];
-     for (int i = 0; i < size; i++)
-       mas[i] = 0;
+     Size = n;
+     Top = 0;
+     Mas = new T[Size];
+     for (int i = 0; i < Size; i++)
+       Mas[i] = 0;
    }
 }
 //----------------------------------------------------------------------
 template <class T>
 TStack <T> ::TStack(TStack <T> &S)
 {
-  size = S.size;
-  top = S.top;
-  if (size == 0)
-    mas = NULL;
+  Size = S.Size;
+  Top = S.Top;
+  if (Size == 0)
+    Mas = NULL;
   else
   {
-    mas = new T[size];
-    for (int i = 0; i < size; i++)
-      mas[i] = S.mas[i];
+    Mas = new T[Size];
+    for (int i = 0; i < Size; i++)
+      Mas[i] = S.Mas[i];
   }
 }
 //----------------------------------------------------------------------
@@ -70,8 +70,8 @@ void TStack<T> ::Put(T A)
     throw TException("Stack is full");
   else
   {
-    mas[top] = A;
-    top++;
+    Mas[Top] = A;
+    Top++;
   }
 }
 //----------------------------------------------------------------------
@@ -82,8 +82,8 @@ T TStack<T> ::Get()
     throw TException("Stack is empty");
   else
   {
-    top--;
-    return mas[top];
+    Top--;
+    return Mas[Top];
   }
 }
 //----------------------------------------------------------------------
@@ -92,13 +92,13 @@ T TStack<T> ::GetButDontDel()
 {
   if (IsEmpty())
     throw "Stack is empty.-.";
-  return mas[top - 1];
+  return Mas[Top - 1];
 }
 //----------------------------------------------------------------------
 template <class T>
 bool TStack<T> ::IsFull()
 {
-  if (top >= size)
+  if (Top >= Size)
     return true;
   else
     return false;
@@ -107,7 +107,7 @@ bool TStack<T> ::IsFull()
 template <class T>
 bool TStack<T> ::IsEmpty()
 {
-  if (top == 0)
+  if (Top == 0)
     return true;
   return false;
 }
@@ -117,13 +117,13 @@ TStack<T>& TStack<T> ::operator=(const TStack<T>& stack)
 {
   if (this != &stack)
   {
-    delete[]mas;
-    top = stack.top;
-    size = stack.size;
-    mas = new T[size];
-    for (int i = 0; i < size; i++)
+    delete[]Mas;
+    Top = stack.Top;
+    Size = stack.Size;
+    Mas = new T[Size];
+    for (int i = 0; i < Size; i++)
     {
-      mas[i] = stack.mas[i];
+      Mas[i] = stack.Mas[i];
     }
   }
   return *this;
@@ -133,13 +133,13 @@ TStack<T>& TStack<T> ::operator=(const TStack<T>& stack)
 template <class T>
 int TStack<T> ::operator==(const TStack<T>& stack) const
 {
-  if (top != stack.top)
+  if (Top != stack.Top)
     return 0;
-  if (size != stack.size)
+  if (Size != stack.Size)
     return 0;
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < Size; i++)
    {
-    if (mas[i] != stack.mas[i])
+    if (Mas[i] != stack.Mas[i])
       return 0;
    }
   return 1;
@@ -154,7 +154,7 @@ int TStack<T> ::operator!=(const TStack<T>& stack) const
 template <class T>
 void TStack<T>::PrintStack()
 {
-  for (int i = top - 1; i >= 0; i--)
-    cout << "\t|" << mas[i] << "|" << endl;
+  for (int i = Top - 1; i >= 0; i--)
+    cout << "\t|" << Mas[i] << "|" << endl;
 }
 //----------------------------------------------------------------------
