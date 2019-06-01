@@ -13,6 +13,9 @@ set(Matrix Matrix)
 set(MatrixLib MatrixLib)
 set(MatrixTest MatrixTest)
 
+set(ViewTableLib ViewTableLib)
+set(ViewTableTest ViewTableTest)
+
 set(stackL stackL)
 
 set(StackLib StackLib)
@@ -63,6 +66,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/VectorLib)
 add_subdirectory(Vector)
 add_subdirectory(VectorLib)
 add_subdirectory(VectorTest)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/ViewTableLib)
+add_subdirectory(ViewTableLib)
+add_subdirectory(ViewTableTest)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/MatrixLib)
 add_subdirectory(Matrix)
