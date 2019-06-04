@@ -1,6 +1,6 @@
 #include "..//gtest/gtest.h"
-#include "..///ViewTablaLib/ViewTableElem.h"
-#include "..///ViewTablaLib/ViewTable.h"
+#include "..//ViewTablaLib/ViewTableElem.h"
+#include "..//ViewTablaLib/ViewTable.h"
 
 TEST(ViewTableElem, can_create)
 {
