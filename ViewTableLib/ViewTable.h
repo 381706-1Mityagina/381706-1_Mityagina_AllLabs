@@ -33,7 +33,7 @@ TViewTable<T>::TViewTable(int n)
 	size = n;
 	count = 0;
 	TString notfound("not_found");
-	not_find.SetKey(notfound);
+	not_found.SetKey(notfound);
 }
 //------------------------------------------------------------------------------------
 template <class T>
@@ -45,7 +45,7 @@ TViewTable<T>::TViewTable(TViewTable<T>& A)
 	for (int i = 0; i < size; i++)
 		mas[i] = A.mas[i];
 	TString notfound("not_found");
-	not_find.SetKey(notfound);
+	not_found.SetKey(notfound);
 }
 //------------------------------------------------------------------------------------
 template <class T>
