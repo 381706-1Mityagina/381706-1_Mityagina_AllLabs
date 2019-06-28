@@ -11,3 +11,7 @@ script:
   - ./ViewTableTest/ViewTableTest
 notifications:
   email: false
+branches:
+  except:
+    - table
+    
