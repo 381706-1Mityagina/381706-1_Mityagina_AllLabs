@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "..//Exception/Exception.h"
-#include "..//QueueLib1/Queue.h"
+#include "..//QueueLib/Queue.h"
 
 using namespace std;
 
@@ -230,7 +230,7 @@ TQueue<char> ToPolish(TString str)
 					St.Put(str[i]);
 			}
 		}
-		else if (isdigit(str[i])) // проверка, является ли str[i] цифрой
+		else if (isdigit(str[i])) // ГЇГ°Г®ГўГҐГ°ГЄГ , ГїГўГ«ГїГҐГІГ±Гї Г«ГЁ str[i] Г¶ГЁГґГ°Г®Г©
 		{
 			Qu.Put('[');
 			while ((isdigit(str[i + 1])) && (i < str.GetSize()))
