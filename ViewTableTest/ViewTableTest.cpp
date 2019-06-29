@@ -71,7 +71,7 @@ TEST(ViewTable, can_not_delete_not_exist_elem)
 	TViewTable<int> hey(10);
 	string f("f");
 	string s("s");
-	//string t("t");
+	string t("t");
 
 	hey[f] = 1;
 	hey[s] = 2;
@@ -94,8 +94,6 @@ TEST(ViewTable, can_find)
 	hey.Put(s, 4);
 
 	TViewTableElem<int> A = hey.Search(f);
-	ASSERT_TRUE(A.GetData() == 1);
-	ASSERT_TRUE(A.GetKey() == f);
 	*/
 	
 	string f("f");
