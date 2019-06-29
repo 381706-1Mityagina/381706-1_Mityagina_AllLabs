@@ -10,14 +10,14 @@ protected:
 	unsigned count;
 public:
 	TViewTableElem<T> not_found;
-	TViewTableElem<T>& Search(TString k);
+	TViewTableElem<T>& Search(string k);
 	TViewTable(int n = 0);
 	TViewTable(TViewTable<T>& A);
-	T& operator[](TString k);
+	T& operator[](string k);
 	~TViewTable();
 
-	void Put(TString k, T d);
-	void Del(TString k);
+	void Put(string k, T d);
+	void Del(string k);
 	int GetCount() { return count; }
 
 	template <class T1>
@@ -49,7 +49,7 @@ TViewTable<T>::TViewTable(TViewTable<T>& A)
 }
 //------------------------------------------------------------------------------------
 template <class T>
-void TViewTable<T>::Put(TString k, T d)
+void TViewTable<T>::Put(string k, T d)
 {
 	if (size == count)
 		throw TException("Table is full");
@@ -61,7 +61,7 @@ void TViewTable<T>::Put(TString k, T d)
 }
 //------------------------------------------------------------------------------------
 template <class T>
-void TViewTable<T>::Del(TString k)
+void TViewTable<T>::Del(string k)
 {
 	int tmp = -1;
 	if (count == 0)
@@ -76,13 +76,13 @@ void TViewTable<T>::Del(TString k)
 		throw TException("Element doesn't exist");
 	mas[tmp] = mas[count - 1];
 	mas[count - 1].SetData((T)0);
-	TString no("no");
+	string no("no");
 	mas[count - 1].SetKey(no);
 	count--;
 }
 //------------------------------------------------------------------------------------
 template <class T>
-TViewTableElem<T>& TViewTable<T>::Search(TString k)
+TViewTableElem<T>& TViewTable<T>::Search(string k)
 {
 	for (int i = 0; i < count; i++)
 		if (mas[i].GetKey() == k)
@@ -91,7 +91,7 @@ TViewTableElem<T>& TViewTable<T>::Search(TString k)
 }
 //------------------------------------------------------------------------------------
 template <class T>
-T& TViewTable<T>::operator[](TString k)
+T& TViewTable<T>::operator[](string k)
 {
 	TViewTableElem<T>& tmp = Search(k);
 	if (tmp == not_found)
