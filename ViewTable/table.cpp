@@ -9,11 +9,11 @@ int main()
 {  
   TViewTable<int> hey(10);
   
-  hey.Put(b, 10);
-  hey.Put(c, 100);
-  hey.Put(a, 40);
+  hey.Put('b', 10);
+  hey.Put('c', 100);
+  hey.Put('a', 40);
 
-  cout<<t<<"\n";
+  cout<<hey<<"\n";
   
   hey.Put(a, 40);
   
