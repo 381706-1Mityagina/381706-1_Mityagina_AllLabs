@@ -12,13 +12,13 @@ int main()
   
   TViewTable<int> hey(10);
   
-  hey.Put(elem_s, 10);
-  hey.Put(elem_t, 100);
-  hey.Put(elem_f, 40);
+  hey.Put(elem_s.key, 10);
+  hey.Put(elem_t.key, 100);
+  hey.Put(elem_f.key, 40);
 
   cout<<t<<"\n";
   
-  hey.Put(elem_fo);
+  hey.Put(elem_fo.key, 40);
   
   return 0;
 }
