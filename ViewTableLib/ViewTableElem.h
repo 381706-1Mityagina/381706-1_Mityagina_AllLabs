@@ -1,25 +1,27 @@
 #pragma once
-#include "String.h"
+//#include "String.h"
 #include <iostream>
+#include <string>
 using namespace std;
 
 template <class T>
 class TViewTableElem
 {
 protected:
-	TString key;
+	//TString key;
+	string key;
 	T data;
 public:
 	TViewTableElem();
-	TViewTableElem(TString k, T d);
+	TViewTableElem(string k, T d);
 	TViewTableElem(TViewTableElem<T>& A);
 	TViewTableElem<T>& operator=(TViewTableElem<T>& A);
 
 	T GetData();
 	T& operator()();
-	TString GetKey();
+	string GetKey();
 	void SetData(T d);
-	void SetKey(TString k);
+	void SetKey(string k);
 	bool operator==(TViewTableElem<T>& A);
 	bool operator>(TViewTableElem<T>& A);
 	bool operator< (TViewTableElem<T>& A);
@@ -31,13 +33,13 @@ public:
 template<class T>
 TViewTableElem<T>::TViewTableElem()
 {
-	TString no("no");
+	string no("no");
 	key = no;
 	data = (T)0;
 }
 //------------------------------------------------------------------------------------
 template <class T>
-TViewTableElem<T>::TViewTableElem(TString k, T d)
+TViewTableElem<T>::TViewTableElem(string k, T d)
 {
 	key = k;
 	data = d;
