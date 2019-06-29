@@ -61,7 +61,7 @@ TViewTableElem<T>& TViewTableElem<T>::operator=(TViewTableElem<T>& A)
 }
 //------------------------------------------------------------------------------------
 template <class T>
-TString TViewTableElem<T>::GetKey()
+string TViewTableElem<T>::GetKey()
 {
 	return key;
 }
