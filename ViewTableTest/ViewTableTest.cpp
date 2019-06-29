@@ -71,7 +71,7 @@ TEST(ViewTable, can_not_delete_not_exist_elem)
 	TViewTable<int> hey(10);
 	string f("f");
 	string s("s");
-	string t("t");
+	//string t("t");
 
 	hey[f] = 1;
 	hey[s] = 2;
