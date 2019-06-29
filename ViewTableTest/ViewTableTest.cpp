@@ -4,7 +4,7 @@
 
 TEST(ViewTableElem, can_create)
 {
-	TString key("key");
+	string key("key");
 	ASSERT_NO_THROW(TViewTableElem<int> A(key, 12));
 }
 
