@@ -72,11 +72,9 @@ TEST(ViewTable, can_not_delete_not_exist_elem)
 	string f("f");
 	string s("s");
 	string t("t");
-
-	hey[f] = 1;
-	hey[s] = 2;
-	hey.Put(f, 3);
-	hey.Put(s, 4);
+	
+	hey.Put(f, 1);
+	hey.Put(s, 2);
 
 	ASSERT_ANY_THROW(hey.Del(t));
 }
