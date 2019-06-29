@@ -98,10 +98,10 @@ TEST(ViewTable, can_find)
 	ASSERT_TRUE(A.GetKey() == f);
 	*/
 	
-	TString f("f");
-	TString s("seco");
-	TString t("third");
-	TString fo("forth");
+	string f("f");
+	string s("seco");
+	string t("third");
+	string fo("forth");
 
 	TViewTable<int> hey(10);
 	
