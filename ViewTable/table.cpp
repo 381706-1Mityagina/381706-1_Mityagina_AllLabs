@@ -1,4 +1,4 @@
-#include "..//ViewTableLib/ViewTableLib.h"
+#include "..//ViewTableLib/ViewTable.h"
 #include <string>
 #include <iostream>
 #include <locale>
