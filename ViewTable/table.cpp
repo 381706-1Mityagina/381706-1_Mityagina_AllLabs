@@ -7,14 +7,14 @@ using namespace std;
 
 int main()
 {
-  TViewTableElem<int> elem_f("a", 40), elem_s("b", 10), elem_t("c", 100);
+  TViewTableElem<int> elem_f("a"), elem_s("b"), elem_t("c");
   TViewTableElem<int> elem_fo(elem_f);
   
   TViewTable<int> hey(10);
   
-  hey.Put(elem_s);
-  hey.Put(elem_t);
-  hey.Put(elem_f);
+  hey.Put(elem_s, 10);
+  hey.Put(elem_t, 100);
+  hey.Put(elem_f, 40);
 
   cout<<t<<"\n";
   
