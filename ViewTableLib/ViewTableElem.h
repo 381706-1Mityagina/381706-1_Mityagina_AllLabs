@@ -85,7 +85,7 @@ bool TViewTableElem<T>::operator<(TViewTableElem<T>& A)
 }
 //------------------------------------------------------------------------------------
 template <class T>
-void TViewTableElem<T>::SetKey(TString k)
+void TViewTableElem<T>::SetKey(string k)
 {
 	key = k;
 }
