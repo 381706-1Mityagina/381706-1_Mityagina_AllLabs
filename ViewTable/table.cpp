@@ -7,15 +7,29 @@ using namespace std;
 
 int main()
 {  
-  TViewTable<int> hey(10);
+  cout << "\t<<< Creating new table >>>" << endl;
+	TViewTable<int> hey(10);
   
-  hey.Put('b', 10);
-  hey.Put('c', 100);
-  hey.Put('a', 40);
+	cout << "\t---Do: add key & data ---" << endl;
+	string key_f ("f");
+	hey.Put(key_f, 1);
+  
+	string key_s("s");
+	hey.Put(key_s, 2);
 
-  cout<<hey<<"\n";
+  string key_t("t");
+	hey.Put(key_t, 3);
+
+  string key_fo ("fo");
+	hey.Put(key_fo, 4);
   
-  hey.Put(a, 40);
+	cout << "\t<<< View table >>>" << endl;
+	cout << hey << endl;
   
-  return 0;
+	cout << "\t<<< Delete one of the elements >>>" << endl;
+	hey.Del(key_f);
+  
+  cout << hey << endl;
+  
+	return 0;
 }
