@@ -97,17 +97,3 @@ TEST(ViewTable, can_find)
 	ASSERT_TRUE(A.GetData() == 1);
 	ASSERT_TRUE(A.GetKey() == f);
 }
-
-TEST(ViewTable, can_add_if_do_not_exist)
-{
-	TViewTable<int> hey(10);
-	string f("f");
-	string s("s");
-
-	hey[f] = 1;
-	hey[s] = 2;
-	
-	ASSERT_TRUE(ST.Search(f).GetData() == 1);
-	ASSERT_TRUE(ST.Search(s).GetData() == 2);
-	
-}
