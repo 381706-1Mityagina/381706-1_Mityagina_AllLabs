@@ -10,8 +10,8 @@ TEST(ViewTableElem, can_create)
 
 TEST(ViewTableElem, can_compare_elements)
 {
-	TString kf("f");
-	TString ks("key");
+	string kf("f");
+	string ks("key");
 	
 	TViewTableElem<int> A(kf, 1);
 	TViewTableElem<int> B(ks, 2);
@@ -33,8 +33,8 @@ TEST(ViewTable, can_not_create_with_negative_prmtr)
 TEST(ViewTable, can_put_and_can_get)
 {
 	TViewTable<int> hey(10);
-	TString f("f");
-	TString s("s");
+	string f("f");
+	string s("s");
 	
 	hey.Put(f, 1);
 	hey.Put(s, 2);
@@ -46,8 +46,8 @@ TEST(ViewTable, can_put_and_can_get)
 TEST(ViewTable, can_not_put_exist_elem)
 {
 	TViewTable<int> hey(10);
-	TString f = "f";
-	TString s = "s";
+	string f = "f";
+	string s = "s";
 
 	hey.Put(f, 1);
 	hey.Put(s, 2);
@@ -57,8 +57,8 @@ TEST(ViewTable, can_not_put_exist_elem)
 TEST(ViewTable, can_delete)
 {
 	TViewTable<int> hey(10);
-	TString f("f");
-	TString s("s");
+	string f("f");
+	string s("s");
 
 	hey.Put(f, 1);
 	hey.Put(s, 2);
@@ -70,9 +70,9 @@ TEST(ViewTable, can_delete)
 TEST(ViewTable, can_not_delete_not_exist_elem)
 {
 	TViewTable<int> hey(10);
-	TString f("f");
-	TString s("s");
-	TString t("t");
+	string f("f");
+	string s("s");
+	string t("t");
 
 	hey[f] = 1;
 	hey[s] = 2;
@@ -85,8 +85,8 @@ TEST(ViewTable, can_not_delete_not_exist_elem)
 TEST(ViewTable, can_find)
 {
 	TViewTable<int> hey(10);
-	TString f("f");
-	TString s("s");
+	string f("f");
+	string s("s");
 
 	hey[f] = 1;
 	hey[s] = 2;
@@ -101,8 +101,8 @@ TEST(ViewTable, can_find)
 TEST(ViewTable, can_add_if_do_not_exist)
 {
 	TViewTable<int> hey(10);
-	TString f("f");
-	TString s("s");
+	string f("f");
+	string s("s");
 
 	hey[f] = 1;
 	hey[s] = 2;
