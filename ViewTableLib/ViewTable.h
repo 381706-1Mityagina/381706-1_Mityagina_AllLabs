@@ -32,7 +32,7 @@ TViewTable<T>::TViewTable(int n)
 	mas = new TViewTableElem<T>[n];
 	size = n;
 	count = 0;
-	TString notfound("not_found");
+	string notfound("not_found");
 	not_found.SetKey(notfound);
 }
 //------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ TViewTable<T>::TViewTable(TViewTable<T>& A)
 	mas = new TViewTableElem<T>[size];
 	for (int i = 0; i < size; i++)
 		mas[i] = A.mas[i];
-	TString notfound("not_found");
+	string notfound("not_found");
 	not_found.SetKey(notfound);
 }
 //------------------------------------------------------------------------------------
