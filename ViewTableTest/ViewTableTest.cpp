@@ -10,14 +10,13 @@ TEST(ViewTableElem, can_create)
 
 TEST(ViewTableElem, can_compare_elements)
 {
-	string kf("f");
+	string kf("a");
 	string ks("key");
 	
 	TViewTableElem<int> A(kf, 1);
 	TViewTableElem<int> B(ks, 2);
 
-	ASSERT_TRUE(A > B);
-	
+	ASSERT_TRUE(A < B);
 }
 
 TEST(ViewTable, can_create_with_positive_prmtr)
@@ -38,8 +37,8 @@ TEST(ViewTable, can_put_and_can_get)
 	
 	hey.Put(f, 1);
 	hey.Put(s, 2);
-	ASSERT_TRUE(hey[f] == 4);
-	ASSERT_TRUE(hey[s] == 1);
+	ASSERT_TRUE(hey[f] == 1);
+	ASSERT_TRUE(hey[s] == 2);
 	
 }
 
