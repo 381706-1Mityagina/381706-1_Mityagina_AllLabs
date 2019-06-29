@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <math.h>
+#include <stdlib.h>
 #include "..//Exception/Exception.h"
 #include "..//QueueLib/Queue.h"
 
